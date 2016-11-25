@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.template.response import TemplateResponse
 
 from ..product.models import Product

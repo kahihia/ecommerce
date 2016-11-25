@@ -26,6 +26,7 @@
 
     <body itemscope itemtype="http://schema.org/WebPage">
         {% block header %}
+
             <header class="navbar navbar-default navbar-inverse navbar-static-top" role="navigation">
                 <nav class="container">
                     <div class="navbar-header">
@@ -75,6 +76,11 @@
                 </nav>
             </header>
         {% endblock %}
+        <!--start-logo-->
+        <div class="logo">
+          <a href="index.html"><h1>Luxury Watches</h1></a>
+        </div>
+        <!--end-logo-->
         {% if messages %}
         <div class="container">
             {% for message in messages %}

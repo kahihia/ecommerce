@@ -130,17 +130,17 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
       background-color: $gray-lighter;
       height: 40px;
       text-align: center;
-      
+
       &:first-of-type {
         border-left: 0;
         border-radius:5px 0 0 5px;
       }
-      
+
       &:last-of-type {
         border-right: 0;
         border-radius:0 5px 5px 0;
       }
-      
+
       &:hover {
         text-decoration: none;
       }
@@ -184,3 +184,22 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
     }
 	}
 }
+
+/*--starts-logo--*/
+.logo {
+    text-align: center;
+    padding: 25px 0 20px 0px;
+    border-bottom: 1px solid #DEDEDE;
+}
+.logo a h1 {
+    font-size: 32px;
+    color: #000000;
+    margin: 0;
+    font-family: 'Lora-Regular';
+    text-transform: uppercase;
+	display: inline-block;
+}
+.logo a:hover{
+	text-decoration:none;
+}
+/*--end-logo--*/
