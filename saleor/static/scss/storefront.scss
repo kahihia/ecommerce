@@ -978,7 +978,10 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 
   /*--about-starts--*/
   .about {
-      padding: 5em 0px 4em 0px;
+    padding: 3em 0px 0em 0px;
+  }
+  .about-left{
+    padding-bottom: 30px;
   }
   .about-left img{
   	width:100%;
@@ -1115,6 +1118,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
   /*--product-starts--*/
   .product-left {
       text-align: center;
+      padding-bottom: 30px;
 
   }
   .product-main {
@@ -1122,7 +1126,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
       border:1px solid #ECEAEA;
   }
   .product {
-      padding: 3em 0px 6em 0px;
+      padding: 1.5em 0px 2em 0px;
   }
   .product-bottom h3 {
       font-size: 16px;

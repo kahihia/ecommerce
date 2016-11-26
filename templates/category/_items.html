@@ -3,34 +3,50 @@
 {% load price_range from price_ranges %}
 {% load discounted_price_range price_difference from discount %}
 
-{% for product in products %}
-    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" itemscope itemtype="https://schema.org/Product">
-        <div class="panel panel-default text-center">
-            <div class="panel-body">
-                <a itemprop="url" href="{{ product.get_absolute_url }}">
-                    {% if product.images.first %}
-                        <img itemprop="image" class="img-responsive" src="{{ product.images.first.image.crop.400x400 }}" alt="">
-                    {% else %}
-                        <img src="{% static 'images/product-image-placeholder.png' %}" alt="" class="img-responsive">
-                    {% endif %}
-                    <span class="product-list-item-name" itemprop="name" title="{{ product }}">{{ product }}</span>
-                </a>
-            </div>
+<!--product-starts-->
 
-            <div class="panel-footer">
+<div class="product">
+  <div class="container">
+    <div class="product-top">
+
+      <div class="product-one">
+        {% for product in products %}
+        <div class="col-md-3 product-left" itemscope itemtype="https://schema.org/Product">
+          <div class="product-main simpleCart_shelfItem">
+            <a itemprop="url" href="{{ product.get_absolute_url }}" class="mask">
+              {% if product.images.first %}
+                  <img class="img-responsive zoom-img" src="{{ product.images.first.image.crop.250x250 }}" alt="" />
+              {% else %}
+                  <img class="img-responsive zoom-img" src="{% static 'images/product-image-placeholder.png' %}" alt="" />
+              {% endif %}
+            </a>
+            <div class="product-bottom">
+              <h3>
+                {{ product.name|truncatewords:3 }}
+              </h3>
+              <a itemprop="url" href="{{ product.get_absolute_url }}">
+                <p>Explore Now</p>
+              </a>
+              <h4><a class="item_add" href="#"><i></i></a>
                 {% if product.is_in_stock %}
                     {% with price_range=product|discounted_price_range:request.discounts undiscounted=product.get_price_range %}
                         {% with discount=undiscounted.min_price|price_difference:price_range.min_price %}
-                            {% price_range price_range %}
+                            <span class="item_price">{% price_range price_range %}</span>
                             {% if undiscounted.min_price != price_range.min_price %}
-                                <span class="label label-success">{% trans "Discount!" %}</span>
+                                <!--<span class="item_price label">{% trans "Discount!" %}</span>-->
                             {% endif %}
                         {% endwith %}
                     {% endwith %}
                 {% else %}
                     &nbsp;
                 {% endif %}
+              </h4>
             </div>
+          </div>
         </div>
+        {% endfor %}
+      </div>
+
     </div>
-{% endfor %}
+  </div>
+</div>
