@@ -28,7 +28,6 @@ var config = {
     cart: './saleor/static/js/cart.js',
     dashboard: './saleor/static/js/dashboard.js',
     storefront: './saleor/static/js/storefront.js',
-    responsiveslides: './saleor/static/js/responsiveslides.js',
     vendor: [
       'bootstrap-sass',
       'jquery',

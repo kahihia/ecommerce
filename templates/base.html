@@ -18,9 +18,7 @@
         {% render_bundle 'vendor' 'css' %}
         {% render_bundle 'storefront' 'css' %}
 
-        {% render_bundle 'vendor' 'js' %}
-        {% render_bundle 'storefront' 'js' %}
-        {% render_bundle 'responsiveslides' 'js' %}
+
 
 
         {% block stylesheet %}{% endblock stylesheet %}
@@ -239,47 +237,7 @@
       		</div>
       	</div>
       	<!--bottom-header-->
-        <!--banner-starts-->
-      	<div class="bnr" id="home">
-      		<div  id="top" class="callbacks_container">
-      			<ul class="rslides" id="slider4">
-      			    <li>
-      					<img src="https://p.w3layouts.com/demos/luxury_watches/web/images/bnr-1.jpg" alt=""/>
-      				</li>
-      				<li>
-      					<img src="https://p.w3layouts.com/demos/luxury_watches/web/images/bnr-2.jpg" alt=""/>
-      				</li>
-      				<li>
-      					<img src="https://p.w3layouts.com/demos/luxury_watches/web/images/bnr-3.jpg" alt=""/>
-      				</li>
-      			</ul>
-      		</div>
-      		<div class="clearfix"> </div>
-      	</div>
-      	<!--banner-ends-->
-        <!--Slider-Starts-Here-->
-
-        <script>
-        // You can also use "$(window).load(function() {"
-        jQuery.noConflict();
-        jQuery(function ($) {
-          $("#slider4").responsiveSlides({
-            auto: true,
-            pager: false,
-            nav: true,
-            speed: 500,
-            namespace: "callbacks",
-            before: function () {
-              $('.events').append("<li>before event fired.</li>");
-            },
-            after: function () {
-              $('.events').append("<li>after event fired.</li>");
-            }
-          });
-
-        });
-        </script>
-      			<!--End-slider-script-->
+        
             <!--about-starts-->
           	<div class="about">
           		<div class="container">
@@ -508,7 +466,8 @@
         <!--footer-end-->
         {% endblock %}
         {% block footer_scripts %}
-
+          {% render_bundle 'vendor' 'js' %}
+          {% render_bundle 'storefront' 'js' %}
         {% endblock footer_scripts %}
     </body>
 </html>
