@@ -488,13 +488,24 @@
             {% endblock outercontent %}
         </div>
         {% block footer %}
-            <footer>
-                <div class="container">
-                    <p class="pull-right">
-                        &copy; Mirumee Software 2016
-                    </p>
-                </div>
-            </footer>
+        <!--footer-starts-->
+        <div class="footer">
+          <div class="container">
+            <div class="footer-top">
+              <div class="col-md-6 footer-left">
+                <form>
+                  <input type="text" value="Enter Your Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your Email';}">
+                  <input type="submit" value="Subscribe">
+                </form>
+              </div>
+              <div class="col-md-6 footer-right">
+                <p>© 2016 Luana Vizzon. All Rights Reserved.</p>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+        <!--footer-end-->
         {% endblock %}
         {% block footer_scripts %}
 
