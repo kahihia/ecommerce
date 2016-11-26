@@ -191,6 +191,11 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
     padding: 25px 0 20px 0px;
     border-bottom: 1px solid #DEDEDE;
 }
+.logo img {
+    margin-left: auto;
+    margin-right: auto;
+    width: 30em
+}
 .logo a h1 {
     font-size: 32px;
     color: #000000;
@@ -607,7 +612,8 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
   	color: #fff;
   }
   .header-bottom {
-      padding: 18px 0px;
+      padding: 12px 0px;
+      border-bottom: 1px solid #DEDEDE;
   }
 
   /*--banner-starts--*/
