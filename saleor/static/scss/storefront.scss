@@ -192,6 +192,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
     border-bottom: 1px solid #DEDEDE;
 }
 .logo img {
+    margin-top: 5em;
     margin-left: auto;
     margin-right: auto;
     width: 30em
@@ -1234,7 +1235,6 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
       font-family: 'BreeSerif-Regular';
   }
   .infor-left ul li a span {
-        /*--background: url(../images/s-icons.png) no-repeat;--*/
       width: 34px;
       height: 34px;
       display: inline-block;

@@ -27,9 +27,14 @@
     <body itemscope itemtype="http://schema.org/WebPage">
         {% block header %}
 
-            <header class="navbar navbar-default navbar-inverse navbar-static-top" role="navigation">
+            <header class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
                 <nav class="container">
                     <div class="collapse navbar-collapse navbar-ex1-collapse">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li>
+                                <a href="{% url "cart:index" %}">Até 5x sem juros. Frete GRÁTIS para compras acima de R$ 150.</a>
+                            </li>
+                        </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <a href="{% url "cart:index" %}"><i class="glyphicon glyphicon-shopping-cart"></i> {% trans "Cart" %} {% if cart_counter %}<span class="badge">{{ cart_counter }}</span>{% endif %}</a>
@@ -213,9 +218,8 @@
           				<div class="col-md-3 infor-left">
           					<h3>Follow Us</h3>
           					<ul>
-          						<li><a href="#"><span class="fb"></span><h6>Facebook</h6></a></li>
-          						<li><a href="#"><span class="twit"></span><h6>Twitter</h6></a></li>
-          						<li><a href="#"><span class="google"></span><h6>Google+</h6></a></li>
+          						<li><a href="#"><span class="fb"><img src="{% static 'images/facebook.png' %}" alt="Siga Luana Vizzon no Facebook" class="img-responsive"></span><h6>Facebook</h6></a></li>
+          						<li><a href="#"><span class="twit"><img src="{% static 'images/twitter.png' %}" alt="Siga Luana Vizzon no Twitter" class="img-responsive"></span><h6>Twitter</h6></a></li>
           					</ul>
           				</div>
           				<div class="col-md-3 infor-left">
@@ -228,23 +232,18 @@
           						<li><a href="#"><p>Top Sellers</p></a></li>
           					</ul>
           				</div>
-          				<div class="col-md-3 infor-left">
-          					<h3>My Account</h3>
-          					<ul>
-          						<li><a href="account.html"><p>My Account</p></a></li>
-          						<li><a href="#"><p>My Credit slips</p></a></li>
-          						<li><a href="#"><p>My Merchandise returns</p></a></li>
-          						<li><a href="#"><p>My Personal info</p></a></li>
-          						<li><a href="#"><p>My Addresses</p></a></li>
-          					</ul>
-          				</div>
-          				<div class="col-md-3 infor-left">
+                  <div class="col-md-3 infor-left">
           					<h3>Store Information</h3>
           					<h4>The company name,
           						<span>Lorem ipsum dolor,</span>
           						Glasglow Dr 40 Fe 72.</h4>
           					<h5>+955 123 4567</h5>
           					<p><a href="mailto:example@email.com">contact@example.com</a></p>
+          				</div>
+          				<div class="col-md-3 infor-left">
+          					<h3>Formas de Pagamento</h3>
+                    <h4></h4>
+                    <img src="{% static 'images/payment.png' %}" alt="Formas de Pagamento" class="img-responsive">
           				</div>
           				<div class="clearfix"></div>
           			</div>
