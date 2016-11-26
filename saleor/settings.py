@@ -20,7 +20,7 @@ ROOT_URLCONF = 'saleor.urls'
 WSGI_APPLICATION = 'saleor.wsgi.application'
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Luigi Gianni', 'lcgianni@gmail.com'),
 )
 MANAGERS = ADMINS
 INTERNAL_IPS = os.environ.get('INTERNAL_IPS', '127.0.0.1').split()
@@ -37,8 +37,8 @@ DATABASES = {
     'default': dj_database_url.config(default=SQLITE_DB_URL, conn_max_age=600)}
 
 
-TIME_ZONE = 'America/Chicago'
-LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'America/Sao_Paulo'
+LANGUAGE_CODE = 'pt-br'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
@@ -225,10 +225,10 @@ AUTH_USER_MODEL = 'userprofile.User'
 
 LOGIN_URL = '/account/login'
 
-DEFAULT_COUNTRY = 'US'
-DEFAULT_CURRENCY = 'USD'
+DEFAULT_COUNTRY = 'BR'
+DEFAULT_CURRENCY = 'BRL'
 AVAILABLE_CURRENCIES = [DEFAULT_CURRENCY]
-DEFAULT_WEIGHT = 'lb'
+DEFAULT_WEIGHT = 'g'
 
 OPENEXCHANGERATES_API_KEY = os.environ.get('OPENEXCHANGERATES_API_KEY')
 
@@ -257,7 +257,7 @@ CHECKOUT_PAYMENT_CHOICES = [
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'}
 
-LOW_STOCK_THRESHOLD = 10
+LOW_STOCK_THRESHOLD = 2
 
 PAGINATE_BY = 16
 
