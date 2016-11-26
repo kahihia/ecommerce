@@ -204,12 +204,34 @@
           								<h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ 329</span></h4>
           							</div>
           						</div>
+                      <div class="clearfix"></div>
           					</div>
-          					<div class="clearfix"></div>
           				</div>
           			</div>
           		</div>
           	</div>
+
+            <!--product-starts-->
+          	<div class="product">
+          		<div class="container">
+          			<div class="product-top">
+          				<div class="product-one">
+                    {% block outercontent %}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            {% block content %}
+                                <div class="row">
+                                    {% include "category/_items.html" %}
+                                </div>
+                            {% endblock content %}
+                        </div>
+                    </div>
+                    {% endblock outercontent %}
+          				</div>
+          			</div>
+          		</div>
+          	</div>
+
           	<!--product-end-->
             <!--information-starts-->
           	<div class="information">
@@ -260,28 +282,6 @@
             {% endfor %}
         </div>
         {% endif %}
-        <div class="container">
-            {% block outerbreadcrumb %}
-            <ul class="breadcrumb" itemprop="breadcrumb">
-                {% block breadcrumb %}
-                <li>
-                    <a href="/">{% trans "Home" %}</a>
-                </li>
-                {% endblock breadcrumb %}
-            </ul>
-            {% endblock outerbreadcrumb %}
-            {% block outercontent %}
-            <div class="row">
-                <div class="col-sm-12">
-                    {% block content %}
-                        <div class="row">
-                            {% include "category/_items.html" %}
-                        </div>
-                    {% endblock content %}
-                </div>
-            </div>
-            {% endblock outercontent %}
-        </div>
         {% block footer %}
         <!--footer-starts-->
         <div class="footer">
