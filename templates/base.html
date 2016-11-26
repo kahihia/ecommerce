@@ -48,28 +48,30 @@
 
         <!--start-logo-->
         <div class="logo">
-          <a href="index.html"><img src="{% static 'images/logo.png' %}" alt="Luana Vizzon" class="img-responsive"></a>
+          <a href="/"><img src="{% static 'images/logo.png' %}" alt="Luana Vizzon" class="img-responsive"></a>
         </div>
         <!--end-logo-->
         <!--bottom-header-->
+        {% with activepage=activepage|default_if_none:"home" %}
       	<div class="header-bottom">
       		<div class="container">
       			<div class="header">
       				<div class="col-md-9 header-left">
       				<div class="top-nav">
-      					<ul class="memenu skyblue"><li class="active"><a href="index.html">Novidades</a></li>
+      					<ul class="memenu skyblue">
+                  <li {% if request.path == "/" %} class="active" {% endif %}><a href="/">Novidades</a></li>
                   {% for category in categories %}
-                      <li>
+                      <li {% if category.slug in request.path %} class="active" {% endif %}>
                           <a href="{{ category.get_absolute_url }}">
                               {{ category }}
                           </a>
                       </li>
                   {% endfor %}
                   </li>
-                  <li class="grid"><a href="contact.html">Torne-se revendedora</a>
+                  <li {% if request.path == "/contact/" %} class="active" {% endif %}><a href="contact.html">Torne-se revendedora</a>
                   </li>
                   </li>
-      						<li class="grid"><a href="contact.html">Entre em contato</a>
+      						<li id="resale" class="grid"><a href="contact.html">Entre em contato</a>
       						</li>
       					</ul>
       				</div>
@@ -79,6 +81,7 @@
       			</div>
       		</div>
       	</div>
+        {% endwith %}
       	<!--bottom-header-->
 
             <!--about-starts-->
@@ -117,7 +120,7 @@
           		</div>
           	</div>
           	<!--about-end-->
-            
+
 
             <!--product-starts-->
           	<div class="product">
