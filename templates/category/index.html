@@ -19,7 +19,11 @@
 {% endblock breadcrumb %}
 
 {% block content %}
+    <div class="text-center">
+        {% bootstrap_pagination products %}
+    </div>
     <div class="row">
+        <!--
         <div class="col-md-3">
             <ul class="list-group">
                 <li class="list-group-item active">
@@ -35,12 +39,15 @@
                 {% endfor %}
             </ul>
         </div>
+        -->
 
         <div class="col-md-9">
             <div class="row">
                 {% include "category/_items.html" %}
             </div>
-            {% bootstrap_pagination products %}
         </div>
+    </div>
+    <div class="text-center">
+        {% bootstrap_pagination products %}
     </div>
 {% endblock content %}

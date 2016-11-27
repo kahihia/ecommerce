@@ -32,7 +32,7 @@
                     <div class="collapse navbar-collapse navbar-ex1-collapse">
                         <ul class="nav navbar-nav navbar-left">
                             <li>
-                                <a href="{% url "cart:index" %}">Até 5x sem juros. Frete GRÁTIS para compras acima de R$ 150.</a>
+                                <a href="{% url "cart:index" %}">Parcele em até 5x sem juros | Frete GRÁTIS para compras acima de R$ 150</a>
                             </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
@@ -85,6 +85,7 @@
       	<!--bottom-header-->
 
             <!--about-starts-->
+            {% if request.path == "/" %}
           	<div class="about">
           		<div class="container">
           			<div class="about-top grid-1">
@@ -119,6 +120,7 @@
           			</div>
           		</div>
           	</div>
+            {% endif %}
           	<!--about-end-->
 
 
