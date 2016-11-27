@@ -977,6 +977,11 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
   }
 
   /*--about-starts--*/
+@media (max-width: 480px) {
+  .about {
+      display:none;
+  }
+}
   .about {
     padding: 3em 0px 0em 0px;
   }
