@@ -11,3 +11,8 @@ def home(request):
     return TemplateResponse(
         request, 'base.html',
         {'products': products, 'parent': None})
+
+def contact(request):
+
+    return TemplateResponse(
+        request, 'contact.html')
