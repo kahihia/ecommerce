@@ -22,7 +22,9 @@
 {% endblock footer_scripts %}
 
 {% block content %}
+
 {% if cart_lines %}
+<div class="cart">
     <table class="table table-striped cart" id="cart-items">
         <thead>
         <tr>
@@ -103,6 +105,7 @@
             <a href="{% url "checkout:index" %}" class="btn btn-primary btn-lg pull-right">{% trans "Proceed to checkout" %}</a>
         </div>
     </div>
+</div>
 {% else %}
 <p>
     {% trans 'Your cart is empty' %}
