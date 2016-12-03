@@ -5,13 +5,13 @@
 {% load staticfiles %}
 {% load discount_amount_for from prices %}
 
-{% block title %}{% trans "Order" %} {{ order }} — {{ block.super }}{% endblock %}
+{% block title %}{% trans "Pedido" %} {{ order }} — {{ block.super }}{% endblock %}
 
 {% block outerbreadcrumb %}
     {% if order.user == user %}
     <ul class="breadcrumb" itemprop="breadcrumb">
-        <li><a href="/">{% trans "Home" %}</a></li>
-        <li><a href="{% url 'profile:orders' %}">{% trans "Your orders" %}</a></li>
+        <li><a href="/">{% trans "Início" %}</a></li>
+        <li><a href="{% url 'profile:orders' %}">{% trans "Seus pedidos" %}</a></li>
         <li><a href="{% url 'order:details' token=order.token %}">{{ order }}</a></li>
     </ul>
     {% endif %}
@@ -30,9 +30,9 @@
 
                 {% if not order.is_fully_paid %}
                     {% if order.is_pre_authorized %}
-                        <a href="{% url "order:payment" token=order.token %}" class="btn btn-info">{% trans "Payment details" %}</a>
+                        <a href="{% url "order:payment" token=order.token %}" class="btn btn-info">{% trans "Detalhes do pagamento" %}</a>
                     {% else %}
-                        <a href="{% url "order:payment" token=order.token %}" class="btn btn-primary">{% trans "Pay for order" %}</a>
+                        <a href="{% url "order:payment" token=order.token %}" class="btn btn-primary">{% trans "Pagar pedido" %}</a>
                     {% endif %}
                 {% endif %}
             </h3>
@@ -44,7 +44,7 @@
             <div class="col-sm-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        {% trans "Billing address" %}
+                        {% trans "Endereço de cobrança" %}
                     </div>
                     <div class="panel-body">
                         <address>{% include "userprofile/snippets/address-details.html" with address=order.billing_address %}</address>
@@ -55,7 +55,7 @@
                 <div class="col-sm-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            {% trans "Shipping address" %}
+                            {% trans "Endereço de entrega" %}
                         </div>
                         <div class="panel-body">
                             <address>{% include "userprofile/snippets/address-details.html" with address=order.shipping_address %}</address>
@@ -77,8 +77,8 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th class="col-sm-6">{% trans "Name" %}</th>
-                        <th class="col-sm-3 text-right">{% trans "Price" %}</th>
+                        <th class="col-sm-6">{% trans "Nome" %}</th>
+                        <th class="col-sm-3 text-right">{% trans "Preço" %}</th>
                         <th class="col-sm-3 text-right">{% trans "Subtotal" %}</th>
                     </tr>
                 </thead>
@@ -99,7 +99,7 @@
                     {% if group.shipping_price.gross %}
                         <tr>
                             <td class="col-sm-4">
-                                {% trans "Shipping" %}
+                                {% trans "Entrega" %}
                             </td>
                             <td class="text-right">{% gross group.shipping_price %}</td>
                             <td class="text-right">{% gross group.shipping_price %}</td>

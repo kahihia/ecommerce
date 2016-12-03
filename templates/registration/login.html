@@ -2,7 +2,7 @@
 {% load bootstrap_form from bootstrap3 %}
 {% load i18n %}
 
-{% block title %}{% trans "Login" %} — {{ block.super }}{% endblock %}
+{% block title %}{% trans "Entrar" %} — {{ block.super }}{% endblock %}
 
 {% block content %}
 <div class="row">
@@ -18,28 +18,28 @@
                     </fieldset>
 
                     <div class="form-group text-right">
-                        <a class="btn btn-secondary" href="{% url 'registration:request_email_confirmation' %}">{% trans "I don't know my password" %}</a>
+                        <a class="btn btn-secondary" href="{% url 'registration:request_email_confirmation' %}">{% trans "Não lembro minha senha" %}</a>
                         <button class="btn btn-primary">
-                            {% trans "Log in" %}
+                            {% trans "Entrar" %}
                         </button>
                     </div>
                     <hr>
                     {% if facebook_login_url or google_login_url %}
-                        <p>{% trans "Want to use your social profile?" %}</p>
+                        <p>{% trans "Quer entrar com seu perfil de rede social?" %}</p>
                         <p>
                             {% if facebook_login_url %}
                                 <a class="btn btn-default" href="{{ facebook_login_url }}">
-                                    {% trans "Log in using Facebook" %}
+                                    {% trans "Entrar com Facebook" %}
                                 </a>
                             {% endif %}
                             {% if google_login_url %}
-                                <a class="btn btn-default" href="{{ google_login_url }}"> {% trans "Log in using Google" %}</a>
+                                <a class="btn btn-default" href="{{ google_login_url }}"> {% trans "Entrar com Google" %}</a>
                             {% endif %}
                         </p>
                         <hr>
                     {% endif %}
                     <div class="form-group">
-                        <p>{% trans "Don't have an account yet?" %} <a class="btn btn-secondary" href="{% url 'registration:request_email_confirmation' %}">{% trans "Register" %}</a></p>
+                        <p>{% trans "Ainda não possui uma conta?" %} <a class="btn btn-secondary" href="{% url 'registration:request_email_confirmation' %}">{% trans "Criar conta" %}</a></p>
                     </div>
                 </form>
             </div>

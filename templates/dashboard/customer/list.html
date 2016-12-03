@@ -3,13 +3,13 @@
 {% load prices_i18n %}
 {% load materializecss %}
 
-{% block title %}{% trans "Customers" %} - {{ block.super }}{% endblock %}
+{% block title %}{% trans "Clientes" %} - {{ block.super }}{% endblock %}
 
 {% block body_class %}body-customers{% endblock %}
 
 {% block breadcrumbs %}
     <ul class="breadcrumbs">
-        <li>{% trans "Customers" %}</li>
+        <li>{% trans "Clientes" %}</li>
     </ul>
 {% endblock %}
 
@@ -23,9 +23,9 @@
             {{ form.order_status|materializecss:"s7 m3 l2" }}
 
             <div class="col s5 m3 l3">
-                <button type="submit" class="btn btn--inline">{% trans "Filter" %}</button>
+                <button type="submit" class="btn btn--inline">{% trans "Filtrar" %}</button>
                 {% if form.is_bound %}
-                    <a class="btn btn--inline" href="{% url 'dashboard:customers' %}">{% trans "Clear" %}</a>
+                    <a class="btn btn--inline" href="{% url 'dashboard:customers' %}">{% trans "Retirar filtro" %}</a>
                 {% endif %}
             </div>
         </div>
@@ -43,10 +43,10 @@
                     <thead>
                         <tr>
                             <th>{% trans "Email" %}</th>
-                            <th class="wide">{% trans "Name" %}</th>
-                            <th>{% trans "Location" %}</th>
-                            <th class="right-align">{% trans "Number of orders" %}</th>
-                            <th>{% trans "Last order" %}</th>
+                            <th class="wide">{% trans "Nome" %}</th>
+                            <th>{% trans "Localização" %}</th>
+                            <th class="right-align">{% trans "Número de compras" %}</th>
+                            <th>{% trans "Última compra" %}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -82,7 +82,7 @@
             </div>
         {% else %}
             <div class="card-content card-content--no-data">
-                <p>{% trans "No customers found." %}</p>
+                <p>{% trans "Nenhum cliente encontrado." %}</p>
             </div>
         {% endif %}
     </div>

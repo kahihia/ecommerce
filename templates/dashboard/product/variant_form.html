@@ -7,7 +7,7 @@
     {% if variant.pk %}
         {{ variant.sku }}{% if variant.name %} ({{ variant.name }}){% endif %}
     {% else %}
-        {% trans "Add variant" %}
+        {% trans "Adicionar variante" %}
     {% endif %} - {{ block.super }}{% endblock %}
 
 {% block body_class %}body-store body-products{% endblock %}
@@ -19,13 +19,13 @@
 
 {% block breadcrumbs %}
     <ul class="breadcrumbs breadcrumbs--with-menu">
-        <li><a href="{% url "dashboard:product-list" %}" class="breadcrumbs--ellipsed-item">{% trans "Products" %}</a></li>
+        <li><a href="{% url "dashboard:product-list" %}" class="breadcrumbs--ellipsed-item">{% trans "Produtos" %}</a></li>
         <li><a href="{% url "dashboard:product-update" pk=product.pk %}#variants" class="breadcrumbs--ellipsed-item">{{ product }}</a></li>
         {% if variant.pk %}
-            <li><span class="breadcrumbs--ellipsed-item">{% trans "Variant" %} {{ variant.sku }}{% if variant.name %} ({{ variant.name }}){% endif %}</span></li>
+            <li><span class="breadcrumbs--ellipsed-item">{% trans "Variante" %} {{ variant.sku }}{% if variant.name %} ({{ variant.name }}){% endif %}</span></li>
         {% else %}
             <li>
-                <span class="hide-on-med-and-down">{% trans "Add variant" %}</span>
+                <span class="hide-on-med-and-down">{% trans "Adicionar variante" %}</span>
                 <span class="hide-on-large-only">{% blocktrans %}Add variant for {{ product }}{% endblocktrans %}</span>
             </li>
         {% endif %}
@@ -47,7 +47,7 @@
                         {% endfor %}
                     </div>
                 {% else %}
-                    <p>{% trans "This product has no attributes." %}</p>
+                    <p>{% trans "Este produto não possui atributos." %}</p>
                 {% endif %}
             </div>
 
@@ -64,9 +64,9 @@
         <div class="row">
             <div class="col s12 l8 right-align">
                 {% if variant.pk %}
-                    <button type="submit" class="btn">{% trans "Update" %}</button>
+                    <button type="submit" class="btn">{% trans "Atualizar" %}</button>
                 {% else %}
-                    <button type="submit" class="btn">{% trans "Create" %}</button>
+                    <button type="submit" class="btn">{% trans "Criar" %}</button>
                 {% endif %}
             </div>
         </div>

@@ -9,7 +9,7 @@
 {% block forms %}
     <form method="post" novalidate>
         {% csrf_token %}
-        <h3>{% trans "Billing address" %}</h3>
+        <h3>{% trans "Endereço de cobrança" %}</h3>
         {% if request.user.is_authenticated %}
             {% include "checkout/snippets/addresses-form.html" with addresses_form=addresses_form addresses=additional_addresses address_form=address_form only %}
         {% else %}
@@ -19,7 +19,7 @@
 
         <p class="text-right">
             <button type="submit" class="btn btn-primary btn-lg">
-                {% trans "Place order" %}
+                {% trans "Confirmar compra" %}
             </button>
         </p>
     </form>

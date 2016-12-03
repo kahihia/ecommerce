@@ -4,7 +4,7 @@
 {% load gross net tax from prices_i18n %}
 
 
-{% block title %}{% trans "Checkout" %} — {{ block.super }}{% endblock %}
+{% block title %}{% trans "Finalizar compra" %} — {{ block.super }}{% endblock %}
 
 {% block outerbreadcrumb %}{% endblock %}
 
@@ -14,9 +14,9 @@
 {% block content %}
     {% if not user.is_authenticated %}
         <p class="alert alert-info">
-            {% trans "Already have an account?" %}
+            {% trans "Já possui uma conta?" %}
             <a href="{% url "registration:login" %}?next={{ request.get_full_path }}">
-                {% trans "Sign in" %}
+                {% trans "Entrar" %}
             </a>
         </p>
     {% endif %}
@@ -27,22 +27,22 @@
             {% block steps_menu %}
             <ul class="nav nav-pills nav-justified nav-wizard">
                 <li>
-                    <a href="{% url "cart:index" %}">{% trans "Cart" %}</a>
+                    <a href="{% url "cart:index" %}">{% trans "Carrinho" %}</a>
                     <div class="nav-arrow"></div>
                 </li>
                 <li>
                     <div class="nav-wedge"></div>
-                    <a href="{% url "checkout:shipping-address" %}">{% trans "Shipping address" %}</a>
+                    <a href="{% url "checkout:shipping-address" %}">{% trans "Endereço de entrega" %}</a>
                     <div class="nav-arrow"></div>
                 </li>
                 <li>
                     <div class="nav-wedge"></div>
-                    <a href="{% url "checkout:shipping-method" %}">{% trans "Shipping method" %}</a>
+                    <a href="{% url "checkout:shipping-method" %}">{% trans "Método de entrega" %}</a>
                     <div class="nav-arrow"></div>
                 </li>
                 <li>
                     <div class="nav-wedge"></div>
-                    <a href="{% url "checkout:summary" %}">{% trans "Summary" %}</a>
+                    <a href="{% url "checkout:summary" %}">{% trans "Resumo" %}</a>
                 </li>
             </ul>
             {% endblock steps_menu %}
@@ -80,7 +80,7 @@
 
                     <tr>
                         <td class="noborder">
-                            {% trans "Shipping" %}
+                            {% trans "Entrega" %}
                         </td>
                         <td class="noborder text-right">
                             {% if checkout.shipping_method %}
@@ -93,7 +93,7 @@
                     {% if total.tax or True %}
                         <tr>
                             <td class="noborder">
-                                {% trans "Taxes" %}
+                                {% trans "Impostos" %}
                             </td>
                             <td class="noborder text-right">
                                 {% tax total %}

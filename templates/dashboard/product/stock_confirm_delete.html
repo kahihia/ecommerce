@@ -1,7 +1,7 @@
 {% extends "dashboard/base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Delete stock" %} - {{ block.super }}{% endblock %}
+{% block title %}{% trans "Deletar estoque" %} - {{ block.super }}{% endblock %}
 
 {% block body_class %}body-store body-products{% endblock %}
 
@@ -12,10 +12,10 @@
 
 {% block breadcrumbs %}
     <ul class="breadcrumbs breadcrumbs--with-menu">
-        <li><a href="{% url "dashboard:product-list" %}" class="breadcrumbs--ellipsed-item">{% trans "Products" %}</a></li>
+        <li><a href="{% url "dashboard:product-list" %}" class="breadcrumbs--ellipsed-item">{% trans "Produtos" %}</a></li>
         <li><a href="{% url "dashboard:product-update" pk=product.pk %}#stock" class="breadcrumbs--ellipsed-item">{{ product }}</a></li>
         <li>
-            <span class="hide-on-med-and-down">{% trans "Delete stock" %}</span>
+            <span class="hide-on-med-and-down">{% trans "Deletar estoque" %}</span>
             <span class="hide-on-large-only">{% blocktrans %}Delete stock for {{ product }}{% endblocktrans %}</span>
         </li>
     </ul>
@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="card-action">
-                        <button type="submit" class="card-link blue-text">{% trans "Delete" %}</button>
+                        <button type="submit" class="card-link blue-text">{% trans "Deletar" %}</button>
                     </div>
                 </div>
             </div>

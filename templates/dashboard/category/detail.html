@@ -11,7 +11,7 @@
 
 {% block breadcrumbs %}
     <ul class="breadcrumbs breadcrumbs--with-menu">
-        <li><a href="{% url 'dashboard:category-list' %}" class="breadcrumbs--ellipsed-item">{% trans "Categories" %}</a></li>
+        <li><a href="{% url 'dashboard:category-list' %}" class="breadcrumbs--ellipsed-item">{% trans "Categorias" %}</a></li>
         {% if path %}
             {% for node in path %}
                 <li><a href="{% url 'dashboard:category-list' root_pk=node.pk %}" class="breadcrumbs--ellipsed-item">{{ node.name }}</a></li>
@@ -45,14 +45,14 @@
         <div class="row">
             <div class="col s12 l8 right-align">
                 {% if category.parent %}
-                    <a href="{% url 'dashboard:category-list' root_pk=category.parent.pk %}" class="btn-flat">{% trans "Cancel" %}</a>
+                    <a href="{% url 'dashboard:category-list' root_pk=category.parent.pk %}" class="btn-flat">{% trans "Cancelar" %}</a>
                 {% else %}
-                    <a href="{% url 'dashboard:category-list' %}" class="btn-flat">{% trans "Cancel" %}</a>
+                    <a href="{% url 'dashboard:category-list' %}" class="btn-flat">{% trans "Cancelar" %}</a>
                 {% endif %}
                 {% if category.pk %}
-                    <button type="submit" class="btn">{% trans "Update" %}</button>
+                    <button type="submit" class="btn">{% trans "Atualizar" %}</button>
                 {% else %}
-                    <button type="submit" class="btn">{% trans "Create" %}</button>
+                    <button type="submit" class="btn">{% trans "Criar" %}</button>
                 {% endif %}
             </div>
         </div>

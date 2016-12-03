@@ -5,16 +5,16 @@
     {% csrf_token %}
 
     <div class="modal-content">
-        <h5>{% trans "Cancel delivery group?" %}</h5>
+        <h5>{% trans "Cancelar grupo de entrega?" %}</h5>
         <p>
             {% blocktrans %}
-                After this action, {{ group }} will be cancelled. Ordered items will be returned to stock.
+                Depois desta ação, {{ group }} vai ser cancelado. Itens já encomendados serão retornados ao estoque.
             {% endblocktrans %}
         </p>
     </div>
 
     <div class="modal-footer">
-        <button type="submit" class="modal-action btn-flat red-text">{% trans "Cancel group" %}</button>
-        <a href="#!" aria-hidden="true" class="modal-action modal-close btn-flat blue-text">{% trans "Cancel" %}</a>
+        <button type="submit" class="modal-action btn-flat red-text">{% trans "Cancelar grupo" %}</button>
+        <a href="#!" aria-hidden="true" class="modal-action modal-close btn-flat blue-text">{% trans "Cancelar" %}</a>
     </div>
 </form>

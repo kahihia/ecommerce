@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-    <title>{% block title %}{% trans "Dashboard - Saleor" %}{% endblock %}</title>
+    <title>{% block title %}{% trans "Dashboard" %}{% endblock %}</title>
 
     {% render_bundle 'vendor' 'css' %}
     {% render_bundle 'dashboard' 'css' %}
@@ -47,49 +47,49 @@
                             </a>
                             <div class="collapsible-body">
                                 <ul>
-                                    <li><a href="/" target="_blank" class="waves-effect waves-teal">{% trans "Visit storefront" %}</a></li>
-                                    <li><a href="{% url 'registration:logout' %}" class="waves-effect waves-teal">{% trans "Log out" %}</a></li>
+                                    <li><a href="/" target="_blank" class="waves-effect waves-teal">{% trans "Visitar loja" %}</a></li>
+                                    <li><a href="{% url 'registration:logout' %}" class="waves-effect waves-teal">{% trans "Sair" %}</a></li>
                                 </ul>
                             </div>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-home"><a href="{% url 'dashboard:index' %}">{% trans "Home" %}</a></li>
+                <li class="nav-home"><a href="{% url 'dashboard:index' %}">{% trans "Início" %}</a></li>
                 <li>
                     <ul class="collapsible collapsible-accordion" data-collapsible="accordion">
                         <li>
-                            <a class="waves-effect waves-teal collapsible-header{% block menu_catalogue_class %}{% endblock %}">{% trans "Catalogue" %}</a>
+                            <a class="waves-effect waves-teal collapsible-header{% block menu_catalogue_class %}{% endblock %}">{% trans "Catálogo de Produtos" %}</a>
                             <div class="collapsible-body">
                                 <ul>
-                                    <li class="subnav-products"><a href="{% url 'dashboard:product-list' %}">{% trans "Products" %}</a></li>
-                                    <li class="subnav-attributes"><a href="{% url 'dashboard:product-attributes' %}">{% trans "Attributes" %}</a></li>
-                                    <li class="subnav-categories"><a href="{% url 'dashboard:category-list' %}">{% trans "Categories" %}</a></li>
+                                    <li class="subnav-products"><a href="{% url 'dashboard:product-list' %}">{% trans "Produtos" %}</a></li>
+                                    <li class="subnav-attributes"><a href="{% url 'dashboard:product-attributes' %}">{% trans "Atributos" %}</a></li>
+                                    <li class="subnav-categories"><a href="{% url 'dashboard:category-list' %}">{% trans "Categorias" %}</a></li>
                                 </ul>
                             </div>
                         </li>
 
                         <li>
-                            <a class="waves-effect waves-teal collapsible-header{% block menu_discounts_class %}{% endblock %}">{% trans "Discounts" %}</a>
+                            <a class="waves-effect waves-teal collapsible-header{% block menu_discounts_class %}{% endblock %}">{% trans "Descontos" %}</a>
                             <div class="collapsible-body">
                                 <ul>
-                                    <li class="subnav-sales"><a href="{% url 'dashboard:sale-list' %}">{% trans "Sales" %}</a></li>
-                                    <li class="subnav-vouchers"><a href="{% url 'dashboard:voucher-list' %}">{% trans "Vouchers" %}</a></li>
+                                    <li class="subnav-sales"><a href="{% url 'dashboard:sale-list' %}">{% trans "Promoções" %}</a></li>
+                                    <li class="subnav-vouchers"><a href="{% url 'dashboard:voucher-list' %}">{% trans "Coupons" %}</a></li>
                                 </ul>
                             </div>
                         </li>
 
                         <li>
-                            <a class="waves-effect waves-teal collapsible-header{% block menu_sales_class %}{% endblock %}">{% trans "Sales" %}</a>
+                            <a class="waves-effect waves-teal collapsible-header{% block menu_sales_class %}{% endblock %}">{% trans "Compras" %}</a>
                             <div class="collapsible-body">
                                 <ul>
-                                    <li class="subnav-orders"><a href="{% url 'dashboard:orders' %}">{% trans "Orders" %}</a></li>
-                                    <li class="subnav-customers"><a href="{% url 'dashboard:customers' %}">{% trans "Customers" %}</a></li>
-                                    <li class="subnav-payments"><a href="{% url 'dashboard:payments' %}">{% trans "Payments" %}</a></li>
+                                    <li class="subnav-orders"><a href="{% url 'dashboard:orders' %}">{% trans "Ordens" %}</a></li>
+                                    <li class="subnav-customers"><a href="{% url 'dashboard:customers' %}">{% trans "Clientes" %}</a></li>
+                                    <li class="subnav-payments"><a href="{% url 'dashboard:payments' %}">{% trans "Pagamentos" %}</a></li>
                                 </ul>
                             </div>
                         </li>
 
-                        <li class="{% block menu_delivery_class %}{% endblock %}"><a href="{% url 'dashboard:shipping-methods' %}">{% trans "Shipping methods" %}</a></li>
+                        <li class="{% block menu_delivery_class %}{% endblock %}"><a href="{% url 'dashboard:shipping-methods' %}">{% trans "Métodos de entrega" %}</a></li>
                     </ul>
                 </li>
             </ul>

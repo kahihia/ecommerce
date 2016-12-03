@@ -5,11 +5,11 @@
 
 
 {% block title %}
-    {% trans "Shipping methods" %}
+    {% trans "Métodos de entrega" %}
     {% if shipping_method.pk %}
         - {{ shipping_method }}
     {% else %}
-        - {% trans 'Add new method' %}
+        - {% trans 'Adicionar novo método' %}
     {% endif %}
     - {{ block.super }}
 {% endblock %}
@@ -25,7 +25,7 @@
 {% block breadcrumbs %}
     <ul class="breadcrumbs breadcrumbs--with-menu">
         <li><a href="{% url 'dashboard:shipping-methods' %}"
-               class="breadcrumbs--ellipsed-item">{% trans "Shipping methods" %}</a>
+               class="breadcrumbs--ellipsed-item">{% trans "Métodos de entrega" %}</a>
         </li>
         <li>
             {% if shipping_method.pk %}
@@ -46,7 +46,7 @@
         <div class="row">
             {{ shipping_method_form|materializecss }}
         </div>
-        <h4 class="light">{% trans "Price per country" %}</h4>
+        <h4 class="light">{% trans "Preço por país" %}</h4>
 
         <div class="card-panel">
             {% for form in price_per_country_formset %}
@@ -69,18 +69,18 @@
             {% if shipping_method.pk %}
                 <div class="col s12 l6">
                     <a href="{% url 'dashboard:shipping-method-delete' pk=shipping_method.pk %}"
-                       class="btn red">{% trans "Delete" %}</a>
+                       class="btn red">{% trans "Deletar" %}</a>
                 </div>
                 <div class="col s12 l6 right-align">
                     <a href="{% url 'dashboard:shipping-methods' %}"
                        class="btn-flat">{% trans "Cancel" %}</a>
-                    <button type="submit" class="btn">{% trans "Update" %}</button>
+                    <button type="submit" class="btn">{% trans "Atualizar" %}</button>
                 </div>
             {% else %}
                 <div class="col s12 right-align">
                     <a href="{% url 'dashboard:shipping-methods' %}"
                        class="btn-flat">{% trans "Cancel" %}</a>
-                    <button type="submit" class="btn">{% trans "Create" %}</button>
+                    <button type="submit" class="btn">{% trans "Criar" %}</button>
                 </div>
             {% endif %}
         </div>

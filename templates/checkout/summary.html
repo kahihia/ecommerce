@@ -5,22 +5,22 @@
 {% block steps_menu %}
     <div class="nav nav-pills nav-justified nav-wizard">
         <a href="{% url "cart:index" %}">
-            {% trans "Cart" %}
+            {% trans "Carrinho" %}
             <div class="nav-arrow"></div>
         </a>
         <a href="{% url "checkout:shipping-address" %}">
             <div class="nav-wedge"></div>
-            {% trans "Shipping address" %}
+            {% trans "Endereço de entrega" %}
             <div class="nav-arrow"></div>
         </a>
         <a href="{% url "checkout:shipping-method" %}">
             <div class="nav-wedge"></div>
-            {% trans "Shipping method" %}
+            {% trans "Método de entrega" %}
             <div class="nav-arrow"></div>
         </a>
         <a class="active" href="{% url "checkout:summary" %}">
             <div class="nav-wedge"></div>
-            {% trans "Summary" %}
+            {% trans "Resumo" %}
         </a>
     </div>
 {% endblock steps_menu %}
@@ -30,14 +30,14 @@
     <form method="post" novalidate>
         {% csrf_token %}
         <div class="page-header">
-            <h3>{% trans "Billing address" %}</h3>
+            <h3>{% trans "Endereço de cobrança" %}</h3>
         </div>
 
         {% include "checkout/snippets/addresses-form.html" with addresses_form=addresses_form addresses=additional_addresses address_form=address_form only %}
 
         <p class="text-right">
             <button type="submit" class="btn btn-primary btn-lg">
-                {% trans "Place order" %}
+                {% trans "Confirmar compra" %}
             </button>
         </p>
     </form>

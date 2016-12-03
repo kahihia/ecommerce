@@ -4,11 +4,11 @@
 {% load static from staticfiles %}
 {% load render_bundle from webpack_loader %}
 
-{% block title %}{% trans "Your cart" %} — {{ block.super }}{% endblock %}
+{% block title %}{% trans "Carrinho" %} — {{ block.super }}{% endblock %}
 
 {% block breadcrumb %}
     {{ block.super }}
-<li><a href="{% url 'cart:index' %}">{% trans "Cart" %}</a></li>
+<li><a href="{% url 'cart:index' %}">{% trans "Carrinho" %}</a></li>
 {% endblock breadcrumb %}
 
 {% block stylesheet %}
@@ -28,10 +28,10 @@
     <table class="table table-striped cart" id="cart-items">
         <thead>
         <tr>
-            <th class="col-xs-5 col-sm-2 col-md-1">{% trans "Product" %}</th>
+            <th class="col-xs-5 col-sm-2 col-md-1">{% trans "Produto" %}</th>
             <th class="col-sm-5 hidden-xs"></th>
-            <th class="col-xs-6 col-sm-3 col-md-2">{% trans "Quantity" %}</th>
-            <th class="col-sm-1 hidden-xs text-right">{% trans "Price" %}</th>
+            <th class="col-xs-6 col-sm-3 col-md-2">{% trans "Quantidade" %}</th>
+            <th class="col-sm-1 hidden-xs text-right">{% trans "Preço" %}</th>
             <th class="col-xs-1 text-right">{% trans "Subtotal" %}</th>
         </tr>
         </thead>
@@ -78,7 +78,7 @@
                                 <div class="input-group cart-item-quantity js-hidden{% if form.quantity.errors %} has-error{% endif %}">
                                     {{ line.form.quantity }}
                                     <span class="input-group-btn">
-                                        <button class="btn btn-info" type="submit">{% trans "Update" %}</button>
+                                        <button class="btn btn-info" type="submit">{% trans "Atualizar" %}</button>
                                     </span>
                                 </div>
                                 {% if line.form.quantity.errors %}
@@ -90,7 +90,7 @@
                             </form>
 
                             <button type="submit" class="btn btn-link btn-sm cart-item-remove">
-                                <span class="text-muted">{% trans "Remove from cart" %}</span>
+                                <span class="text-muted">{% trans "Remover do carrinho" %}</span>
                             </button>
                         </div>
                     </td>
@@ -102,7 +102,7 @@
     </table>
     <div class="form-group">
         <div>
-            <a href="{% url "checkout:index" %}" class="btn btn-primary btn-lg pull-right">{% trans "Proceed to checkout" %}</a>
+            <a href="{% url "checkout:index" %}" class="btn btn-primary btn-lg pull-right">{% trans "Finalizar compra" %}</a>
         </div>
     </div>
 </div>

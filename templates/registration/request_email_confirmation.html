@@ -2,11 +2,11 @@
 {% load bootstrap_form from bootstrap3 %}
 {% load i18n %}
 
-{% block title %}{% trans "Register or reset your password" %} — {{ block.super }}{% endblock %}
+{% block title %}{% trans "Criar conta ou alterar senha" %} — {{ block.super }}{% endblock %}
 
 {% block breadcrumb %}
     {{ block.super }}
-    <li><a href="#">{% trans "Register or reset your password" %}</a></li>
+    <li><a href="#">{% trans "Crie uma conta ou altere sua senha" %}</a></li>
 {% endblock breadcrumb %}
 
 {% block content %}
@@ -17,13 +17,13 @@
                 <form method="post" novalidate>
                     {% csrf_token %}
                     <fieldset>
-                        <legend>{% trans 'Register or reset your password' %}</legend>
+                        <legend>{% trans 'Crie uma conta ou altere sua senha' %}</legend>
                         {% bootstrap_form form %}
                         <input type="hidden" name="next" value="{{ next }}" />
                     </fieldset>
                     <div class="form-group text-right">
                         <button class="btn btn-primary">
-                            {% trans "Continue" %}
+                            {% trans "Continuar" %}
                         </button>
                     </div>
                 </form>

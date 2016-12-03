@@ -5,8 +5,8 @@
     {% csrf_token %}
 
     <div class="modal-content">
-        <h5>{% trans "Ship delivery group " %}</h5>
-        <p>{% trans "Ship selected delivery group to the following address:" %}</p>
+        <h5>{% trans "Grupo de entrega " %}</h5>
+        <p>{% trans "Entregar o grupo selecionado para o seguinte endereço:" %}</p>
         {% include 'dashboard/includes/_address.html' with address=group.order.shipping_address only %}
         <div class="row">
             {{ form|materializecss }}
@@ -14,7 +14,7 @@
     </div>
 
     <div class="modal-footer">
-        <button type="submit" class="modal-action btn-flat blue-text">{% trans "Ship" %}</button>
-        <a href="#!" aria-hidden="true" class="modal-action modal-close btn-flat blue-text">{% trans "Cancel" %}</a>
+        <button type="submit" class="modal-action btn-flat blue-text">{% trans "Confirmar envio" %}</button>
+        <a href="#!" aria-hidden="true" class="modal-action modal-close btn-flat blue-text">{% trans "Cancelar" %}</a>
     </div>
 </form>

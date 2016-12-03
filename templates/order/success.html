@@ -2,14 +2,14 @@
 {% load gross from prices_i18n %}
 {% load i18n %}
 
-{% block title %}{% trans "Order complete!" %} — {{ block.super }}{% endblock %}
+{% block title %}{% trans "Pedido finalizado!" %} — {{ block.super }}{% endblock %}
 
 
 {% block content %}
-<h2>{% trans "Your order is now complete" %}</h2>
-<p>{% trans "Thank you for your purchase!" %}</p>
+<h2>{% trans "Seu pedido foi finalizado" %}</h2>
+<p>{% trans "Obrigado pela compra!" %}</p>
 
-<p>{% trans "Your order number is" %}: <a href="{% url 'order:details' token=order.token %}">{{ order }}</a></p>
+<p>{% trans "O número de seu pedido é" %}: <a href="{% url 'order:details' token=order.token %}">{{ order }}</a></p>
 {% endblock content %}
 
 {% block google-analytics-script %}

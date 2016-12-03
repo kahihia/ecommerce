@@ -4,7 +4,7 @@
 {% load materializecss %}
 {% load staticfiles %}
 
-{% block title %}{% trans "Products" %} - {{ block.super }}{% endblock %}
+{% block title %}{% trans "Produtos" %} - {{ block.super }}{% endblock %}
 
 {% block body_class %}body-products{% endblock %}
 
@@ -12,7 +12,7 @@
     <div class="fixed-action-btn">
         {% if form.product_cls.1 %}
             <a class="btn-fab btn-floating btn-large waves-effect waves-light teal modal-trigger"
-                href="#modal-product-class" title="{% trans "Add product" %}">
+                href="#modal-product-class" title="{% trans "Adicionar produto" %}">
                 <i class="material-icons">add</i>
             </a>
         {% else %}
@@ -23,7 +23,7 @@
                 </div>
 
                 <button type="submit" class="btn-fab btn-floating btn-large waves-effect waves-light teal"
-                    title="{% trans "Add product" %}">
+                    title="{% trans "Adicionar produto" %}">
                     <i class="material-icons">add</i>
                 </button>
             </form>
@@ -33,7 +33,7 @@
 
 {% block breadcrumbs %}
     <ul class="breadcrumbs">
-        <li>{% trans "Products" %}</li>
+        <li>{% trans "Produtos" %}</li>
     </ul>
 {% endblock %}
 
@@ -60,7 +60,7 @@
                 </ul>
                 {% include "dashboard/includes/_pagination.html" with page_obj=products %}
             {% else %}
-                <p>{% trans "No products found." %}</p>
+                <p>{% trans "Nenhum produto encontrado." %}</p>
             {% endif %}
         </div>
     </div>
@@ -75,7 +75,7 @@
                 <div class="row">
                     <div class="col s12">
                         <button class="btn" type="submit">
-                            <i class="material-icons left">create</i> {% trans "Create new" %}
+                            <i class="material-icons left">create</i> {% trans "Criar novo" %}
                         </button>
                     </div>
                 </div>

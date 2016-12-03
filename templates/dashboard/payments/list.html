@@ -3,13 +3,13 @@
 {% load prices_i18n %}
 {% load status %}
 
-{% block title %}{% trans "Payments" %} - {{ block.super }}{% endblock %}
+{% block title %}{% trans "Pagamentos" %} - {{ block.super }}{% endblock %}
 
 {% block body_class %}body-payments{% endblock %}
 
 {% block breadcrumbs %}
     <ul class="breadcrumbs">
-        <li>{% trans "Payments" %}</li>
+        <li>{% trans "Pagamentos" %}</li>
     </ul>
 {% endblock %}
 
@@ -25,9 +25,9 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>{% trans "Date" %}</th>
-                            <th>{% trans "Payment" %}</th>
-                            <th class="right-align">{% trans "Amount" %}</th>
+                            <th>{% trans "Data" %}</th>
+                            <th>{% trans "Pagamento" %}</th>
+                            <th class="right-align">{% trans "Valor" %}</th>
                             <th class="wide">{% trans "Status" %}</th>
                         </tr>
                     </thead>
@@ -38,7 +38,7 @@
                             <td>{{ payment.created }}</td>
                             <td>
                                 {% trans "Gateway" %}: {{ payment.variant }} &middot;
-                                <a href="{% url 'dashboard:order-details' order_pk=payment.order.pk %}"> {% trans "Order " %}{{ payment.order }}</a>
+                                <a href="{% url 'dashboard:order-details' order_pk=payment.order.pk %}"> {% trans "Pedido " %}{{ payment.order }}</a>
                             </td>
                             <td class="right-align">{% gross payment.get_total_price %}</td>
                             <td>{% render_status payment.status payment.get_status_display %}</td>
@@ -51,7 +51,7 @@
 
         {% include "dashboard/includes/_pagination.html" %}
     {% else %}
-        <p>{% trans "No payments found." %}</p>
+        <p>{% trans "Nenhum pagamento encontrado." %}</p>
     {% endif %}
 
 {% endblock %}

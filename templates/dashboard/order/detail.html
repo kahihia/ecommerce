@@ -5,7 +5,7 @@
 {% load status %}
 {% load discount_amount_for from prices %}
 
-{% block title %}{{ order }} - {% trans "Orders" %} - {{ block.super }}{% endblock %}
+{% block title %}{{ order }} - {% trans "Pedidos" %} - {{ block.super }}{% endblock %}
 
 {% block body_class %}body-orders{% endblock %}
 
@@ -23,7 +23,7 @@
             <li>
                 <a href="#base-modal" data-href="{% url "dashboard:order-cancel" order_pk=order.pk %}"
                    class="modal-trigger-custom">
-                    {% trans "Cancel Order" %}
+                    {% trans "Cancelar pedido" %}
                 </a>
             </li>
         </ul>
@@ -32,7 +32,7 @@
 
 {% block breadcrumbs %}
     <ul class="breadcrumbs">
-        <li><a href="{% url "dashboard:orders" %}">{% trans "Orders" %}</a></li>
+        <li><a href="{% url "dashboard:orders" %}">{% trans "Pedidos" %}</a></li>
         <li>{{ order }}</li>
     </ul>
 {% endblock %}
@@ -44,15 +44,15 @@
         <div class="col s12">
             <ul class="tabs" role="tablist">
                 <li role="presentation" class="tab">
-                    <a href="#order-details" role="tab" class="active">{% trans "Details" %}</a>
+                    <a href="#order-details" role="tab" class="active">{% trans "Detalhes" %}</a>
                 </li>
 
                 <li role="presentation" class="tab">
-                    <a href="#payment-history" role="tab">{% trans "Payments" %}</a>
+                    <a href="#payment-history" role="tab">{% trans "Pagamentos" %}</a>
                 </li>
 
                 <li role="presentation" class="tab">
-                    <a href="#order-history" role="tab">{% trans "History" %}</a>
+                    <a href="#order-history" role="tab">{% trans "Histórico" %}</a>
                 </li>
             </ul>
         </div>
@@ -67,37 +67,37 @@
                     <table class="order-summary responsive-table">
                         <tbody>
                             <tr>
-                                <td>{% trans "Account" %}</td>
+                                <td>{% trans "Conta" %}</td>
                                 <td class="right-align">
                                     {% if order.user %}
                                         <a href="{% url "dashboard:customer-details" pk=order.user.pk %}">{{ order.user }}</a>
                                     {% else %}
-                                        {% trans "Guest" %}
+                                        {% trans "Convidado" %}
                                     {% endif %}
                                 </td>
                             </tr>
                             <tr>
-                                <td>{% trans "Order status" %}</td>
+                                <td>{% trans "Status do pedido" %}</td>
                                 <td class="right-align">{% render_status order.status order.get_status_display %}</td>
                             </tr>
                             <tr>
-                                <td>{% trans "Payment status:" %}</td>
+                                <td>{% trans "Status do pagamento:" %}</td>
                                 <td class="right-align">{% if payment %}{% render_status payment.status payment.get_status_display %}{% else %}{% trans "N/A" %}{% endif %}</td>
                             </tr>
                             <tr>
-                                <td>{% trans "Order total" %}</td>
+                                <td>{% trans "Total do pedido" %}</td>
                                 <td class="right-align"><strong>{% gross order.get_total %}</strong></td>
                             </tr>
                             <tr>
-                                <td>{% trans "Preauthorized amount" %}</td>
+                                <td>{% trans "Quantidade pré-autorizado" %}</td>
                                 <td class="right-align">{% if preauthorized %}{% gross preauthorized %}{% else %}{% trans "N/A" %}{% endif %}</td>
                             </tr>
                             <tr>
-                                <td>{% trans "Captured amount" %}</td>
+                                <td>{% trans "Quantidade paga" %}</td>
                                 <td class="right-align">{% gross captured %}</td>
                             </tr>
                             <tr>
-                                <td>{% trans "Outstanding balance" %}</td>
+                                <td>{% trans "Quantidade a ser paga" %}</td>
                                 <td class="right-align">{% gross balance %}</td>
                             </tr>
                         </tbody>
@@ -108,14 +108,14 @@
                     <div class="card-action">
                         {% if can_capture %}
                             <a href="#base-modal" data-href="{% url 'dashboard:capture-payment' order_pk=order.pk payment_pk=payment.pk %}"
-                               class="modal-trigger-custom">{% trans "Capture" %}</a>
+                               class="modal-trigger-custom">{% trans "Capturar" %}</a>
                         {% elif can_refund %}
                             <a href="#base-modal" data-href="{% url 'dashboard:refund-payment' order_pk=order.pk payment_pk=payment.pk %}"
-                               class="modal-trigger-custom">{% trans "Refund" %}</a>
+                               class="modal-trigger-custom">{% trans "Reembolsar" %}</a>
                         {% endif %}
                         {% if can_release %}
                             <a href="#base-modal" data-href="{% url 'dashboard:release-payment' order_pk=order.pk payment_pk=payment.pk %}"
-                               class="modal-trigger-custom">{% trans "Release" %}</a>
+                               class="modal-trigger-custom">{% trans "Liberar" %}</a>
                         {% endif %}
                     </div>
                 {% endif %}
@@ -127,7 +127,7 @@
                         <div class="col s12 m6 l12">
                             <div class="card grey lighten-4">
                                 <div class="card-content">
-                                    <span class="card-title black-text">{% trans "Shipping address" %}</span>
+                                    <span class="card-title black-text">{% trans "Endereço de entrega" %}</span>
 
                                     {% include 'dashboard/includes/_address.html' with address=address only %}
 
@@ -148,7 +148,7 @@
                         <div class="card grey lighten-4">
                             <div class="card-content">
                                 {% with order.billing_address as address %}
-                                    <span class="card-title black-text">{% trans "Billing address" %}</span>
+                                    <span class="card-title black-text">{% trans "Endereço de cobrança" %}</span>
 
                                     {% include 'dashboard/includes/_address.html' with address=address only %}
                                     <div>
@@ -183,8 +183,8 @@
                             <ul id="group-actions-{{ group.pk }}" class="dropdown-content">
                                 <li>
                                     <a href="#base-modal" data-href="{% url 'dashboard:cancel-delivery-group' order_pk=order.pk group_pk=group.pk %}" class="modal-trigger-custom"
-                                        title="{% trans "Cancel group" %}">
-                                        {% trans "Cancel group" %}
+                                        title="{% trans "Cancelar grupo" %}">
+                                        {% trans "Cancelar grupo" %}
                                     </a>
                                 </li>
                             </ul>
@@ -196,8 +196,8 @@
                                 <tr>
                                     <th class="wide">{% trans "Item" %}</th>
                                     <th>{% trans "SKU" %}</th>
-                                    <th class="right-align">{% trans "Price" %}</th>
-                                    <th class="right-align">{% trans "Quantity" %}</th>
+                                    <th class="right-align">{% trans "Preço" %}</th>
+                                    <th class="right-align">{% trans "Quantidade" %}</th>
                                     <th class="right-align">{% trans "Total" %}</th>
                                     <th class="no-padded"></th>
                                 </tr>
@@ -207,7 +207,7 @@
                                 {% if group.shipping_price.gross or group.is_shipping_required %}
                                     <tr>
                                         <td colspan="4">
-                                            {% trans "Shipping" %} ({{ group.shipping_method_name }})
+                                            {% trans "Entrega" %} ({{ group.shipping_method_name }})
                                         </td>
                                         <td class="right-align">
                                             {% gross group.shipping_price %}
@@ -235,20 +235,20 @@
                                                 <ul id="line-actions-{{ item.pk }}" class="dropdown-content">
                                                     <li>
                                                         <a href="#base-modal" data-href="{% url 'dashboard:orderline-change-quantity' order_pk=order.pk line_pk=item.pk %}" class="modal-trigger-custom"
-                                                            {% if group.status != 'new' %} disabled{% endif %} title="{% trans "Change quantity" %}">
-                                                            {% trans "Change quantity" %}
+                                                            {% if group.status != 'new' %} disabled{% endif %} title="{% trans "Alterar quantidade" %}">
+                                                            {% trans "Alterar quantidade" %}
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a href="#base-modal" data-href="{% url 'dashboard:orderline-split' order_pk=order.pk line_pk=item.pk %}" class="modal-trigger-custom"
-                                                            {% if group.status != 'new' %} disabled{% endif %} title="{% trans "Split line" %}">
-                                                            {% trans "Split order line" %}
+                                                            {% if group.status != 'new' %} disabled{% endif %} title="{% trans "Dividir pedido" %}">
+                                                            {% trans "Dividir pedido" %}
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a href="#base-modal" data-href="{% url 'dashboard:orderline-cancel' order_pk=order.pk line_pk=item.pk %}" class="modal-trigger-custom"
-                                                            title="{% trans "Cancel line" %}">
-                                                            {% trans "Cancel line" %}
+                                                            title="{% trans "Cancelar pedido" %}">
+                                                            {% trans "Cancelar pedido" %}
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -263,7 +263,7 @@
                     {% if group.can_ship %}
                         <div class="card-action">
                             <a href="#base-modal" data-href="{% url 'dashboard:ship-delivery-group' order_pk=order.pk group_pk=group.pk %}" class="modal-trigger-custom">
-                                {% trans "Ship" %}
+                                {% trans "Confirmar envio" %}
                             </a>
                         </div>
                     {% endif %}
@@ -276,7 +276,7 @@
                         <tfoot>
                             <tr>
                                 <td>
-                                    {% trans "Grand total" %}
+                                    {% trans "Total" %}
                                 </td>
                                 <td>
                                     {% gross order.get_total %}
@@ -318,8 +318,8 @@
                                         <ul id="voucher-actions" class="dropdown-content">
                                             <li>
                                                 <a href="#base-modal" data-href="{% url 'dashboard:order-remove-voucher' order_pk=order.pk %}" class="modal-trigger-custom"
-                                                    title="{% trans "Remove voucher" %}">
-                                                    {% trans "Remove voucher" %}
+                                                    title="{% trans "Remover cupom" %}">
+                                                    {% trans "Remover cupom" %}
                                                 </a>
                                             </li>
                                         </ul>
@@ -333,7 +333,7 @@
 
             <div class="card" id="order-notes">
                 <div class="card-content">
-                    <span class="card-title black-text">{% trans "Order notes" %}</span>
+                    <span class="card-title black-text">{% trans "Anotações sobre pedido" %}</span>
 
                     {% if notes %}
                         <ul class="list">
@@ -345,13 +345,13 @@
                         {% endfor %}
                         </ul>
                     {% else %}
-                        <p>{% trans "There are no notes associated with this order." %}</p>
+                        <p>{% trans "Nenhuma nota associada ao pedido." %}</p>
                     {% endif %}
                 </div>
 
                 <div class="card-action">
                     <a data-href="{% url "dashboard:order-add-note" order_pk=order.pk %}"
-                       class="modal-trigger-custom" href="#base-modal">{% trans "Add note" %}</a>
+                       class="modal-trigger-custom" href="#base-modal">{% trans "Adicionar nota" %}</a>
                 </div>
             </div>
         </div>
@@ -365,8 +365,8 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>{% trans "Date" %}</th>
-                                <th class="wide">{% trans "Payment status" %}</th>
+                                <th>{% trans "Data" %}</th>
+                                <th class="wide">{% trans "Status do pagamento" %}</th>
                             </tr>
                         </thead>
 
@@ -383,7 +383,7 @@
                 </div>
             </div>
         {% else %}
-            <p>{% trans "No payments made for this order." %}</p>
+            <p>{% trans "Nenhum pagamento realizado para esse pedido." %}</p>
         {% endif %}
     </div>
 

@@ -4,7 +4,7 @@
 {% load static %}
 
 {% block title %}{% if sale.pk %}{{ sale }}{% else %}{% trans 'Add new sale' %}
-{% endif %} - {% trans "Sales" %} - {{ block.super }}{% endblock %}
+{% endif %} - {% trans "Vendas" %} - {{ block.super }}{% endblock %}
 
 {% block body_class %}body-sales{% endblock %}
 
@@ -23,7 +23,7 @@
             <li>
                 <a class="modal-trigger-custom" href="#base-modal"
                    data-href="{% url 'dashboard:sale-delete' pk=sale.pk %}">
-                    {% trans "Remove sale" %}
+                    {% trans "Remover venda" %}
                 </a>
             </li>
         </ul>
@@ -33,7 +33,7 @@
 {% block breadcrumbs %}
     <ul class="breadcrumbs breadcrumbs--with-menu">
         <li><a href="{% url 'dashboard:sale-list' %}"
-               class="breadcrumbs--ellipsed-item">{% trans "Sales" %}</a></li>
+               class="breadcrumbs--ellipsed-item">{% trans "Vendas" %}</a></li>
         <li><span class="breadcrumbs--ellipsed-item">{% if sale.pk %}{{ sale }}{% else %}
             {% trans 'Add new sale' %}{% endif %}</span></li>
     </ul>
@@ -59,9 +59,9 @@
         <div class="row">
             <div class="col l8 right-align">
                 {% if sale.pk %}
-                    <button type="submit" class="btn">{% trans "Update" %}</button>
+                    <button type="submit" class="btn">{% trans "Atualizar" %}</button>
                 {% else %}
-                    <button type="submit" class="btn">{% trans "Create" %}</button>
+                    <button type="submit" class="btn">{% trans "Criar" %}</button>
                 {% endif %}
             </div>
         </div>

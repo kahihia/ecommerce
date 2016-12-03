@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Invalid token" %} — {{ block.super }}{% endblock %}
+{% block title %}{% trans "Token inválido" %} — {{ block.super }}{% endblock %}
 
 {% block content %}
-    <p>Sorry, this link is invalid. Probably it has already been used or has expired.</p>
+    <p>Desculpa, este link não é válido. Provavelmente, ele já foi utilizado ou expirou.</p>
 {% endblock %}
-

@@ -3,7 +3,7 @@
 {% load mptt_tags %}
 {% load materializecss %}
 
-{% block title %}{% trans "Categories" %} - {{ block.super }}{% endblock %}
+{% block title %}{% trans "Categorias" %} - {{ block.super }}{% endblock %}
 
 {% block body_class %}body-categories{% endblock %}
 
@@ -22,7 +22,7 @@
 
 {% block header_extra %}
     <div class="fixed-action-btn">
-        <a class="btn-fab btn-floating btn-large waves-effect waves-light teal" title="{% trans "Add category" %}"
+        <a class="btn-fab btn-floating btn-large waves-effect waves-light teal" title="{% trans "Adicionar categoria" %}"
             href="{% if root %}{% url 'dashboard:category-add' root_pk=root.pk %}{% else %}{% url 'dashboard:category-add' %}{% endif %}">
             <i class="material-icons">add</i>
         </a>
@@ -35,13 +35,13 @@
     <ul id="category-delete" class="dropdown-content">
         <li>
             <a class="modal-trigger-custom" data-href="{% url 'dashboard:category-edit' root_pk=root.pk %}" href="#base-modal">
-                {% trans "Edit category" %}
+                {% trans "Editar categoria" %}
             </a>
         </li>
 
         <li>
             <a class="modal-trigger-custom" data-href="{% url 'dashboard:category-delete' pk=root.pk %}" href="#base-modal">
-                {% trans "Remove category" %}
+                {% trans "Remover categoria" %}
             </a>
         </li>
     </ul>
@@ -53,10 +53,10 @@
         <li>
         {% if path %}
             <a href="{% url 'dashboard:category-list' %}" class="breadcrumbs--ellipsed-item">
-                {% trans "Categories" %}
+                {% trans "Categorias" %}
             </a>
         {% else %}
-            <span class="breadcrumbs--ellipsed-item">{% trans "Categories" %}</span>
+            <span class="breadcrumbs--ellipsed-item">{% trans "Categorias" %}</span>
         {% endif %}
         </li>
         {% if path %}
@@ -108,9 +108,9 @@
                 {% else %}
                     <p>
                         {% if root %}
-                            {% trans "No subcategories." %}
+                            {% trans "Nenhuma subcategoria." %}
                         {% else %}
-                            {% trans "No categories." %}
+                            {% trans "Nenhuma categoria." %}
                         {% endif %}
                     </p>
                 {% endif %}

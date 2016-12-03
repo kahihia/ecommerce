@@ -3,7 +3,7 @@
 {% load prices_i18n %}
 {% load status %}
 
-{% block title %}{% trans "Shipping methods" %} - {{ block.super }}{% endblock %}
+{% block title %}{% trans "Métodos de entrega" %} - {{ block.super }}{% endblock %}
 
 {% block body_class %}body-shipping-methods{% endblock %}
 
@@ -11,15 +11,15 @@
 
 {% block breadcrumbs %}
     <ul class="breadcrumbs">
-        <li>{% trans "Shipping" %}</li>
-        <li>{% trans "methods" %}</li>
+        <li>{% trans "Métodos de" %}</li>
+        <li>{% trans "entrega" %}</li>
     </ul>
 {% endblock %}
 
 {% block header_extra %}
     <div class="fixed-action-btn">
         <a class="btn-fab btn-floating btn-large waves-effect waves-light teal"
-           title="{% trans "Add method" %}"
+           title="{% trans "Adicionar método" %}"
            href="{% url 'dashboard:shipping-method-add' %}">
             <i class="material-icons">add</i>
         </a>
@@ -33,9 +33,9 @@
                 <table class="bordered hoverable responsive data-table">
                     <thead>
                     <tr>
-                        <th>{% trans "Name" %}</th>
-                        <th>{% trans "Price range" %}</th>
-                        <th class="wide">{% trans "Countries" %}</th>
+                        <th>{% trans "Nome" %}</th>
+                        <th>{% trans "Intervalo de preço" %}</th>
+                        <th class="wide">{% trans "Países" %}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -64,7 +64,7 @@
 
         {% include "dashboard/includes/_pagination.html" %}
     {% else %}
-        <p>{% trans "No shipping methods found." %}</p>
+        <p>{% trans "Nenhum método de entrega encontrado." %}</p>
     {% endif %}
 
 {% endblock %}

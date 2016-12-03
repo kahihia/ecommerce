@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load status %}
 
-{% block title %}{{ customer }} - {% trans "Customers" %} - {{ block.super }}{% endblock %}
+{% block title %}{{ customer }} - {% trans "Clientes" %} - {{ block.super }}{% endblock %}
 
 {% block body_class %}body-customers{% endblock %}
 
@@ -14,7 +14,7 @@
 
 {% block breadcrumbs %}
     <ul class="breadcrumbs">
-        <li><a href="{% url "dashboard:customers" %}">{% trans "Customers" %}</a></li>
+        <li><a href="{% url "dashboard:customers" %}">{% trans "Clientes" %}</a></li>
         <li>{{ customer }}</li>
     </ul>
 {% endblock %}
@@ -26,7 +26,7 @@
     <div class="col s12 l8">
         <div class="card">
             <div class="data-table-header{% if not customer_orders %} data-table-header--no-data{% endif %}">
-                <span class="card-title black-text">{% trans "Order history" %}</span>
+                <span class="card-title black-text">{% trans "Histórico" %}</span>
             </div>
 
             {% if customer_orders %}
@@ -34,10 +34,10 @@
                     <table class="bordered hoverable responsive data-table">
                         <thead>
                             <tr>
-                                <th>{% trans "Number" %}</th>
-                                <th>{% trans "Placed on" %}</th>
-                                <th>{% trans "Payment" %}</th>
-                                <th>{% trans "Order status" %}</th>
+                                <th>{% trans "Número" %}</th>
+                                <th>{% trans "Data" %}</th>
+                                <th>{% trans "Pagamento" %}</th>
+                                <th>{% trans "Status" %}</th>
                                 <th>{% trans "Total" %}</th>
                             </tr>
                         </thead>
@@ -56,7 +56,7 @@
                 </div>
             {% else %}
                 <div class="card-content card-content--no-data">
-                    <p>{% trans "No orders found." %}</p>
+                    <p>{% trans "Nenhuma ordem encontrada." %}</p>
                 </div>
             {% endif %}
         </div>
@@ -66,14 +66,14 @@
             <div class="col s12 m6 l12">
                 <div class="card equal-height-on-med">
                     <div class="card-content">
-                        <span class="card-title black-text">{% trans "Default shipping address" %}</span>
+                        <span class="card-title black-text">{% trans "Endereço de entrega padrão" %}</span>
 
                         {% if customer.default_shipping_address %}
                             {% with customer.default_shipping_address as address %}
                                 {% include 'dashboard/includes/_address.html' with address=address only %}
                             {% endwith %}
                         {% else %}
-                            <span>{% trans "No default shipping address." %}</span>
+                            <span>{% trans "Nenhum endereço de entrega padrão." %}</span>
                         {% endif %}
                         <i class="material-icons">email</i> <a href="mailto:{{ customer.email }}">{{ customer.email }}</a>
                     </div>
@@ -83,14 +83,14 @@
             <div class="col s12 m6 l12">
                 <div class="card equal-height-on-med">
                     <div class="card-content">
-                        <span class="card-title black-text">{% trans "Default billing address" %}</span>
+                        <span class="card-title black-text">{% trans "Endereço de cobrança padrão" %}</span>
 
                         {% if customer.default_billing_address %}
                             {% with customer.default_billing_address as address %}
                                 {% include 'dashboard/includes/_address.html' with address=address only %}
                             {% endwith %}
                         {% else %}
-                            <span>{% trans "No default billing address." %}</span>
+                            <span>{% trans "Nenhum endereço de cobrança padrão." %}</span>
                         {% endif %}
                     </div>
                 </div>

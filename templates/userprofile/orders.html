@@ -2,11 +2,11 @@
 {% load i18n %}
 {% load gross from prices_i18n %}
 
-{% block title %}{% trans "Your orders" %} — {{ block.super }}{% endblock %}
+{% block title %}{% trans "Seus pedidos" %} — {{ block.super }}{% endblock %}
 
 {% block breadcrumb %}
     {{ block.super }}
-    <li><a href="{% url 'profile:orders' %}">{% trans "Your orders" %}</a></li>
+    <li><a href="{% url 'profile:orders' %}">{% trans "Seus pedidos" %}</a></li>
 {% endblock breadcrumb %}
 
 {% block content %}
@@ -14,19 +14,19 @@
         <thead>
             <tr>
                 <th class="col-sm-2">
-                    {% trans "Order #" %}
+                    {% trans "Pedido #" %}
                 </th>
                 <th class="col-sm-2">
-                    {% trans "Date" %}
+                    {% trans "Data" %}
                 </th>
                 <th class="col-sm-2">
-                    {% trans "Price" %}
+                    {% trans "Preço" %}
                 </th>
                 <th class="col-sm-2">
                     {% trans "Status" %}
                 </th>
                 <th class="col-sm-2">
-                    {% trans "Last status change" %}
+                    {% trans "Última alteração do status" %}
                 </th>
             </tr>
         </thead>
@@ -54,4 +54,3 @@
     </table>
 
 {% endblock content %}
-

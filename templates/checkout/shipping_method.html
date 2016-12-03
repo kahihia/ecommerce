@@ -7,22 +7,22 @@
 {% block steps_menu %}
     <div class="nav nav-pills nav-justified nav-wizard">
         <a href="{% url "cart:index" %}">
-            {% trans "Cart" %}
+            {% trans "Carrinho" %}
             <div class="nav-arrow"></div>
         </a>
         <a href="{% url "checkout:shipping-address" %}">
             <div class="nav-wedge"></div>
-            {% trans "Shipping address" %}
+            {% trans "Endereço de entrega" %}
             <div class="nav-arrow"></div>
         </a>
         <a class="active" href="{% url "checkout:shipping-method" %}">
             <div class="nav-wedge"></div>
-            {% trans "Shipping method" %}
+            {% trans "Método de entrega" %}
             <div class="nav-arrow"></div>
         </a>
         <a>
             <div class="nav-wedge"></div>
-            {% trans "Summary" %}
+            {% trans "Resumo" %}
         </a>
     </div>
 {% endblock steps_menu %}
@@ -30,20 +30,20 @@
 
 {% block forms %}
     <div class="page-header">
-        <h3>{% trans "Shipping address" %}</h3>
+        <h3>{% trans "Endereço de entrega" %}</h3>
     </div>
 
     {% include "userprofile/snippets/address-details.html" with address=checkout.shipping_address only %}
 
     <form method="post" novalidate>
         {% csrf_token %}
-        <h3>{% trans "Shipping method" %}</h3>
+        <h3>{% trans "Método de entrega" %}</h3>
 
         {% bootstrap_form shipping_method_form show_label=False %}
 
         <p class="text-right">
             <button type="submit" class="btn btn-primary btn-lg">
-                {% trans "Continue to payment" %}
+                {% trans "Avançar para pagamento" %}
             </button>
         </p>
     </form>
