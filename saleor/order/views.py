@@ -110,6 +110,7 @@ def start_payment(request, order, variant):
     return TemplateResponse(request, [template, 'order/payment/default.html'],
                             {'form': form, 'payment': payment})
     """
+    order.change_status('payment-pending')
     items = order.get_items()
     pagseguro_api = PagSeguroApi(reference='luanavizzon',
                                  sender_email = order.user_email)
