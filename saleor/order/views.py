@@ -14,6 +14,8 @@ from .models import Order, Payment
 from ..core.utils import get_client_ip
 from .utils import check_order_status
 
+from pagseguro.api import PagSeguroItem, PagSeguroApi
+
 logger = logging.getLogger(__name__)
 
 
@@ -100,8 +102,27 @@ def start_payment(request, order, variant):
             payment.change_status('error')
             return redirect('order:payment', token=order.token)
     template = 'order/payment/%s.html' % variant
+    """
     return TemplateResponse(request, [template, 'order/payment/default.html'],
                             {'form': form, 'payment': payment})
+    """
+    items = order.get_items()
+    pagseguro_api = PagSeguroApi(reference='luanavizzon',
+                                 sender_email = order.user_email)
+    flag = 0
+    for item in items:
+        if flag == 0:
+            pagseguro_api.add_item(PagSeguroItem(id=item.product_sku,
+                                                 description=item.product,
+                                                 amount="%0.2f" % item.unit_price_net,
+                                                 quantity=item.quantity,
+                                                 shipping_cost="%0.2f" % (float(order.get_delivery_total().gross)/float(item.quantity))))
+            flag = 1
+        else:
+            pagseguro_api.add_item(PagSeguroItem(id=item.product_sku, description=item.product, amount="%0.2f" % item.unit_price_net, quantity=item.quantity))
+    data = pagseguro_api.checkout()
+    return redirect(data['redirect_url'])
+
 
 
 @check_order_status

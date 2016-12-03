@@ -31,7 +31,8 @@ urlpatterns = [
     url(r'^selectable/', include('selectable.urls')),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
         name='django.contrib.sitemaps.views.sitemap'),
-    url(r'', include('payments.urls'))
+    url(r'', include('payments.urls')),
+    url(r'^retorno/pagseguro/', include('pagseguro.urls'))
 ]
 
 if settings.DEBUG:

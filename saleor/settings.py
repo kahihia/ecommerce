@@ -165,7 +165,8 @@ INSTALLED_APPS = [
     'selectable',
     'materializecssform',
     'rest_framework',
-    'webpack_loader'
+    'webpack_loader',
+    'pagseguro'
 ]
 
 LOGGING = {
@@ -306,3 +307,9 @@ WEBPACK_LOADER = {
         'IGNORE': [
             r'.+\.hot-update\.js',
             r'.+\.map']}}
+
+PAGSEGURO_EMAIL = 'lcgianni@gmail.com'
+PAGSEGURO_TOKEN = '2D4C32F4A0F74AF18276FB65086F3BC2'
+PAGSEGURO_SANDBOX = True # se o valor for True, as requisicoes a api serao feitas usando o PagSeguro Sandbox.
+PAGSEGURO_LOG_IN_MODEL = True # se o valor for True, os checkouts e transacoes vao ser logadas no database.
+SECURE_REDIRECT_EXEMPT = 'retorno/pagseguro/'
