@@ -52,16 +52,20 @@ def payment(request, token):
             payment_method = payment_form.cleaned_data['method']
             return redirect('order:payment', token=order.token,
                             variant=payment_method)
+    return start_payment(request, order, variant = 'default')
+    #return redirect('order:start_payment', order=order, variant='default')
+    """
     return TemplateResponse(request, 'order/payment.html',
                             {'order': order, 'groups': groups,
                              'payment_form': payment_form,
                              'waiting_payment': waiting_payment,
                              'waiting_payment_form': waiting_payment_form,
                              'payments': payments})
+    """
 
-
-@check_order_status
+#@check_order_status
 def start_payment(request, order, variant):
+    """
     waiting_payments = order.payments.filter(status='waiting').exists()
     if waiting_payments:
         return redirect('order:payment', token=order.token)
@@ -102,7 +106,7 @@ def start_payment(request, order, variant):
             payment.change_status('error')
             return redirect('order:payment', token=order.token)
     template = 'order/payment/%s.html' % variant
-    """
+
     return TemplateResponse(request, [template, 'order/payment/default.html'],
                             {'form': form, 'payment': payment})
     """

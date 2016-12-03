@@ -78,10 +78,13 @@ def summary_with_shipping_view(request, checkout):
     if address is not None:
         checkout.billing_address = address
         return handle_order_placement(request, checkout)
+    return handle_order_placement(request, checkout)
+    """
     return TemplateResponse(
         request, 'checkout/summary.html', context={
             'addresses_form': addresses_form, 'address_form': address_form,
             'checkout': checkout, 'additional_addresses': additional_addresses})
+    """
 
 
 def anonymous_summary_without_shipping(request, checkout):

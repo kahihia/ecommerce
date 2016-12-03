@@ -42,7 +42,7 @@
                 </li>
                 <li>
                     <div class="nav-wedge"></div>
-                    <a href="{% url "checkout:summary" %}">{% trans "Resumo" %}</a>
+                    <a href="{% url "checkout:summary" %}">{% trans "Pagamento" %}</a>
                 </li>
             </ul>
             {% endblock steps_menu %}
@@ -92,12 +92,6 @@
                     </tr>
                     {% if total.tax or True %}
                         <tr>
-                            <td class="noborder">
-                                {% trans "Impostos" %}
-                            </td>
-                            <td class="noborder text-right">
-                                {% tax total %}
-                            </td>
                         </tr>
                     {% endif %}
                     <tr>
