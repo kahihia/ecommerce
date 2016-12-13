@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from __future__ import unicode_literals
 
 from decimal import Decimal
@@ -47,17 +50,17 @@ class OrderManager(models.Manager):
 @python_2_unicode_compatible
 class Order(models.Model, ItemSet):
     status = models.CharField(
-        pgettext_lazy('Order field', 'order status'),
+        pgettext_lazy('Order field', 'status da ordem'),
         max_length=32, choices=Status.CHOICES, default=Status.NEW)
     created = models.DateTimeField(
-        pgettext_lazy('Order field', 'created'),
+        pgettext_lazy('Order field', 'criada'),
         default=now, editable=False)
     last_status_change = models.DateTimeField(
-        pgettext_lazy('Order field', 'last status change'),
+        pgettext_lazy('Order field', 'última mudança de status'),
         default=now, editable=False)
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, blank=True, null=True, related_name='orders',
-        verbose_name=pgettext_lazy('Order field', 'user'))
+        verbose_name=pgettext_lazy('Order field', 'usuário'))
     tracking_client_id = models.CharField(
         max_length=36, blank=True, editable=False)
     billing_address = models.ForeignKey(
@@ -310,24 +313,24 @@ class OrderedItem(models.Model, ItemLine):
     product = models.ForeignKey(
         Product, blank=True, null=True, related_name='+',
         on_delete=models.SET_NULL,
-        verbose_name=pgettext_lazy('OrderedItem field', 'product'))
+        verbose_name=pgettext_lazy('OrderedItem field', 'produto'))
     product_name = models.CharField(
-        pgettext_lazy('OrderedItem field', 'product name'), max_length=128)
+        pgettext_lazy('OrderedItem field', 'nome do produto'), max_length=128)
     product_sku = models.CharField(pgettext_lazy('OrderedItem field', 'sku'),
                                    max_length=32)
     stock_location = models.CharField(
-        pgettext_lazy('OrderedItem field', 'stock location'), max_length=100,
+        pgettext_lazy('OrderedItem field', 'localização do estoque'), max_length=100,
         default='')
     stock = models.ForeignKey('product.Stock', on_delete=models.SET_NULL,
                               null=True)
     quantity = models.IntegerField(
-        pgettext_lazy('OrderedItem field', 'quantity'),
+        pgettext_lazy('OrderedItem field', 'quantidade'),
         validators=[MinValueValidator(0), MaxValueValidator(999)])
     unit_price_net = models.DecimalField(
-        pgettext_lazy('OrderedItem field', 'unit price (net)'),
+        pgettext_lazy('OrderedItem field', 'preço por unidade (líquido)'),
         max_digits=12, decimal_places=4)
     unit_price_gross = models.DecimalField(
-        pgettext_lazy('OrderedItem field', 'unit price (gross)'),
+        pgettext_lazy('OrderedItem field', 'preço por unidade (bruto)'),
         max_digits=12, decimal_places=4)
 
     objects = OrderedItemManager()
@@ -406,11 +409,11 @@ class Payment(BasePayment):
 @python_2_unicode_compatible
 class OrderHistoryEntry(models.Model):
     date = models.DateTimeField(
-        pgettext_lazy('Order field', 'last history change'),
+        pgettext_lazy('Order field', 'última mudança no histórico'),
         default=now, editable=False)
     order = models.ForeignKey(Order, related_name='history')
     status = models.CharField(
-        pgettext_lazy('Order field', 'order status'),
+        pgettext_lazy('Order field', 'status da ordem'),
         max_length=32, choices=Status.CHOICES)
     comment = models.CharField(max_length=100, default='', blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True)

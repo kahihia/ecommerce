@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from collections import defaultdict
 
 import i18naddress
@@ -13,25 +16,25 @@ UNKNOWN_COUNTRIES = set()
 
 
 AREA_TYPE_TRANSLATIONS = {
-    'area': pgettext_lazy('Address field', 'Area'),
-    'county': pgettext_lazy('Address field', 'County'),
-    'department': pgettext_lazy('Address field', 'Department'),
-    'district': pgettext_lazy('Address field', 'District'),
+    'area': pgettext_lazy('Address field', 'Área'),
+    'county': pgettext_lazy('Address field', 'País'),
+    'department': pgettext_lazy('Address field', 'Departmento'),
+    'district': pgettext_lazy('Address field', 'Distrito'),
     'do_si': pgettext_lazy('Address field', 'Do/si'),
-    'emirate': pgettext_lazy('Address field', 'Emirate'),
-    'island': pgettext_lazy('Address field', 'Island'),
-    'neighborhood': pgettext_lazy('Address field', 'Neighborhood'),
+    'emirate': pgettext_lazy('Address field', 'Emirado'),
+    'island': pgettext_lazy('Address field', 'Ilha'),
+    'neighborhood': pgettext_lazy('Address field', 'Bairro'),
     'oblast': pgettext_lazy('Address field', 'Oblast'),
     'parish': pgettext_lazy('Address field', 'Parish'),
     'pin': pgettext_lazy('Address field', 'PIN'),
-    'postal': pgettext_lazy('Address field', 'Postal code'),
+    'postal': pgettext_lazy('Address field', 'CEP'),
     'prefecture': pgettext_lazy('Address field', 'Prefecture'),
-    'province': pgettext_lazy('Address field', 'Province'),
-    'state': pgettext_lazy('Address field', 'State'),
-    'suburb': pgettext_lazy('Address field', 'Suburb'),
-    'townland': pgettext_lazy('Address field', 'Townland'),
-    'village_township': pgettext_lazy('Address field', 'Village/township'),
-    'zip': pgettext_lazy('Address field', 'ZIP code')}
+    'province': pgettext_lazy('Address field', 'Província'),
+    'state': pgettext_lazy('Address field', 'Estado'),
+    'suburb': pgettext_lazy('Address field', 'Subúrbio'),
+    'townland': pgettext_lazy('Address field', 'Cidade'),
+    'village_township': pgettext_lazy('Address field', 'Vila'),
+    'zip': pgettext_lazy('Address field', 'CEP')}
 
 
 class AddressMetaForm(forms.ModelForm):
@@ -111,7 +114,7 @@ class CountryAwareAddressForm(AddressForm):
                 except KeyError:
                     error_msg = pgettext_lazy(
                         'Address form',
-                        'This value is invalid for selected country')
+                        'Valor inválido para o país selecionado')
                 self.add_error(field, error_msg)
 
     def validate_address(self, data):

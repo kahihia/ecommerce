@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import uuid
 
 from django import forms
@@ -22,7 +25,7 @@ class SaleForm(forms.ModelForm):
         if discount_type == Sale.PERCENTAGE and value > 100:
             self.add_error('value', pgettext_lazy(
                 'sale error',
-                'Sale cannot exceed 100%'))
+                'Desconto não pode exceder 100%'))
         return cleaned_data
 
 
@@ -62,9 +65,9 @@ class ShippingVoucherForm(forms.ModelForm):
     limit = PriceField(
         min_value=0, required=False, currency=settings.DEFAULT_CURRENCY,
         label=pgettext_lazy(
-            'voucher', 'Only if shipping cost is less than or equal to'))
+            'voucher', 'Apenas se frete menor ou igual a'))
     apply_to = forms.ChoiceField(
-        label=pgettext_lazy('voucher', 'Country'), choices=country_choices,
+        label=pgettext_lazy('voucher', 'País'), choices=country_choices,
         required=False)
 
     class Meta:
@@ -82,7 +85,7 @@ class ValueVoucherForm(forms.ModelForm):
     limit = PriceField(
         min_value=0, required=False, currency=settings.DEFAULT_CURRENCY,
         label=pgettext_lazy(
-            'voucher', 'Only if purchase value is greater than or equal to'))
+            'voucher', 'Apenas se valor total da compra menor ou igual a'))
 
     class Meta:
         model = Voucher

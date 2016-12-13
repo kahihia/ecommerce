@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from __future__ import unicode_literals
 
 from django.db import models
@@ -22,7 +25,7 @@ class ProductImage(models.Model):
         upload_to='products', ppoi_field='ppoi', blank=False)
     ppoi = PPOIField()
     alt = models.CharField(
-        pgettext_lazy('Product image field', 'short description'),
+        pgettext_lazy('Product image field', 'descrição curta'),
         max_length=128, blank=True)
     order = models.PositiveIntegerField(editable=False)
 

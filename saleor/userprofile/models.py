@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from __future__ import unicode_literals
 
 from django.contrib.auth.models import (
@@ -32,36 +35,36 @@ class AddressManager(models.Manager):
 @python_2_unicode_compatible
 class Address(models.Model):
     first_name = models.CharField(
-        pgettext_lazy('Address field', 'given name'),
+        pgettext_lazy('Address field', 'nome'),
         max_length=256, blank=True)
     last_name = models.CharField(
-        pgettext_lazy('Address field', 'family name'),
+        pgettext_lazy('Address field', 'sobrenome'),
         max_length=256, blank=True)
     company_name = models.CharField(
-        pgettext_lazy('Address field', 'company or organization'),
+        pgettext_lazy('Address field', 'empresa'),
         max_length=256, blank=True)
     street_address_1 = models.CharField(
-        pgettext_lazy('Address field', 'address'),
+        pgettext_lazy('Address field', 'endereço'),
         max_length=256, blank=True)
     street_address_2 = models.CharField(
-        pgettext_lazy('Address field', 'address'),
+        pgettext_lazy('Address field', 'complemento'),
         max_length=256, blank=True)
     city = models.CharField(
-        pgettext_lazy('Address field', 'city'),
+        pgettext_lazy('Address field', 'cidade'),
         max_length=256, blank=True)
     city_area = models.CharField(
-        pgettext_lazy('Address field', 'district'),
+        pgettext_lazy('Address field', 'bairro'),
         max_length=128, blank=True)
     postal_code = models.CharField(
-        pgettext_lazy('Address field', 'postal code'),
+        pgettext_lazy('Address field', 'CEP'),
         max_length=20, blank=True)
     country = CountryField(
-        pgettext_lazy('Address field', 'country'))
+        pgettext_lazy('Address field', 'país'))
     country_area = models.CharField(
-        pgettext_lazy('Address field', 'state or province'),
+        pgettext_lazy('Address field', 'estado'),
         max_length=128, blank=True)
     phone = models.CharField(
-        pgettext_lazy('Address field', 'phone number'),
+        pgettext_lazy('Address field', 'telefone'),
         max_length=30, blank=True)
     objects = AddressManager()
 
@@ -120,22 +123,22 @@ class User(PermissionsMixin, AbstractBaseUser):
     email = models.EmailField(unique=True)
     addresses = models.ManyToManyField(Address, blank=True)
     is_staff = models.BooleanField(
-        pgettext_lazy('User field', 'staff status'),
+        pgettext_lazy('User field', 'status'),
         default=False)
     is_active = models.BooleanField(
-        pgettext_lazy('User field', 'active'),
+        pgettext_lazy('User field', 'ativo'),
         default=False)
     date_joined = models.DateTimeField(
-        pgettext_lazy('User field', 'date joined'),
+        pgettext_lazy('User field', 'data de criação'),
         default=timezone.now, editable=False)
     default_shipping_address = models.ForeignKey(
         Address, related_name='+', null=True, blank=True,
         on_delete=models.SET_NULL,
-        verbose_name=pgettext_lazy('User field', 'default shipping address'))
+        verbose_name=pgettext_lazy('User field', 'endereço de entrega padrão'))
     default_billing_address = models.ForeignKey(
         Address, related_name='+', null=True, blank=True,
         on_delete=models.SET_NULL,
-        verbose_name=pgettext_lazy('User field', 'default billing address'))
+        verbose_name=pgettext_lazy('User field', 'endereço de cobrança padrão'))
 
     USERNAME_FIELD = 'email'
 

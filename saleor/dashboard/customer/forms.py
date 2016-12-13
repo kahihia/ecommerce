@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from __future__ import unicode_literals
 
 from django import forms
@@ -7,9 +10,9 @@ from django.utils.translation import ugettext_lazy as _
 
 class CustomerSearchForm(forms.Form):
     email = forms.CharField(required=False, label=_('Email'))
-    name = forms.CharField(required=False, label=_('Name'))
+    name = forms.CharField(required=False, label=_('Nome'))
     order_status = forms.BooleanField(required=False, initial=True,
-                                      label=_('With open orders'))
+                                      label=_('Com ordens abertas'))
 
     def __init__(self, *args, **kwargs):
         self.queryset = kwargs.pop('queryset')

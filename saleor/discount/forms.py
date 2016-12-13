@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from django import forms
 from django.utils.translation import pgettext_lazy
 
@@ -9,7 +12,7 @@ class VoucherField(forms.ModelChoiceField):
     default_error_messages = {
         'invalid_choice': pgettext_lazy(
             'voucher', pgettext_lazy(
-                'voucher', 'Discount code incorrect or expired')),
+                'voucher', 'Cupom inválido')),
     }
 
 
@@ -17,7 +20,7 @@ class CheckoutDiscountForm(forms.Form):
 
     voucher = VoucherField(
         queryset=Voucher.objects.active(), to_field_name='code',
-        label=pgettext_lazy('voucher', 'Gift card or discount code'),
+        label=pgettext_lazy('voucher', 'Cupom de desconto'),
         widget=forms.TextInput)
 
     def __init__(self, *args, **kwargs):

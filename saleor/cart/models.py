@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from __future__ import unicode_literals
 from . import logger
 
@@ -61,28 +64,28 @@ class Cart(models.Model, ItemSet):
         'open', 'saved', 'payment', 'ordered', 'checkout', 'canceled')
 
     STATUS_CHOICES = (
-        (OPEN, pgettext_lazy('Cart', 'Open - currently active')),
-        (WAITING_FOR_PAYMENT, pgettext_lazy('Cart', 'Waiting for payment')),
+        (OPEN, pgettext_lazy('Cart', 'Aberto')),
+        (WAITING_FOR_PAYMENT, pgettext_lazy('Cart', 'Aguardando pagamento')),
         (SAVED, pgettext_lazy(
-            'Cart', 'Saved - for items to be purchased later')),
+            'Cart', 'Salvo pelo usuário')),
         (ORDERED, pgettext_lazy(
-            'Cart', 'Submitted - has been ordered at the checkout')),
+            'Cart', 'Checkout finalizado pelo usuário')),
         (CHECKOUT, pgettext_lazy(
-            'Cart', 'Checkout - basket is processed in checkout')),
+            'Cart', 'Checkout processado')),
         (CANCELED, pgettext_lazy(
-            'Cart', 'Canceled - basket was canceled by user'))
+            'Cart', 'Cancelado'))
     )
 
     status = models.CharField(
-        pgettext_lazy('Cart', 'order status'),
+        pgettext_lazy('Cart', 'status da ordem'),
         max_length=32, choices=STATUS_CHOICES, default=OPEN)
     created = models.DateTimeField(
-        pgettext_lazy('Cart', 'created'), auto_now_add=True)
+        pgettext_lazy('Cart', 'salvo'), auto_now_add=True)
     last_status_change = models.DateTimeField(
-        pgettext_lazy('Cart', 'last status change'), auto_now_add=True)
+        pgettext_lazy('Cart', 'última mudança de status'), auto_now_add=True)
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, blank=True, null=True, related_name='carts',
-        verbose_name=pgettext_lazy('Cart', 'user'))
+        verbose_name=pgettext_lazy('Cart', 'usuário'))
     email = models.EmailField(blank=True, null=True)
     token = models.UUIDField(pgettext_lazy('Cart', 'token'),
                              primary_key=True, default=uuid4, editable=False)
@@ -130,7 +133,7 @@ class Cart(models.Model, ItemSet):
     def get_user_open_cart(user):
         carts = user.carts.open()
         if len(carts) > 1:
-            logger.warning('%s has more than one open basket', user)
+            logger.warning('%s possui mais de um carrinho aberto', user)
             for cart in carts[1:]:
                 cart.change_status(Cart.CANCELED)
         return carts.first()
@@ -175,7 +178,7 @@ class Cart(models.Model, ItemSet):
             new_quantity = cart_line.quantity + quantity
 
         if new_quantity < 0:
-            raise ValueError('%r is not a valid quantity (results in %r)' % (
+            raise ValueError('%r não é uma quantidade válida (resulta em %r)' % (
                 quantity, new_quantity))
 
         if check_quantity:
@@ -201,9 +204,9 @@ class CartLine(models.Model, ItemLine):
     cart = models.ForeignKey(Cart, related_name='lines')
     variant = models.ForeignKey(
         ProductVariant, related_name='+',
-        verbose_name=pgettext_lazy('Cart line', 'product'))
+        verbose_name=pgettext_lazy('Cart line', 'produto'))
     quantity = models.PositiveIntegerField(
-        pgettext_lazy('Cart line', 'quantity'),
+        pgettext_lazy('Cart line', 'quantidade'),
         validators=[MinValueValidator(0), MaxValueValidator(999)])
     data = JSONField(blank=True, default={})
 

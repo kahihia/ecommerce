@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from __future__ import unicode_literals
 from datetime import date
 from decimal import Decimal
@@ -49,9 +52,9 @@ class Voucher(models.Model):
 
     APPLY_TO_PRODUCT_CHOICES = (
         (APPLY_TO_ONE_PRODUCT,
-         pgettext_lazy('voucher', 'Apply to a single item')),
+         pgettext_lazy('voucher', 'Aplicar a apenas um item')),
         (APPLY_TO_ALL_PRODUCTS,
-         pgettext_lazy('voucher', 'Apply to all matching products')))
+         pgettext_lazy('voucher', 'Aplicar a todos os produtos que atendem aos requisitos')))
 
     DISCOUNT_VALUE_FIXED = 'fixed'
     DISCOUNT_VALUE_PERCENTAGE = 'percentage'
@@ -67,33 +70,33 @@ class Voucher(models.Model):
     VALUE_TYPE = 'value'
 
     TYPE_CHOICES = (
-        (VALUE_TYPE, pgettext_lazy('voucher', 'All purchases')),
-        (PRODUCT_TYPE, pgettext_lazy('voucher', 'One product')),
-        (CATEGORY_TYPE, pgettext_lazy('voucherl', 'A category of products')),
-        (SHIPPING_TYPE, pgettext_lazy('voucher', 'Shipping')))
+        (VALUE_TYPE, pgettext_lazy('voucher', 'Todas as compras')),
+        (PRODUCT_TYPE, pgettext_lazy('voucher', 'Um produto')),
+        (CATEGORY_TYPE, pgettext_lazy('voucherl', 'Uma categoria de produtos')),
+        (SHIPPING_TYPE, pgettext_lazy('voucher', 'Entrega')))
 
     type = models.CharField(
-        pgettext_lazy('voucher', 'discount for'), max_length=20,
+        pgettext_lazy('voucher', 'desconto de'), max_length=20,
         choices=TYPE_CHOICES, default=VALUE_TYPE)
     name = models.CharField(
-        pgettext_lazy('voucher', 'name'), max_length=255, null=True,
+        pgettext_lazy('voucher', 'nome'), max_length=255, null=True,
         blank=True)
     code = models.CharField(
-        pgettext_lazy('voucher', 'code'), max_length=12, unique=True,
+        pgettext_lazy('voucher', 'código'), max_length=12, unique=True,
         db_index=True)
     usage_limit = models.PositiveIntegerField(
-        pgettext_lazy('voucher', 'usage limit'), null=True, blank=True)
+        pgettext_lazy('voucher', 'limite de uso'), null=True, blank=True)
     used = models.PositiveIntegerField(default=0, editable=False)
     start_date = models.DateField(
-        pgettext_lazy('voucher', 'start date'), default=date.today)
+        pgettext_lazy('voucher', 'data de início'), default=date.today)
     end_date = models.DateField(
-        pgettext_lazy('voucher', 'end date'), null=True, blank=True)
+        pgettext_lazy('voucher', 'data de finalização'), null=True, blank=True)
 
     discount_value_type = models.CharField(
-        pgettext_lazy('voucher', 'discount type'), max_length=10,
+        pgettext_lazy('voucher', 'tipo de desconto'), max_length=10,
         choices=DISCOUNT_VALUE_TYPE_CHOICES, default=DISCOUNT_VALUE_FIXED)
     discount_value = models.DecimalField(
-        pgettext_lazy('voucher', 'discount value'), max_digits=12,
+        pgettext_lazy('voucher', 'valor do desconto'), max_digits=12,
         decimal_places=2)
 
     # not mandatory fields, usage depends on type
@@ -117,7 +120,7 @@ class Voucher(models.Model):
             self.discount_value, self.get_discount_value_type_display())
         if self.type == Voucher.SHIPPING_TYPE:
             if self.is_free:
-                return pgettext('voucher', 'Free shipping')
+                return pgettext('voucher', 'Frete grátis')
             else:
                 return pgettext('voucher', '%(discount)s off shipping') % {
                     'discount': discount}
@@ -133,7 +136,7 @@ class Voucher(models.Model):
         if self.type == Voucher.SHIPPING_TYPE and self.apply_to:
             return countries.name(self.apply_to)
         if self.type == Voucher.SHIPPING_TYPE:
-            return pgettext('voucher', 'Any country')
+            return pgettext('voucher', 'Qualquer país')
         if self.apply_to and self.type in {
                 Voucher.PRODUCT_TYPE, Voucher.CATEGORY_TYPE}:
             choices = dict(self.APPLY_TO_PRODUCT_CHOICES)
@@ -152,7 +155,7 @@ class Voucher(models.Model):
             discount = FixedDiscount(
                 amount=fixed_discount_value, name=smart_text(self))
         else:
-            raise NotImplementedError('Unknown discount value type')
+            raise NotImplementedError('Tipo de desconto desconhecido')
         if discount.amount > amount:
             return FixedDiscount(amount, name=smart_text(self))
         else:
@@ -165,30 +168,30 @@ class Voucher(models.Model):
             if cart_total < limit:
                 msg = pgettext(
                     'voucher',
-                    'This offer is only valid for orders over %(amount)s.')
+                    'Este desconto é valido apenas para ofertas acima de %(amount)s.')
                 raise NotApplicable(msg % {'amount': net(limit)})
             return self.get_fixed_discount_for(cart_total)
 
         elif self.type == Voucher.SHIPPING_TYPE:
             if not checkout.is_shipping_required:
                 msg = pgettext(
-                    'voucher', 'Your order does not require shipping.')
+                    'voucher', 'Sua ordem não necessita de frete.')
                 raise NotApplicable(msg)
             shipping_method = checkout.shipping_method
             if not shipping_method:
                 msg = pgettext(
-                    'voucher', 'Please select a shipping method first.')
+                    'voucher', 'Por favor, selecione antes um método de entrega.')
                 raise NotApplicable(msg)
             if (self.apply_to and
                     shipping_method.country_code != self.apply_to):
                 msg = pgettext(
-                    'voucher', 'This offer is only valid in %(country)s.')
+                    'voucher', 'Esta oferta é válida apenas nos países %(country)s.')
                 raise NotApplicable(msg % {
                     'country': self.get_apply_to_display()})
             if self.limit is not None and shipping_method.price > self.limit:
                 msg = pgettext(
                     'voucher',
-                    'This offer is only valid for shipping over %(amount)s.')
+                    'Esta oferta é válida apenas para fretes acima de %(amount)s.')
                 raise NotApplicable(msg % {'amount': net(self.limit)})
             return self.get_fixed_discount_for(shipping_method.price)
 
@@ -203,7 +206,7 @@ class Voucher(models.Model):
                         checkout.cart, self.category)))
             if len(prices) == 0:
                 msg = pgettext(
-                    'voucher', 'This offer is only valid for selected items.')
+                    'voucher', 'Este desconto é válido apenas para alguns produtos específicos.')
                 raise NotApplicable(msg)
             if self.apply_to == Voucher.APPLY_TO_ALL_PRODUCTS:
                 discounts = (

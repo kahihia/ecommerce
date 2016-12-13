@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from __future__ import unicode_literals
 
 from django import forms
@@ -15,7 +18,7 @@ PRODUCT_CLASSES = {Product: 'Default'}
 
 class ProductClassForm(forms.Form):
     product_cls = forms.ChoiceField(
-        label=pgettext_lazy('Product class form label', 'Product class'),
+        label=pgettext_lazy('Product class form label', 'Classe do produto'),
         widget=forms.RadioSelect,
         choices=[(cls.__name__, presentation) for cls, presentation in
                  PRODUCT_CLASSES.items()])
@@ -48,13 +51,13 @@ class ProductForm(forms.ModelForm):
         super(ProductForm, self).__init__(*args, **kwargs)
         field = self.fields['name']
         field.widget.attrs['placeholder'] = pgettext_lazy(
-            'Product form labels', 'Give your awesome product a name')
+            'Product form labels', 'Dẽ um nome ao produto')
         field = self.fields['categories']
         field.widget.attrs['data-placeholder'] = pgettext_lazy(
-            'Product form labels', 'Search')
+            'Product form labels', 'Procurar')
         field = self.fields['attributes']
         field.widget.attrs['data-placeholder'] = pgettext_lazy(
-            'Product form labels', 'Search')
+            'Product form labels', 'Procurar')
 
 
 class ProductVariantForm(forms.ModelForm):

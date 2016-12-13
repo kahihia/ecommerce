@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from __future__ import unicode_literals
 
 import json
@@ -42,7 +45,7 @@ class ProductForm(AddToCartForm):
 
 class ProductVariantInline(forms.models.BaseInlineFormSet):
     error_no_items = pgettext_lazy(
-        'Product admin error', 'You have to create at least one variant')
+        'Product admin error', 'Você precisa criar pelo menos uma variante')
 
     def clean(self):
         count = 0
@@ -55,7 +58,7 @@ class ProductVariantInline(forms.models.BaseInlineFormSet):
 
 class ImageInline(ProductVariantInline):
     error_no_items = pgettext_lazy(
-        'Product admin error', 'You have to add at least one image')
+        'Product admin error', 'Você precisa adicionar pelo menos uma imagem')
 
 
 def get_form_class_for_product(product):

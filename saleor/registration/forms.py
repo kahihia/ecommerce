@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from __future__ import unicode_literals
 
 import emailit.api
@@ -78,7 +81,7 @@ class RequestEmailChangeForm(RequestEmailConfirmationForm):
         email = self.cleaned_data['email']
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError(
-                ugettext('Account with this email already exists'))
+                ugettext('Já existe uma conta com este email'))
         return self.cleaned_data['email']
 
     def create_request_instance(self):

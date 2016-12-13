@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from __future__ import unicode_literals
 
 from django import forms
@@ -22,7 +25,7 @@ class OrderNoteForm(forms.ModelForm):
         model = OrderNote
         fields = ['content']
         widgets = {'content': forms.Textarea({
-            'rows': 5, 'placeholder': _('Note')})}
+            'rows': 5, 'placeholder': _('Nota')})}
 
     def __init__(self, *args, **kwargs):
         super(OrderNoteForm, self).__init__(*args, **kwargs)
@@ -41,14 +44,14 @@ class CapturePaymentForm(ManagePaymentForm):
     def clean(self):
         if self.payment.status != 'preauth':
             raise forms.ValidationError(
-                _('Only pre-authorized payments can be captured'))
+                _('Apenas pagamentos pré-autorizados podem ser capturados'))
 
     def capture(self):
         amount = self.cleaned_data['amount']
         try:
             self.payment.capture(amount.gross)
         except (PaymentError, ValueError) as e:
-            self.add_error(None, _('Payment gateway error: %s') % e.message)
+            self.add_error(None, _('Erro do gateway de pagamento: %s') % e.message)
             return False
         return True
 
@@ -57,14 +60,14 @@ class RefundPaymentForm(ManagePaymentForm):
     def clean(self):
         if self.payment.status != 'confirmed':
             raise forms.ValidationError(
-                _('Only confirmed payments can be refunded'))
+                _('Apenas pagamentos confirmados podem ser reembolsados'))
 
     def refund(self):
         amount = self.cleaned_data['amount']
         try:
             self.payment.refund(amount.gross)
         except (PaymentError, ValueError) as e:
-            self.add_error(None, _('Payment gateway error: %s') % e.message)
+            self.add_error(None, _('Erro do gateway de pagamento: %s') % e.message)
             return False
         return True
 
@@ -77,20 +80,20 @@ class ReleasePaymentForm(forms.Form):
     def clean(self):
         if self.payment.status != 'preauth':
             raise forms.ValidationError(
-                _('Only pre-authorized payments can be released'))
+                _('Apenas pagamentos pré-autorizados podem ser liberados'))
 
     def release(self):
         try:
             self.payment.release()
         except (PaymentError, ValueError) as e:
-            self.add_error(None, _('Payment gateway error: %s') % e.message)
+            self.add_error(None, _('Erro do gateway de pagamento: %s') % e.message)
             return False
         return True
 
 
 class MoveItemsForm(forms.Form):
-    quantity = QuantityField(label=_('Quantity'))
-    target_group = forms.ChoiceField(label=_('Target shipment'))
+    quantity = QuantityField(label=_('Quantidade'))
+    target_group = forms.ChoiceField(label=_('Direção da carga'))
 
     def __init__(self, *args, **kwargs):
         self.item = kwargs.pop('item')
@@ -155,7 +158,7 @@ class ChangeQuantityForm(forms.ModelForm):
             variant.check_quantity(quantity)
         except InsufficientStock as e:
             raise forms.ValidationError(
-                _('Only %(remaining)d remaining in stock.') % {
+                _('Apenas %(remaining)d unidades em estoque.') % {
                     'remaining': e.item.get_stock_quantity()})
         return quantity
 
@@ -178,11 +181,11 @@ class ShipGroupForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ShipGroupForm, self).__init__(*args, **kwargs)
         self.fields['tracking_number'].widget.attrs.update(
-            {'placeholder': _('Parcel tracking number')})
+            {'placeholder': _('Parcear código de rastreamento')})
 
     def clean(self):
         if self.instance.status != 'new':
-            raise forms.ValidationError(_('Cannot ship this group'),
+            raise forms.ValidationError(_('Não é possível enviar este grupo'),
                                         code='invalid')
 
     def save(self):
@@ -226,7 +229,7 @@ class CancelOrderForm(forms.Form):
     def clean(self):
         data = super(CancelOrderForm, self).clean()
         if not self.order.can_cancel():
-            raise forms.ValidationError(_('This order can\'t be cancelled'))
+            raise forms.ValidationError(_('Esta ordem não pode ser cancelada'))
         return data
 
     def cancel_order(self):
@@ -244,7 +247,7 @@ class RemoveVoucherForm(forms.Form):
     def clean(self):
         data = super(RemoveVoucherForm, self).clean()
         if not self.order.voucher:
-            raise forms.ValidationError(_('This order has no voucher'))
+            raise forms.ValidationError(_('Esta ordem não possue cupom'))
         return data
 
     def remove_voucher(self):
@@ -256,10 +259,10 @@ class RemoveVoucherForm(forms.Form):
         Order.objects.recalculate_order(self.order)
 
 ORDER_STATUS_CHOICES = [('', pgettext_lazy('Order status field value',
-                                           'All'))] + Status.CHOICES
+                                           'Todos'))] + Status.CHOICES
 
 PAYMENT_STATUS_CHOICES = (('', pgettext_lazy('Payment status field value',
-                                             'All')),) + PAYMENT_STATUS_CHOICES
+                                             'Todos')),) + PAYMENT_STATUS_CHOICES
 
 
 class OrderFilterForm(forms.Form):

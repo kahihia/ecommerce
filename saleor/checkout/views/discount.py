@@ -49,7 +49,7 @@ def validate_voucher(view):
                 checkout.recalculate_discount()
                 msg = pgettext(
                     'checkout warning',
-                    'This voucher has expired. Please review your checkout.')
+                    'Este cupom expirou. Por favor, revise sua compra.')
                 messages.warning(request, msg)
                 return redirect('checkout:summary')
         return view(request, checkout, cart)

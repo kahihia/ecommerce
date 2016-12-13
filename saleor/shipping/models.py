@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from __future__ import absolute_import
 from itertools import groupby
 from operator import itemgetter
@@ -68,7 +71,7 @@ class ShippingMethodCountry(models.Model):
     country_code = models.CharField(
         choices=COUNTRY_CODE_CHOICES, max_length=2, blank=True, default=ANY_COUNTRY)
     price = PriceField(
-        pgettext_lazy('Shipping method region field', 'price'),
+        pgettext_lazy('Shipping method region field', 'preço'),
         currency=settings.DEFAULT_CURRENCY, max_digits=12, decimal_places=2)
     shipping_method = models.ForeignKey(ShippingMethod, related_name='price_per_country')
 

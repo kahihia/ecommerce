@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from __future__ import unicode_literals
 
 from django import forms
@@ -19,19 +22,19 @@ class AddToCartForm(forms.Form):
     Allows selection of a product variant and quantity.
     The save method adds it to the cart.
     """
-    quantity = QuantityField(label=pgettext_lazy('Form field', 'Quantity'))
+    quantity = QuantityField(label=pgettext_lazy('Form field', 'Quantidade'))
     error_messages = {
         'not-available': ugettext_lazy(
-            'Sorry. This product is currently not available.'
+            "Desculpa! Este produto não está disponível."
         ),
         'empty-stock': ugettext_lazy(
-            'Sorry. This product is currently out of stock.'
+            'Desculpa! Este produto está fora de estoque.'
         ),
         'variant-does-not-exists': ugettext_lazy(
-            'Oops. We could not find that product.'
+            'Oops! Não conseguimos encontrar este produto.'
         ),
         'insufficient-stock': ugettext_lazy(
-            'Only %(remaining)d remaining in stock.'
+            'Apenas %(remaining)d unidades em estoque.'
         )
     }
 

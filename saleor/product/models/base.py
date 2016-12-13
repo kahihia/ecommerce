@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from __future__ import unicode_literals
 
 import datetime
@@ -28,16 +31,16 @@ from .fields import WeightField
 @python_2_unicode_compatible
 class Category(MPTTModel):
     name = models.CharField(
-        pgettext_lazy('Category field', 'name'), max_length=128)
+        pgettext_lazy('Category field', 'nome'), max_length=128)
     slug = models.SlugField(
         pgettext_lazy('Category field', 'slug'), max_length=50)
     description = models.TextField(
-        pgettext_lazy('Category field', 'description'), blank=True)
+        pgettext_lazy('Category field', 'descrição'), blank=True)
     parent = models.ForeignKey(
         'self', null=True, blank=True, related_name='children',
-        verbose_name=pgettext_lazy('Category field', 'parent'))
+        verbose_name=pgettext_lazy('Category field', 'categoria pai'))
     hidden = models.BooleanField(
-        pgettext_lazy('Category field', 'hidden'), default=False)
+        pgettext_lazy('Category field', 'escondido'), default=False)
 
     objects = Manager()
     tree = TreeManager()
@@ -74,24 +77,24 @@ class ProductManager(InheritanceManager):
 @python_2_unicode_compatible
 class Product(models.Model, ItemRange):
     name = models.CharField(
-        pgettext_lazy('Product field', 'name'), max_length=128)
+        pgettext_lazy('Product field', 'nome'), max_length=128)
     description = models.TextField(
-        verbose_name=pgettext_lazy('Product field', 'description'))
+        verbose_name=pgettext_lazy('Product field', 'descrição'))
     categories = models.ManyToManyField(
-        Category, verbose_name=pgettext_lazy('Product field', 'categories'),
+        Category, verbose_name=pgettext_lazy('Product field', 'categorias'),
         related_name='products')
     price = PriceField(
-        pgettext_lazy('Product field', 'price'),
+        pgettext_lazy('Product field', 'preço'),
         currency=settings.DEFAULT_CURRENCY, max_digits=12, decimal_places=2)
     weight = WeightField(
-        pgettext_lazy('Product field', 'weight'), unit=settings.DEFAULT_WEIGHT,
+        pgettext_lazy('Product field', 'peso'), unit=settings.DEFAULT_WEIGHT,
         max_digits=6, decimal_places=2)
     available_on = models.DateField(
-        pgettext_lazy('Product field', 'available on'), blank=True, null=True)
+        pgettext_lazy('Product field', 'disponível em'), blank=True, null=True)
     attributes = models.ManyToManyField(
         'ProductAttribute', related_name='products', blank=True)
     updated_at = models.DateTimeField(
-        pgettext_lazy('Product field', 'updated at'), auto_now=True, null=True)
+        pgettext_lazy('Product field', 'atualizado em'), auto_now=True, null=True)
 
     objects = ProductManager()
 
@@ -133,18 +136,18 @@ class ProductVariant(models.Model, Item):
     sku = models.CharField(
         pgettext_lazy('Variant field', 'SKU'), max_length=32, unique=True)
     name = models.CharField(
-        pgettext_lazy('Variant field', 'variant name'), max_length=100,
+        pgettext_lazy('Variant field', 'nome da variante'), max_length=100,
         blank=True)
     price_override = PriceField(
-        pgettext_lazy('Variant field', 'price override'),
+        pgettext_lazy('Variant field', 'preço sobrescrito'),
         currency=settings.DEFAULT_CURRENCY, max_digits=12, decimal_places=2,
         blank=True, null=True)
     weight_override = WeightField(
-        pgettext_lazy('Variant field', 'weight override'),
+        pgettext_lazy('Variant field', 'peso sobrescrito'),
         unit=settings.DEFAULT_WEIGHT, max_digits=6, decimal_places=2,
         blank=True, null=True)
     product = models.ForeignKey(Product, related_name='variants')
-    attributes = JSONField(pgettext_lazy('Variant field', 'attributes'),
+    attributes = JSONField(pgettext_lazy('Variant field', 'atributos'),
                            default={})
     images = models.ManyToManyField('ProductImage', through='VariantImage')
     objects = InheritanceManager()
@@ -255,17 +258,17 @@ class StockManager(models.Manager):
 class Stock(models.Model):
     variant = models.ForeignKey(
         ProductVariant, related_name='stock',
-        verbose_name=pgettext_lazy('Stock item field', 'variant'))
+        verbose_name=pgettext_lazy('Stock item field', 'variante'))
     location = models.CharField(
-        pgettext_lazy('Stock item field', 'location'), max_length=100)
+        pgettext_lazy('Stock item field', 'localização'), max_length=100)
     quantity = models.IntegerField(
-        pgettext_lazy('Stock item field', 'quantity'),
+        pgettext_lazy('Stock item field', 'quantidade'),
         validators=[MinValueValidator(0)], default=Decimal(1))
     quantity_allocated = models.IntegerField(
-        pgettext_lazy('Stock item field', 'allocated quantity'),
+        pgettext_lazy('Stock item field', 'quantidade alocada'),
         validators=[MinValueValidator(0)], default=Decimal(0))
     cost_price = PriceField(
-        pgettext_lazy('Stock item field', 'cost price'),
+        pgettext_lazy('Stock item field', 'preço de custo'),
         currency=settings.DEFAULT_CURRENCY, max_digits=12, decimal_places=2,
         blank=True, null=True)
 
@@ -286,10 +289,10 @@ class Stock(models.Model):
 @python_2_unicode_compatible
 class ProductAttribute(models.Model):
     name = models.SlugField(
-        pgettext_lazy('Product attribute field', 'internal name'),
+        pgettext_lazy('Product attribute field', 'nome interno'),
         max_length=50, unique=True)
     display = models.CharField(
-        pgettext_lazy('Product attribute field', 'display name'),
+        pgettext_lazy('Product attribute field', 'nome externo'),
         max_length=100)
 
     class Meta:
@@ -308,15 +311,15 @@ class ProductAttribute(models.Model):
 @python_2_unicode_compatible
 class AttributeChoiceValue(models.Model):
     display = models.CharField(
-        pgettext_lazy('Attribute choice value field', 'display name'),
+        pgettext_lazy('Attribute choice value field', 'nome externo'),
         max_length=100)
     color = models.CharField(
-        pgettext_lazy('Attribute choice value field', 'color'),
+        pgettext_lazy('Attribute choice value field', 'cor'),
         max_length=7,
         validators=[RegexValidator('^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$')],
         blank=True)
     image = VersatileImageField(
-        pgettext_lazy('Attribute choice value field', 'image'),
+        pgettext_lazy('Attribute choice value field', 'imagem'),
         upload_to='attributes', blank=True, null=True)
     attribute = models.ForeignKey(ProductAttribute, related_name='values')
 

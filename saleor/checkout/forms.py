@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from django import forms
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
@@ -15,7 +18,7 @@ class ShippingAddressesForm(forms.Form):
 
     NEW_ADDRESS = 'new_address'
     CHOICES = (
-        (NEW_ADDRESS, _('Enter a new address')),
+        (NEW_ADDRESS, _('Escrever um novo endereço')),
     )
 
     address = CheckoutAddressField(choices=CHOICES, initial=NEW_ADDRESS)
@@ -34,8 +37,8 @@ class BillingAddressesForm(ShippingAddressesForm):
     NEW_ADDRESS = 'new_address'
     SHIPPING_ADDRESS = 'shipping_address'
     CHOICES = (
-        (NEW_ADDRESS, _('Enter a new address')),
-        (SHIPPING_ADDRESS, _('Same as shipping'))
+        (NEW_ADDRESS, _('Escrever um novo endereço')),
+        (SHIPPING_ADDRESS, _('Endereço igual ao de entrega'))
     )
 
     address = CheckoutAddressField(choices=CHOICES, initial=SHIPPING_ADDRESS)
@@ -61,7 +64,7 @@ class ShippingMethodForm(forms.Form):
     method = ShippingCountryChoiceField(
         queryset=ShippingMethodCountry.objects.select_related(
             'shipping_method').order_by('price').all(),
-        label=_('Shipping method'), required=True)
+        label=_('Método de entrega'), required=True)
 
     def __init__(self, country_code, *args, **kwargs):
         super(ShippingMethodForm, self).__init__(*args, **kwargs)
