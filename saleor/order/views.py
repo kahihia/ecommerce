@@ -112,8 +112,13 @@ def start_payment(request, order, variant):
     """
     order.change_status('payment-pending')
     items = order.get_items()
-    pagseguro_api = PagSeguroApi(reference='luanavizzon',
-                                 sender_email = order.user_email)
+    if order.discount_amount > 0:
+        pagseguro_api = PagSeguroApi(reference='luanavizzon',
+                                     sender_email = order.user_email,
+                                     extraAmount = -order.discount_amount.gross)
+    else:
+        pagseguro_api = PagSeguroApi(reference='luanavizzon',
+                                     sender_email = order.user_email)
     flag = 0
     for item in items:
         if flag == 0:
