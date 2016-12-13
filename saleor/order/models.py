@@ -7,6 +7,8 @@ from decimal import Decimal
 from uuid import uuid4
 
 import emailit.api
+import requests
+import re
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
@@ -26,7 +28,7 @@ from ..discount.models import Voucher
 from ..product.models import Product, Stock
 from ..userprofile.models import Address
 from . import Status
-
+from ..core import TOKEN_PATTERN
 
 class OrderManager(models.Manager):
 
@@ -101,6 +103,16 @@ class Order(models.Model, ItemSet):
             self.status = status
             self.save()
             self.history.create(status=status)
+            if self.status == 'shipped':
+                email = self.get_user_current_email()
+                pattern = re.compile(TOKEN_PATTERN)
+                token = pattern.match(self.token).group(0)
+                data = {'token_rdstation': 'e62acd99b0fced7294d66725f9eac312',
+                        'identificador': 'shipment_confirmation',
+                        'email': email,
+                        'order_token': token}
+                r = requests.post("https://www.rdstation.com.br/api/1.3/conversions", data=data)
+                print(r.text)
 
     def get_items(self):
         return OrderedItem.objects.filter(delivery_group__order=self)
@@ -150,10 +162,18 @@ class Order(models.Model, ItemSet):
         payment_url = build_absolute_uri(
             reverse('order:details', kwargs={'token': self.token}))
         context = {'payment_url': payment_url}
-
+        """
         emailit.api.send_mail(
                 email, context, 'order/emails/confirm_email',
                 from_email=settings.ORDER_FROM_EMAIL)
+        """
+        pattern = re.compile(TOKEN_PATTERN)
+        token = pattern.match(self.token).group(0)
+        data = {'token_rdstation': 'e62acd99b0fced7294d66725f9eac312',
+                'identificador': 'order_confirmation',
+                'email': email,
+                'order_token': token}
+        r = requests.post("https://www.rdstation.com.br/api/1.3/conversions", data=data)
 
     def get_last_payment_status(self):
         last_payment = self.payments.last()
@@ -382,9 +402,18 @@ class Payment(BasePayment):
         order_url = build_absolute_uri(
             reverse('order:details', kwargs={'token': self.order.token}))
         context = {'order_url': order_url}
+        """
         emailit.api.send_mail(
             email, context, 'order/payment/emails/confirm_email',
             from_email=settings.ORDER_FROM_EMAIL)
+        """
+        pattern = re.compile(TOKEN_PATTERN)
+        token = pattern.match(self.token).group(0)
+        data = {'token_rdstation': 'e62acd99b0fced7294d66725f9eac312',
+                'identificador': 'payment_confirmation',
+                'email': email,
+                'order_token': token}
+        r = requests.post("https://www.rdstation.com.br/api/1.3/conversions", data=data)
 
     def get_purchased_items(self):
         items = [PurchasedItem(
