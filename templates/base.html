@@ -32,7 +32,7 @@
                     <div class="collapse navbar-collapse navbar-ex1-collapse">
                         <ul class="nav navbar-nav navbar-left">
                             <li>
-                                <a href="{% url "cart:index" %}">Parcele em até 5x sem juros | Frete GRÁTIS para compras acima de R$ 150</a>
+                                <a href="#">Parcele em até 5x sem juros | Frete GRÁTIS para compras acima de R$ 150</a>
                             </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
@@ -61,17 +61,19 @@
       					<ul class="memenu skyblue">
                   <li {% if request.path == "/" %} class="active" {% endif %}><a href="/">Novidades</a></li>
                   {% for category in categories %}
-                      <li {% if category.slug in request.path %} class="active" {% endif %}>
-                          <a href="{{ category.get_absolute_url }}">
-                              {{ category }}
-                          </a>
-                      </li>
+                      {% if category.slug != 'default' %}
+                        <li {% if category.slug in request.path %} class="active" {% endif %}>
+                            <a href="{{ category.get_absolute_url }}">
+                                {{ category }}
+                            </a>
+                        </li>
+                      {% endif %}
                   {% endfor %}
                   </li>
                   <li {% if request.path == "/contact/" %} class="active" {% endif %}><a href="/contact/">Entre em contato</a>
                   </li>
                   </li>
-      						<li id="resale" class="grid"><a href="http://conteudo.luanavizzon.com.br/promocao-natal-2015" target="_blank">Torne-se revendedora</a>
+      						<li id="resale" class="grid"><a href="http://conteudo.luanavizzon.com.br/quero-revender-lv-acessorios" target="_blank">Torne-se revendedora</a>
       						</li>
       					</ul>
       				</div>
@@ -89,33 +91,47 @@
           	<div class="about">
           		<div class="container">
           			<div class="about-top grid-1">
-          				<div class="col-md-4 about-left">
-          					<figure class="effect-bubba">
-          						<img src="{% static 'images/ring.png' %}" alt="Aneis Luana Vizzon" class="img-responsive">
-          						<figcaption>
-          							<h2>Aneis</h2>
-          							<p>In sit amet sapien eros Integer dolore magna aliqua</p>
-          						</figcaption>
-          					</figure>
-          				</div>
-          				<div class="col-md-4 about-left">
-          					<figure class="effect-bubba">
-          						<img src="{% static 'images/bracelet.png' %}" alt="Pulseiras Luana Vizzon" class="img-responsive">
-          						<figcaption>
-          							<h4>Pulseiras</h4>
-          							<p>In sit amet sapien eros Integer dolore magna aliqua</p>
-          						</figcaption>
-          					</figure>
-          				</div>
-          				<div class="col-md-4 about-left">
-          					<figure class="effect-bubba">
-          						<img src="{% static 'images/necklace.png' %}" alt="Colares Luana Vizzon" class="img-responsive">
-          						<figcaption>
-          							<h4>Colares</h4>
-          							<p>In sit amet sapien eros Integer dolore magna aliqua</p>
-          						</figcaption>
-          					</figure>
-          				</div>
+                  {% for category in categories %}
+                    {% if category.slug == 'aneis' %}
+              				<div class="col-md-4 about-left">
+                        <a href="{{ category.get_absolute_url }}">
+                					<figure class="effect-bubba">
+                						<img src="{% static 'images/ring.png' %}" alt="Aneis Luana Vizzon" class="img-responsive">
+                						<figcaption>
+                							<h2>Aneis</h2>
+                							<p>Alguma coisa fofa que a Luana falaria</p>
+                						</figcaption>
+                					</figure>
+                        </a>
+              				</div>
+                    {% endif %}
+                    {% if category.slug == 'pulseiras' %}
+              				<div class="col-md-4 about-left">
+                        <a href="{{ category.get_absolute_url }}">
+                          <figure class="effect-bubba">
+                						<img src="{% static 'images/bracelet.png' %}" alt="Pulseiras Luana Vizzon" class="img-responsive">
+                						<figcaption>
+                							<h4>Pulseiras</h4>
+                							<p>Alguma coisa fofa que a Luana falaria</p>
+                						</figcaption>
+                					</figure>
+                        </a>
+              				</div>
+                    {% endif %}
+                    {% if category.slug == 'colares' %}
+              				<div class="col-md-4 about-left">
+                        <a href="{{ category.get_absolute_url }}">
+                          <figure class="effect-bubba">
+                						<img src="{% static 'images/necklace.png' %}" alt="Colares Luana Vizzon" class="img-responsive">
+                						<figcaption>
+                							<h4>Colares</h4>
+                							<p>Alguma coisa fofa que a Luana falaria</p>
+                						</figcaption>
+                					</figure>
+                        </a>
+              				</div>
+                    {% endif %}
+                  {% endfor %}
           				<div class="clearfix"></div>
           			</div>
           		</div>
