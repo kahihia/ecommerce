@@ -175,6 +175,11 @@ class Order(models.Model, ItemSet):
                 'order_token': token}
         r = requests.post("https://www.rdstation.com.br/api/1.3/conversions", data=data)
 
+        data = {"status": "won",
+                "value":  self.total.gross,
+                "email": email}
+        r = requests.post("https://www.rdstation.com.br/api/1.2/services/4ed59eaacea9ca340b924f0e760592bd/generic", data=data)
+
     def get_last_payment_status(self):
         last_payment = self.payments.last()
         if last_payment:
