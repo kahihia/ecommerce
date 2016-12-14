@@ -25,7 +25,7 @@
     <div class="row">
         <div class="col-sm-12">
             <h3 class="page-header page-header--order">
-                <span class="text-muted">{% blocktrans %}Order {{ order }}: {% endblocktrans %}</span>
+                <span class="text-muted">{% blocktrans %}Pedido {{ order }}: {% endblocktrans %}</span>
                 {{ order.get_status_display }}
 
                 {% if not order.is_fully_paid %}
@@ -38,9 +38,10 @@
             </h3>
         </div>
     </div>
-
+    <!--
     <div class="row">
         {% if order.user == user %}
+
             <div class="col-sm-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -51,6 +52,7 @@
                     </div>
                 </div>
             </div>
+
             {% if order.is_shipping_required %}
                 <div class="col-sm-6">
                     <div class="panel panel-default">
@@ -63,13 +65,15 @@
                     </div>
                 </div>
             {% endif %}
+
         {% endif %}
     </div>
+    -->
 
     {% for group in groups %}
         <div class="panel panel-default">
             <div class="panel-heading">
-                {% blocktrans with number=forloop.counter %}Shipment #{{ number }}{% endblocktrans %}
+                {% blocktrans with number=forloop.counter %}Entrega #{{ number }}{% endblocktrans %}
                 <span class="pull-right">
                     <span class="label label-default">{{ group.get_status_display }}</span>
                 </span>
