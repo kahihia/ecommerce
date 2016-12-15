@@ -35,7 +35,7 @@
                                 <a href="#">Parcele em até 5x sem juros | Frete GRÁTIS para compras acima de R$ 150</a>
                             </li>
                         </ul>
-                        <ul class="nav navbar-nav navbar-right">
+                        <ul class="nav navbar-nav pull-right">
                             <li>
                                 <a href="{% url "cart:index" %}"><i class="glyphicon glyphicon-shopping-cart"></i> {% trans "Carrinho" %} {% if cart_counter %}<span class="badge">{{ cart_counter }}</span>{% endif %}</a>
                             </li>
@@ -218,18 +218,21 @@
           <div class="container">
             <div class="footer-top">
 
+              {% if "cart" not in request.path and "checkout" not in request.path %}
               <div class="col-md-6 footer-left">
-                {% if "cart" not in request.path and "checkout" not in request.path %}
+
+                <p>Receba ofertas por email</p>
                 <form>
                   <input type="text" value="Escreva seu email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your Email';}">
-                  <input type="submit" value="Quero receber ofertas!">
+                  <input type="submit" value="Enviar">
                 </form>
-                {% endif %}
+
               </div>
 
               <div class="col-md-6 footer-right">
                 <p>© 2016 Luana Vizzon. Todos os direitos reservados.</p>
               </div>
+              {% endif %}
               <div class="clearfix"></div>
             </div>
           </div>
