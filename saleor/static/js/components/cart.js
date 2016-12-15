@@ -211,7 +211,7 @@ class CartItemAmountSelect extends Component {
           type="submit"
         >
           <span className="text-muted">
-            Remove from cart
+            Remover do carrinho
           </span>
         </button>
       </div>

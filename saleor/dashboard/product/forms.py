@@ -40,7 +40,6 @@ class StockForm(forms.ModelForm):
         self.fields['variant'] = forms.ModelChoiceField(
             queryset=product.variants)
 
-
 class ProductForm(forms.ModelForm):
 
     class Meta:

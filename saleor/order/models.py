@@ -110,6 +110,7 @@ class Order(models.Model, ItemSet):
                 data = {'token_rdstation': 'e62acd99b0fced7294d66725f9eac312',
                         'identificador': 'shipment_confirmation',
                         'email': email,
+                        'nome': self.shipping_address.full_name,
                         'order_token': token}
                 r = requests.post("https://www.rdstation.com.br/api/1.3/conversions", data=data)
                 print(r.text)
@@ -172,6 +173,7 @@ class Order(models.Model, ItemSet):
         data = {'token_rdstation': 'e62acd99b0fced7294d66725f9eac312',
                 'identificador': 'order_confirmation',
                 'email': email,
+                'nome': self.shipping_address.full_name,
                 'order_token': token}
         r = requests.post("https://www.rdstation.com.br/api/1.3/conversions", data=data)
 
@@ -417,6 +419,7 @@ class Payment(BasePayment):
         data = {'token_rdstation': 'e62acd99b0fced7294d66725f9eac312',
                 'identificador': 'payment_confirmation',
                 'email': email,
+                'nome': self.shipping_address.full_name,
                 'order_token': token}
         r = requests.post("https://www.rdstation.com.br/api/1.3/conversions", data=data)
 
