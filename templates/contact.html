@@ -26,14 +26,22 @@
           </div>
         </div>
         <div class="col-md-9 contact-right">
-          <form>
-            <input type="text" placeholder="Nome">
-            <input type="text" placeholder="Telefone">
-            <input type="text"  placeholder="Email">
-            <textarea placeholder="Mensagem" required=""></textarea>
+          <form action="https://www.rdstation.com.br/api/1.2/conversions" method="POST">
+            <input type="text" name='nome' placeholder="Nome">
+            <input type="text" name='telefone' placeholder="Telefone">
+            <input type="text" name='email'  placeholder="Email">
+            <textarea name='mensagem' placeholder="Mensagem" required=""></textarea>
             <div class="submit-btn">
               <input type="submit" value="ENVIAR">
             </div>
+            <input type="hidden" id="identificador" name="identificador" value="contact" >
+            <input type="hidden" id="token_rdstation" name="token_rdstation" value="e62acd99b0fced7294d66725f9eac312" >
+            <input type="hidden" name="c_utmz" id="c_utmz" value="" />
+            <input type="hidden" name="traffic_source" id="traffic_source" value="" />
+            <script type="text/javascript">
+            function read_cookie(a){var b=a+"=";var c=document.cookie.split(";");for(var d=0;d<c.length;d++){var e=c[d];while(e.charAt(0)==" ")e=e.substring(1,e.length);if(e.indexOf(b)==0){return e.substring(b.length,e.length)}}return null}try{document.getElementById("c_utmz").value=read_cookie("__utmz"); document.getElementById("traffic_source").value=read_cookie("__trf.src");}catch(err){}
+            </script>
+            {% csrf_token %}
           </form>
         </div>
         <div class="clearfix"></div>

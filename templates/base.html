@@ -177,7 +177,7 @@
           				<div class="col-md-3 infor-left">
           					<h3>Mais informações</h3>
           					<ul>
-          						<li><a href="#"><p>Quem somos</p></a></li>
+          						<!--<li><a href="#"><p>Quem somos</p></a></li>-->
           						<li><a href="/contact/"><p>Entre em contato</p></a></li>
                       <li><a href="http://conteudo.luanavizzon.com.br/quero-revender-lv-acessorios" target="_blank"><p>Torne-se revendedora</p></a></li>
           					</ul>
@@ -222,9 +222,17 @@
               <div class="col-md-6 footer-left">
 
                 <p>Receba ofertas por email</p>
-                <form>
-                  <input type="text" value="Escreva seu email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your Email';}">
+                <form action="https://www.rdstation.com.br/api/1.2/conversions" method="POST">{% csrf_token %}
+                  <input type="text" id="email" name="email" value="Escreva seu email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your Email';}">
                   <input type="submit" value="Enviar">
+                  <input type="hidden" id="identificador" name="identificador" value="footer" >
+                  <input type="hidden" id="token_rdstation" name="token_rdstation" value="e62acd99b0fced7294d66725f9eac312" >
+                  <input type="hidden" name="c_utmz" id="c_utmz" value="" />
+                  <input type="hidden" name="traffic_source" id="traffic_source" value="" />
+                  <script type="text/javascript">
+                  function read_cookie(a){var b=a+"=";var c=document.cookie.split(";");for(var d=0;d<c.length;d++){var e=c[d];while(e.charAt(0)==" ")e=e.substring(1,e.length);if(e.indexOf(b)==0){return e.substring(b.length,e.length)}}return null}try{document.getElementById("c_utmz").value=read_cookie("__utmz"); document.getElementById("traffic_source").value=read_cookie("__trf.src");}catch(err){}
+                  </script>
+                  <!--<input type="hidden" name="redirect_to" value="http://luanavizzon.com.br/" />-->
                 </form>
 
               </div>
@@ -245,6 +253,6 @@
         {% endblock footer_scripts %}
 
         <script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/39bc6d30-964a-43a4-a2f6-d925a36ae392-loader.js" ></script>
-
+        
     </body>
 </html>
