@@ -310,6 +310,6 @@ WEBPACK_LOADER = {
 
 PAGSEGURO_EMAIL = os.environ.get('PAGSEGURO_EMAIL')
 PAGSEGURO_TOKEN = os.environ.get('PAGSEGURO_TOKEN')
-PAGSEGURO_SANDBOX = os.environ.get('PAGSEGURO_SANDBOX') # se o valor for True, as requisicoes a api serao feitas usando o PagSeguro Sandbox.
+PAGSEGURO_SANDBOX = ast.literal_eval(os.environ.get('PAGSEGURO_SANDBOX', 'True')) # se o valor for True, as requisicoes a api serao feitas usando o PagSeguro Sandbox.
 PAGSEGURO_LOG_IN_MODEL = True # se o valor for True, os checkouts e transacoes vao ser logadas no database.
 SECURE_REDIRECT_EXEMPT = 'retorno/pagseguro/'

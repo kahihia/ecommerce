@@ -131,6 +131,7 @@ def start_payment(request, order, variant):
         else:
             pagseguro_api.add_item(PagSeguroItem(id=item.product_sku, description=item.product, amount="%0.2f" % item.unit_price_net, quantity=item.quantity))
     data = pagseguro_api.checkout()
+
     return redirect(data['redirect_url'])
 
 
