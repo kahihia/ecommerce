@@ -284,8 +284,11 @@ class Checkout(object):
                               "diametro": "0"
                              }
 
-                shipping_simulation = Correios().frete(**fields)
-                shipping_price = Decimal(shipping_simulation['Valor'].replace(',','.'))
+                if order_data['total'].gross > 250:
+                    shipping_price = 0
+                else:
+                    shipping_simulation = Correios().frete(**fields)
+                    shipping_price = Decimal(shipping_simulation['Valor'].replace(',','.'))
 
             else:
                 shipping_price = 0

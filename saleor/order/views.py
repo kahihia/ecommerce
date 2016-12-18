@@ -121,7 +121,7 @@ def start_payment(request, order, variant):
                                      sender_email = order.user_email)
     flag = 0
     for item in items:
-        if flag == 0:
+        if flag == 0 and float(order.get_delivery_total().gross) > 0:
             pagseguro_api.add_item(PagSeguroItem(id=item.product_sku,
                                                  description=item.product,
                                                  amount="%0.2f" % item.unit_price_net,
