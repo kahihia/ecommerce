@@ -73,7 +73,7 @@
                   <li {% if request.path == "/contact/" %} class="active" {% endif %}><a href="/contact/">Entre em contato</a>
                   </li>
                   </li>
-      						<li id="resale" class="grid"><a href="http://conteudo.luanavizzon.com.br/quero-revender-lv-acessorios" target="_blank">Torne-se revendedora</a>
+      						<li id="resale" class="grid"><a href="http://mais.luanavizzon.com.br/quero-revender-lv-acessorios" target="_blank">Torne-se revendedora</a>
       						</li>
       					</ul>
       				</div>
@@ -91,47 +91,39 @@
           	<div class="about">
           		<div class="container">
           			<div class="about-top grid-1">
-                  {% for category in categories %}
-                    {% if category.slug == 'aneis' %}
               				<div class="col-md-4 about-left">
-                        <a href="{{ category.get_absolute_url }}">
+                        <a href="/products/category/colares-3/">
                 					<figure class="effect-bubba">
-                						<img src="{% static 'images/ring.png' %}" alt="Aneis Luana Vizzon" class="img-responsive Image-Border">
-                						<figcaption>
-                							<h2>{{ category }}</h2>
-                							<p>Alguma coisa fofa que a Luana falaria</p>
-                						</figcaption>
-                					</figure>
-                        </a>
-              				</div>
-                    {% endif %}
-                    {% if category.slug == 'pulseiras' %}
-              				<div class="col-md-4 about-left">
-                        <a href="{{ category.get_absolute_url }}">
-                          <figure class="effect-bubba">
-                						<img src="{% static 'images/bracelet.png' %}" alt="Pulseiras Luana Vizzon" class="img-responsive Image-Border">
-                						<figcaption>
-                							<h4>{{ category }}</h4>
-                							<p>Alguma coisa fofa que a Luana falaria</p>
-                						</figcaption>
-                					</figure>
-                        </a>
-              				</div>
-                    {% endif %}
-                    {% if category.slug == 'colares' %}
-              				<div class="col-md-4 about-left">
-                        <a href="{{ category.get_absolute_url }}">
-                          <figure class="effect-bubba">
                 						<img src="{% static 'images/necklace.png' %}" alt="Colares Luana Vizzon" class="img-responsive Image-Border">
                 						<figcaption>
-                							<h4>{{ category }}</h4>
-                							<p>Alguma coisa fofa que a Luana falaria</p>
+                							<h2>Colares</h2>
+                							<p>Transforme o seu look casual <br>em único</p>
                 						</figcaption>
                 					</figure>
                         </a>
               				</div>
-                    {% endif %}
-                  {% endfor %}
+              				<div class="col-md-4 about-left">
+                        <a href="/products/category/aneis-2/">
+                          <figure class="effect-bubba">
+                						<img src="{% static 'images/ring.png' %}" alt="Aneis Luana Vizzon" class="img-responsive Image-Border">
+                						<figcaption>
+                							<h4>Aneis</h4>
+                							<p>Crie looks contemporâneos que combinam com o seu estilo</p>
+                						</figcaption>
+                					</figure>
+                        </a>
+              				</div>
+              				<div class="col-md-4 about-left">
+                        <a href="/products/category/brincos-5/">
+                          <figure class="effect-bubba">
+                						<img src="{% static 'images/earring.png' %}" alt="Brincos Luana Vizzon" class="img-responsive Image-Border">
+                						<figcaption>
+                							<h4>Brincos</h4>
+                							<p>Valorize o seu look com <br>pequenos detalhes</p>
+                						</figcaption>
+                					</figure>
+                        </a>
+              				</div>
           				<div class="clearfix"></div>
           			</div>
           		</div>
@@ -170,8 +162,8 @@
           				<div class="col-md-3 infor-left">
           					<h3>Siga Luana Vizzon</h3>
           					<ul>
-          						<li><a href="#"><span class="fb"><img src="{% static 'images/facebook.png' %}" alt="Siga Luana Vizzon no Facebook" class="img-responsive"></span><h6>Facebook</h6></a></li>
-          						<li><a href="#"><span class="twit"><img src="{% static 'images/twitter.png' %}" alt="Siga Luana Vizzon no Twitter" class="img-responsive"></span><h6>Twitter</h6></a></li>
+          						<li><a href="https://pt-br.facebook.com/luanavizzonacessorios/" target='_blank'><span class="fb"><img src="{% static 'images/facebook.png' %}" alt="Siga Luana Vizzon no Facebook" class="img-responsive"></span><h6>Facebook</h6></a></li>
+          						<li><a href="https://www.instagram.com/luanavizzon_acessorios/?hl=pt-br" target='_blank'><span class="twit"><img src="{% static 'images/instagram.png' %}" alt="Siga Luana Vizzon no Instagram" class="img-responsive"></span><h6>Instragram</h6></a></li>
           					</ul>
           				</div>
           				<div class="col-md-3 infor-left">
@@ -179,7 +171,7 @@
           					<ul>
           						<!--<li><a href="#"><p>Quem somos</p></a></li>-->
           						<li><a href="/contact/"><p>Entre em contato</p></a></li>
-                      <li><a href="http://conteudo.luanavizzon.com.br/quero-revender-lv-acessorios" target="_blank"><p>Torne-se revendedora</p></a></li>
+                      <li><a href="http://mais.luanavizzon.com.br/quero-revender-lv-acessorios" target="_blank"><p>Torne-se revendedora</p></a></li>
           					</ul>
           				</div>
                   <div class="col-md-3 infor-left">
