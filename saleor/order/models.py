@@ -155,6 +155,7 @@ class Order(models.Model, ItemSet):
         return reverse('order:details', kwargs={'token': self.token})
 
     def get_delivery_total(self):
+        # mexer aqui com API do correios?
         return sum([group.shipping_price for group in self.groups.all()],
                    Price(0, currency=settings.DEFAULT_CURRENCY))
 

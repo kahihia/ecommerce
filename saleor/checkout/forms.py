@@ -8,6 +8,7 @@ from django_prices.templatetags.prices_i18n import format_price
 
 from ..shipping.models import ShippingMethodCountry
 
+from ..checkout.correios import Correios
 
 class CheckoutAddressField(forms.ChoiceField):
 
@@ -54,8 +55,9 @@ class ShippingCountryChoiceField(forms.ModelChoiceField):
     widget = forms.RadioSelect()
 
     def label_from_instance(self, obj):
+        # Mexer aqui para API de Correios
         price_html = format_price(obj.price.gross, obj.price.currency)
-        label = mark_safe('%s %s' % (obj.shipping_method, price_html))
+        label = mark_safe('%s' % (obj.shipping_method))
         return label
 
 

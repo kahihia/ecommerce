@@ -14,6 +14,10 @@ from ..order.models import Order
 from ..shipping.models import ShippingMethodCountry, ANY_COUNTRY
 from ..userprofile.models import Address, User
 
+from ..checkout.correios import Correios
+from django_prices.templatetags.prices_i18n import format_price
+from decimal import Decimal
+
 STORAGE_SESSION_KEY = 'checkout_storage'
 
 
@@ -250,11 +254,39 @@ class Checkout(object):
 
         order = Order.objects.create(**order_data)
 
+        # Mexer aqui para API de Correios
         for partition in self.cart.partition():
             shipping_required = partition.is_shipping_required()
             if shipping_required:
                 shipping_price = self.shipping_method.get_total()
                 shipping_method_name = smart_text(self.shipping_method)
+
+                if "PAC" in shipping_method_name:
+                    fields = {"cod": Correios.PAC,
+                              "GOCEP": order_data['shipping_address'].postal_code,
+                              "HERECEP": "88034605",
+                              "peso": "1",
+                              "formato": "1", # caixa/pacote
+                              "comprimento": "18",
+                              "altura": "9",
+                              "largura": "13.5",
+                              "diametro": "0"
+                             }
+                elif "SEDEX" in shipping_method_name:
+                    fields = {"cod": Correios.SEDEX,
+                              "GOCEP": order_data['shipping_address'].postal_code,
+                              "HERECEP": "88034605",
+                              "peso": "1",
+                              "formato": "1", # caixa/pacote
+                              "comprimento": "18",
+                              "altura": "9",
+                              "largura": "13.5",
+                              "diametro": "0"
+                             }
+
+                shipping_simulation = Correios().frete(**fields)
+                shipping_price = Decimal(shipping_simulation['Valor'].replace(',','.'))
+
             else:
                 shipping_price = 0
                 shipping_method_name = None
