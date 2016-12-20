@@ -986,17 +986,14 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
   }
 
   /*--about-starts--*/
-@media (max-width: 480px) {
-  .about {
-      display:none;
-  }
-}
+
   .about {
     padding: 3em 0px 0em 0px;
   }
   .about-left{
     padding-top: 1em;
     padding-bottom: 1em;
+    margin-bottom: 1em;
   }
   .about-left img{
   	width:100%;
@@ -1036,6 +1033,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
   }
   figure.effect-bubba {
   	background: rgba(6, 107, 195, 0.85);
+    margin-bottom: 1em;
   }
   figure.effect-bubba:hover img {
   	opacity: 0.3;
@@ -1514,4 +1512,13 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
   padding: 1px;
   border: 1px solid #D3D3D3;
   background-color: white;
+}
+
+@media screen and (min-width: 0px) and (max-width: 800px) {
+  #price { display: none; }  /* do not show it on small screens */
+}
+
+.navbar-toggle {
+  margin-top: 11px;
+  margin-bottom: 0px;
 }
