@@ -195,7 +195,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 /*--starts-logo--*/
 .logo {
     text-align: center;
-    padding: 25px 0 70px 0px;
+    padding: 25px 0 80px 0px;
     border-bottom: 1px solid #DEDEDE;
 }
 .logo img {
@@ -1517,6 +1517,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 
 @media screen and (min-width: 0px) and (max-width: 800px) {
   #price { display: none; }  /* do not show it on small screens */
+  #search { text-align: center;}  /* do not show it on small screens */
 }
 
 .navbar-toggle {
@@ -1531,8 +1532,8 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 .input input[type="text"] {
     width: 200px;
     border: none;
-    font-size: 1.5em;
-    color: #EEE;
+    font-size: 1em;
+    color: #DEDEDE;
     position: relative;
     /* Adjust these values accordingly */
     top: 0px;
@@ -1542,13 +1543,14 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 
 .input {
   padding-right: 40px;
-  margin: 10px 0px;
+  margin: 25px 0px;
   padding: 0;
-  border: 1px solid #EEE;
+  border: 1px solid #DEDEDE;
   width: 290px;
-  height: auto;
+  height: 36px;
   margin-right: 20px;
-  border-radius: 3px;
+  margin-left: 20px;
+  border-radius: 18px;
 }
 
 .search-btn {
@@ -1592,53 +1594,10 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 
 
 #search-icon{
-  color: #EEE;
-  font-size: 2em;
+  color: #DEDEDE;
+  font-size: 1.5em;
   position: relative;
   /* Adjust these values accordingly */
   top: 0px;
   left: 0px;
-}
-
-
-form.search-form input.search-text {
-font-size: 130%;
-color: #8D8D8D;
--webkit-font-smoothing: antialiased;
-font-family: sans-serif;
-background-color: #FFF;
-display: block;
-width: 200px;
-height: 20px;
-padding: 20px 15px;
-border: none;
-float: left;
-}
-
-form.search-form input.search-submit {
-display: block;
-height: 60px;
-width: 60px;
-border: none;
-background-color: #FFF;
-
-float: left;
-cursor: pointer;
--webkit-transition: all 0.2s ease;
--ms-transition: all 0.2s ease;
--moz-transition: all 0.2s ease;
--o-transition: all 0.2s ease;
-transition: all 0.2s ease;
-}
-
-form.search-form input.search-submit:hover{
-
-}
-
-form.search-form {
-margin: 10px 0px;
-padding: 0;
-border: 1px solid #EEE;
-width: 290px;
-height: auto;
 }
