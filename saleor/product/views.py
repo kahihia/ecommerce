@@ -10,8 +10,11 @@ from django.template.response import TemplateResponse
 from ..cart.decorators import get_cart_from_request
 from ..core.utils import get_paginator_items, to_local_currency
 from .forms import get_form_class_for_product
-from .models import Category
+from .models import Category, Product
 from .utils import products_with_details
+
+from django.template import RequestContext
+from django.shortcuts import render_to_response
 
 
 def product_details(request, slug, product_id):
@@ -103,3 +106,20 @@ def category_index(request, path, category_id):
         {'products': products, 'category': category,
          'children_categories': children_categories,
          'breadcrumbs': breadcrumbs})
+
+def search(request):
+    query = request.GET.get('q')
+    if query is None or query == '':
+        return redirect('/')
+    query = str(query)
+    results = Product.objects.filter(name__icontains=query)
+    results = results.prefetch_related(
+        'images', 'variants', 'variants__stock')
+    results = get_paginator_items(
+        results, settings.PAGINATE_BY, request.GET.get('page'))
+    context = RequestContext(request)
+    return TemplateResponse(
+        request, 'category/index.html',
+        {'products': results, 'category': "",
+         'children_categories': None,
+         'breadcrumbs': ""})

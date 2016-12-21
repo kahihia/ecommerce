@@ -274,3 +274,18 @@ def attribute_delete(request, pk):
     ctx = {'attribute': attribute}
     return TemplateResponse(
         request, 'dashboard/product/attributes/modal_confirm_delete.html', ctx)
+
+def search(request):
+    query = request.GET.get('q')
+    if query is None or query == '':
+        return redirect('/dashboard/products/')
+    query = str(query)
+    results = Product.objects.filter(name__icontains=query)
+    results = results.prefetch_related(
+        'images', 'variants', 'variants__stock')
+    form = forms.ProductClassForm(request.POST or None)
+    if form.is_valid():
+        return redirect('dashboard:product-add')
+    products = get_paginator_items(results, 30, request.GET.get('page'))
+    ctx = {'form': form, 'products': products}
+    return TemplateResponse(request, 'dashboard/product/list.html', ctx)

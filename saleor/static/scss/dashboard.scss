@@ -288,6 +288,10 @@ $roboto-font-path: "~materialize-css/fonts/roboto/";
   white-space: pre-wrap;
 }
 
+.search {
+  margin-bottom: 20px;
+}
+
 @import "widget/breadcrumbs";
 @import "widget/card";
 @import "widget/data-table";

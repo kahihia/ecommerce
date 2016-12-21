@@ -51,4 +51,6 @@ urlpatterns = [
         views.attribute_edit, name='product-attribute-add'),
     url(r'attributes/(?P<pk>[0-9]+)/delete/$',
         views.attribute_delete, name='product-attribute-delete'),
+
+    url(r'^search/', views.search, name='search')
 ]

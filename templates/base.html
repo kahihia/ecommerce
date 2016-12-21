@@ -7,6 +7,7 @@
     <head>
         <title>{% block title %}Luana Vizzon Acessórios{% endblock %}</title>
         <link rel="icon" type="image/jpg" href="{% static 'images/mini_logo.jpg' %}">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         {% block meta %}
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,7 +38,7 @@
                             </li>
                         </ul>
                         <a href="#" class="page-scroll btn-default"><button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                          
+
                           <span class="icon-bar"></span>
                           <span class="icon-bar"></span>
                           <span class="icon-bar"></span>
@@ -53,10 +54,24 @@
         {% endblock %}
 
 
+
         <!--start-logo-->
         <div class="logo">
           <a href="/"><img src="{% static 'images/logo.jpg' %}" alt="Luana Vizzon" class="img-responsive"></a>
+          <div class="footer-left input pull-right" id='price'>
+            <form method="get" action="/products/search/">
+              <button type="submit" style="background-color:transparent; border-color:transparent; padding-left:0px; border-left:0px;"><span class="icon" id="search-icon"><i class="fa fa-search"></i></span></button>
+
+              <input type="text" name="q" id="id_q" value="Procurar" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Procurar';}"/>
+              <!--<input type="image" class='search-btn' src="{% static 'images/search.png' %}" alt="Submit Form" />-->
+
+
+            </form>
+          </div>
+
         </div>
+
+
 
         <!--end-logo-->
         <!--bottom-header-->
@@ -94,6 +109,8 @@
       			</div>
       		</div>
       	</div>
+
+
         {% endif %}
       	<!--bottom-header-->
 
@@ -241,7 +258,7 @@
               </div>
 
               <div class="col-md-6 footer-right">
-                <p>© 2016 Luana Vizzon Acessórios. Todos os direitos reservados.</p>
+                <p>© 2016 LV Acessórios. Todos os direitos reservados.</p>
               </div>
               {% endif %}
               <div class="clearfix"></div>

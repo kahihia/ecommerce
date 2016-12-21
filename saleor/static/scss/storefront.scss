@@ -195,7 +195,7 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 /*--starts-logo--*/
 .logo {
     text-align: center;
-    padding: 25px 0 20px 0px;
+    padding: 25px 0 70px 0px;
     border-bottom: 1px solid #DEDEDE;
 }
 .logo img {
@@ -622,8 +622,9 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
   	color: #fff;
   }
   .header-bottom {
-      padding: 12px 0px;
+      padding: 12px 12px 12px 12px;
       border-bottom: 1px solid #DEDEDE;
+
   }
 
   /*--banner-starts--*/
@@ -1521,4 +1522,123 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 .navbar-toggle {
   margin-top: 11px;
   margin-bottom: 0px;
+}
+
+.navbar-collapse.collapse {
+  padding-bottom: 12px;
+}
+
+.input input[type="text"] {
+    width: 200px;
+    border: none;
+    font-size: 1.5em;
+    color: #EEE;
+    position: relative;
+    /* Adjust these values accordingly */
+    top: 0px;
+    left: 0px;
+
+}
+
+.input {
+  padding-right: 40px;
+  margin: 10px 0px;
+  padding: 0;
+  border: 1px solid #EEE;
+  width: 290px;
+  height: auto;
+  margin-right: 20px;
+  border-radius: 3px;
+}
+
+.search-btn {
+  height: 30px;
+  width: 30px;
+}
+
+.search-icon {
+  padding-top: 20px;
+}
+
+.box{
+  margin: 100px auto;
+  width: 300px;
+  height: 50px;
+}
+
+.container-1{
+  width: 300px;
+  vertical-align: middle;
+  white-space: nowrap;
+  position: relative;
+  border-top: 1px solid #D3D3D3;
+  border-right: 1px solid #D3D3D3;
+  border-bottom: 1px solid #D3D3D3;
+  border-left: 1px solid #D3D3D3;
+}
+
+.container-1 input#search{
+  width: 300px;
+  height: 50px;
+  background: white;
+  border: black;
+  font-size: 10pt;
+  float: left;
+  color: #63717f;
+  padding-left: 45px;
+  border-radius: 5px;
+}
+
+
+
+#search-icon{
+  color: #EEE;
+  font-size: 2em;
+  position: relative;
+  /* Adjust these values accordingly */
+  top: 0px;
+  left: 0px;
+}
+
+
+form.search-form input.search-text {
+font-size: 130%;
+color: #8D8D8D;
+-webkit-font-smoothing: antialiased;
+font-family: sans-serif;
+background-color: #FFF;
+display: block;
+width: 200px;
+height: 20px;
+padding: 20px 15px;
+border: none;
+float: left;
+}
+
+form.search-form input.search-submit {
+display: block;
+height: 60px;
+width: 60px;
+border: none;
+background-color: #FFF;
+
+float: left;
+cursor: pointer;
+-webkit-transition: all 0.2s ease;
+-ms-transition: all 0.2s ease;
+-moz-transition: all 0.2s ease;
+-o-transition: all 0.2s ease;
+transition: all 0.2s ease;
+}
+
+form.search-form input.search-submit:hover{
+
+}
+
+form.search-form {
+margin: 10px 0px;
+padding: 0;
+border: 1px solid #EEE;
+width: 290px;
+height: auto;
 }
