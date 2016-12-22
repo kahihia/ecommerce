@@ -39,7 +39,7 @@ def report_view(client_id, path, language, headers):
 
 def report_order(client_id, order):
     for group in order:
-        items = [ga.Item(oi.product_name,
+        items = [ga.Item(oi.product.name,
                          oi.get_price_per_item(),
                          quantity=oi.quantity,
                          item_id=oi.product_sku)
