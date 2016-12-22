@@ -46,15 +46,20 @@
           </div>
         </div>
         {% empty %}
-        <div class="footer-left input pull-right" id='search'>
-          <form method="get" action="/products/search/">
-            <button type="submit" style="background-color:transparent; border-color:transparent; padding-left:0px; border-left:0px;"><span class="icon" id="search-icon"><i class="fa fa-search"></i></span></button>
+        <div class="logo">
+          <p>Nenhum produto encontrado. Deseja tentar novamente?</p>
+          <div class="input" id='error-search'>
 
-            <input type="text" name="q" id="id_q" value="Procurar" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Procurar';}"/>
-            <!--<input type="image" class='search-btn' src="{% static 'images/search.png' %}" alt="Submit Form" />-->
+            <form method="get" action="/products/search/">
+              <button type="submit" style="background-color:transparent; border-color:transparent; padding-left:0px; border-left:0px;"><span class="icon" id="search-icon"><i class="fa fa-search"></i></span></button>
+
+              <input type="text" name="q" id="id_q" value="Procurar" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Procurar';}"/>
+              <!--<input type="image" class='search-btn' src="{% static 'images/search.png' %}" alt="Submit Form" />-->
 
 
-          </form>
+            </form>
+          </div>
+
         </div>
         {% endfor %}
       </div>

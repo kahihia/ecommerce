@@ -43,7 +43,9 @@
             </div>
         </div>
     </div>
+    {% if products %}
     <div class="text-center">
         {% bootstrap_pagination products %}
     </div>
+    {% endif %}
 {% endblock content %}
