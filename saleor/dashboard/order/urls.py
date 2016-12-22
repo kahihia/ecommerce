@@ -20,6 +20,8 @@ urlpatterns = [
         views.release_payment, name='release-payment'),
     url(r'^(?P<order_pk>\d+)/payment/(?P<payment_pk>\d+)/refund/$',
         views.refund_payment, name='refund-payment'),
+    url(r'^(?P<order_pk>\d+)/payment/(?P<group_pk>\d+)/confirm/$',
+        views.confirm_payment, name='confirm-payment'),
 
     url(r'^(?P<order_pk>\d+)/line/(?P<line_pk>\d+)/change/$',
         views.orderline_change_quantity, name='orderline-change-quantity'),

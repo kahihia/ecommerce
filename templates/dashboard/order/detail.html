@@ -260,7 +260,13 @@
                         </table>
                     </div>
 
-                    {% if group.can_ship %}
+                    {% if order.status == 'payment-pending' %}
+                      <div class="card-action">
+                          <a href="#base-modal" data-href="{% url 'dashboard:confirm-payment' order_pk=order.pk group_pk=group.pk %}" class="modal-trigger-custom">
+                              {% trans "Confirmar pagamento" %}
+                          </a>
+                      </div>
+                    {% elif group.can_ship %}
                         <div class="card-action">
                             <a href="#base-modal" data-href="{% url 'dashboard:ship-delivery-group' order_pk=order.pk group_pk=group.pk %}" class="modal-trigger-custom">
                                 {% trans "Confirmar envio" %}

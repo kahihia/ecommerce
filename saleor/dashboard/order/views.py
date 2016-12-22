@@ -16,7 +16,7 @@ from ..views import (FilterByStatusMixin, StaffMemberOnlyMixin,
                      staff_member_required)
 from .forms import (CancelItemsForm, CancelOrderForm, CapturePaymentForm,
                     ChangeQuantityForm, MoveItemsForm, OrderNoteForm,
-                    RefundPaymentForm, ReleasePaymentForm, RemoveVoucherForm,
+                    RefundPaymentForm, ReleasePaymentForm, ConfirmPaymentForm, RemoveVoucherForm,
                     ShipGroupForm, CancelGroupForm)
 
 
@@ -137,6 +137,30 @@ def release_payment(request, order_pk, payment_pk):
     ctx = {'captured': payment.captured_amount, 'currency': payment.currency,
            'form': form, 'order': order, 'payment': payment}
     return TemplateResponse(request, 'dashboard/order/modal_release.html', ctx,
+                            status=status)
+
+@staff_member_required
+def confirm_payment(request, order_pk, group_pk):
+    order = get_object_or_404(Order, pk=order_pk)
+    group = get_object_or_404(order.groups.all(), pk=group_pk)
+
+    form = ConfirmPaymentForm(request.POST or None, order=order, group=group)
+
+    if form.is_valid() and form.confirm():
+        msg = _('Pagamento confirmado')
+        #payment.order.create_history_entry(comment=msg, user=request.user)
+        messages.success(request, msg)
+        return redirect('dashboard:order-details', order_pk=order.pk)
+    status = 400 if form.errors else 200
+    ctx = {#'captured': payment.captured_amount,
+           #'currency': payment.currency,
+           #'form': form,
+           #'payment': payment,
+           'order': order,
+           'group': group
+           }
+
+    return TemplateResponse(request, 'dashboard/order/modal_confirm.html', ctx,
                             status=status)
 
 

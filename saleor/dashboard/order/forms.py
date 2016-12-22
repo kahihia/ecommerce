@@ -16,9 +16,15 @@ from satchless.item import InsufficientStock
 from ...cart.forms import QuantityField
 from ...discount.models import Voucher
 from ...order import Status
-from ...order.models import DeliveryGroup, Order, OrderedItem, OrderNote
+from ...order.models import DeliveryGroup, Order, OrderedItem, OrderNote, Payment
 from ...product.models import ProductVariant, Stock
 
+from faker import Factory
+fake = Factory.create()
+
+from ...core import analytics
+import logging
+logger = logging.getLogger(__name__)
 
 class OrderNoteForm(forms.ModelForm):
     class Meta:
@@ -90,6 +96,55 @@ class ReleasePaymentForm(forms.Form):
             return False
         return True
 
+class ConfirmPaymentForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        self.order = kwargs.pop('order')
+        self.group = kwargs.pop('group')
+        super(ConfirmPaymentForm, self).__init__(*args, **kwargs)
+
+    def clean(self):
+        if self.order.status != 'payment-pending':
+            raise forms.ValidationError(
+                _('Apenas ordens com pagamento pendente podem ter pagamentos confirmados'))
+
+    def confirm(self):
+
+        try:
+            #self.payment.release()
+            status = 'confirmed'
+            payment = Payment.objects.create(
+                order=self.order,
+                status=status,
+                variant='default',
+                transaction_id=str(fake.random_int(1, 100000)),
+                currency=settings.DEFAULT_CURRENCY,
+                total=self.order.get_total().gross,
+                delivery=self.group.shipping_price.gross,
+                customer_ip_address=fake.ipv4(),
+                billing_first_name=self.order.shipping_address.first_name,
+                billing_last_name=self.order.shipping_address.last_name,
+                billing_address_1=self.order.shipping_address.street_address_1,
+                billing_city=self.order.shipping_address.city,
+                billing_postcode=self.order.shipping_address.postal_code,
+                billing_country_code=self.order.shipping_address.country)
+            payment.captured_amount = payment.total
+            payment.save()
+
+            try:
+                analytics.report_order(self.order.tracking_client_id, self.order)
+                payment.send_confirmation_email()
+                self.order.change_status('fully-paid')
+            except Exception:
+                # Analytics failing should not abort the checkout flow
+                logger.exception('Recording order in analytics failed')
+                print('Recording order in analytics failed')
+
+
+        except (PaymentError, ValueError) as e:
+            #self.add_error(None, _('Erro do gateway de pagamento: %s') % e.message)
+            return False
+
+        return True
 
 class MoveItemsForm(forms.Form):
     quantity = QuantityField(label=_('Quantidade'))
