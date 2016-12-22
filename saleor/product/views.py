@@ -109,7 +109,7 @@ def category_index(request, path, category_id):
 
 def search(request):
     query = request.GET.get('q')
-    if query is None or query == '':
+    if query is None or query == '' or query == 'Procurar':
         return redirect('/')
     query = str(query)
     results = Product.objects.filter(name__icontains=query)

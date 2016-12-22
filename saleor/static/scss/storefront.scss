@@ -1517,7 +1517,8 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 
 @media screen and (min-width: 0px) and (max-width: 800px) {
   #price { display: none; }  /* do not show it on small screens */
-  #search { text-align: center;}  /* do not show it on small screens */
+  .input { width: 290px !important; margin-right: auto !important; margin-left: auto !important; float: none !important; }  /* do not show it on small screens */
+  .logo {padding-bottom: 0px !important; }
 }
 
 .navbar-toggle {

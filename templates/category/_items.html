@@ -8,7 +8,6 @@
 <div class="product">
   <div class="container">
     <div class="product-top">
-
       <div class="product-one">
         {% for product in products %}
         <div class="col-md-3 product-left" itemscope itemtype="https://schema.org/Product">
@@ -45,6 +44,17 @@
               </h4>
             </div>
           </div>
+        </div>
+        {% empty %}
+        <div class="footer-left input pull-right" id='search'>
+          <form method="get" action="/products/search/">
+            <button type="submit" style="background-color:transparent; border-color:transparent; padding-left:0px; border-left:0px;"><span class="icon" id="search-icon"><i class="fa fa-search"></i></span></button>
+
+            <input type="text" name="q" id="id_q" value="Procurar" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Procurar';}"/>
+            <!--<input type="image" class='search-btn' src="{% static 'images/search.png' %}" alt="Submit Form" />-->
+
+
+          </form>
         </div>
         {% endfor %}
       </div>
