@@ -167,11 +167,11 @@ class Order(models.Model, ItemSet):
         payment_url = build_absolute_uri(
             reverse('order:details', kwargs={'token': self.token}))
         context = {'payment_url': payment_url}
-        """
+
         emailit.api.send_mail(
-                email, context, 'order/emails/confirm_email',
+                'luanavizzonacessorios@gmail.com', context, 'order/emails/confirm_email',
                 from_email=settings.ORDER_FROM_EMAIL)
-        """
+
         pattern = re.compile(TOKEN_PATTERN)
         token = pattern.match(self.token).group(0)
         data = {'token_rdstation': 'e62acd99b0fced7294d66725f9eac312',
@@ -185,7 +185,7 @@ class Order(models.Model, ItemSet):
                 "value":  self.total.gross,
                 "email": email}
         r = requests.post("https://www.rdstation.com.br/api/1.2/services/4ed59eaacea9ca340b924f0e760592bd/generic", data=data)
-
+        """
         try:
             analytics.report_order(self.tracking_client_id, self)
 
@@ -193,6 +193,7 @@ class Order(models.Model, ItemSet):
             # Analytics failing should not abort the checkout flow
             logger.exception('Recording order in analytics failed')
             print('Recording order in analytics failed')
+        """
 
     def get_last_payment_status(self):
         last_payment = self.payments.last()
