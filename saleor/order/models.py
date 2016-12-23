@@ -29,6 +29,9 @@ from ..product.models import Product, Stock
 from ..userprofile.models import Address
 from . import Status
 from ..core import TOKEN_PATTERN
+from ..core import analytics
+import logging
+logger = logging.getLogger(__name__)
 
 class OrderManager(models.Manager):
 
@@ -182,6 +185,14 @@ class Order(models.Model, ItemSet):
                 "value":  self.total.gross,
                 "email": email}
         r = requests.post("https://www.rdstation.com.br/api/1.2/services/4ed59eaacea9ca340b924f0e760592bd/generic", data=data)
+
+        try:
+            analytics.report_order(self.tracking_client_id, self)
+
+        except Exception:
+            # Analytics failing should not abort the checkout flow
+            logger.exception('Recording order in analytics failed')
+            print('Recording order in analytics failed')
 
     def get_last_payment_status(self):
         last_payment = self.payments.last()

@@ -100,7 +100,7 @@ def report_view(client_id, path, language, headers):
 
 def report_order(client_id, order):
     for group in order:
-
+        """
         items = [ga.Item(oi.product.name,
                          oi.get_price_per_item(),
                          quantity=oi.quantity,
@@ -125,5 +125,5 @@ def report_order(client_id, order):
                                     url_page = '/checkout/payment/',
                                     revenue=group.get_total(),
                                     shipping=group.shipping_price)
-        """
+
         _report(client_id, trans, {})

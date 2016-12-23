@@ -129,15 +129,20 @@ class ConfirmPaymentForm(forms.Form):
                 billing_country_code=self.order.shipping_address.country)
             payment.captured_amount = payment.total
             payment.save()
-
-            try:
-                analytics.report_order(self.order.tracking_client_id, self.order)
+            if self.order.status != 'fully-paid':
                 payment.send_confirmation_email()
-                self.order.change_status('fully-paid')
+            self.order.change_status('fully-paid')
+
+
+            """
+            try:
+                #analytics.report_order(self.order.tracking_client_id, self.order)
+
             except Exception:
                 # Analytics failing should not abort the checkout flow
                 logger.exception('Recording order in analytics failed')
                 print('Recording order in analytics failed')
+            """
 
 
         except (PaymentError, ValueError) as e:
