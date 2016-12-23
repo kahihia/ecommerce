@@ -319,6 +319,28 @@
 
           {% endif %}
 
+          {% if "/checkout/shipping-method/" in request.path %}
+              {% for delivery, delivery_cost, total_with_delivery in checkout.deliveries %}
+                  {% for item, item_price_per_item, item_price_total in delivery %}
+
+                    ga('ec:addProduct', {               // Provide product details in an productFieldObject.
+                    'id': '{{ item.variant.product.id }}',                     // Product ID (string).
+                    'name': '{{ item.variant.product.name }}',  // Product name (string).
+                    'category': '{{ item.variant.product.get_first_category }}',     // Product category (string).
+                    'brand': 'Luana Vizzon Acessórios',                 // Product brand (string).
+                    'price': '{{ item.variant.product.price.gross }}',
+                    'variant': '{{ item.variant.name }}',
+                    'quantity': '{{ item.quantity }}'
+                    });
+
+                  {% endfor %}
+              {% endfor %}
+
+            ga('ec:setAction','checkout', {'step': 2});       // Detail action.
+            ga('send', 'event', 'Ecommerce', 'view', 'Checkout');
+
+          {% endif %}
+
           {% if "/products/" in request.path %}
           function addToCart(){
               //Some code
@@ -371,6 +393,25 @@
               {% endif %}
 
               ga('send', 'event', 'Ecommerce', 'click', 'Go to Payment');
+
+              {% for delivery, delivery_cost, total_with_delivery in checkout.deliveries %}
+                  {% for item, item_price_per_item, item_price_total in delivery %}
+
+                    ga('ec:addProduct', {               // Provide product details in an productFieldObject.
+                    'id': '{{ item.variant.product.id }}',                     // Product ID (string).
+                    'name': '{{ item.variant.product.name }}',  // Product name (string).
+                    'category': '{{ item.variant.product.get_first_category }}',     // Product category (string).
+                    'brand': 'Luana Vizzon Acessórios',                 // Product brand (string).
+                    'price': '{{ item.variant.product.price.gross }}',
+                    'variant': '{{ item.variant.name }}',
+                    'quantity': '{{ item.quantity }}'
+                    });
+
+                  {% endfor %}
+              {% endfor %}
+
+            ga('ec:setAction','checkout', {'step': 3});       // Detail action.
+            ga('send', 'event', 'Ecommerce', 'view', 'Checkout');
 
           }
         {% endif %}
