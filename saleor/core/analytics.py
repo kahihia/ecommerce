@@ -31,20 +31,99 @@ def report_view(client_id, path, language, headers):
     pv = ga.PageView(path, host_name=host_name, referrer=referrer)
     extra_info = ga.SystemInfo(language=language)
     extra_headers = {}
+    """
+    if '/products/' in path and '/category/' not in path and '.jpg' not in path and '.png' not in path:
+        print('here')
+
+        extra_info = [{'ecommerce': {
+                       'detail': {
+                         'actionField': {'list': 'Apparel Gallery'},
+                         'products': [{
+                           'name': 'Triblend Android T-Shirt',
+                           'id': '12345',
+                           'price': '15.25',
+                           'brand': 'Google',
+                           'category': 'Apparel',
+                           'variant': 'Gray'
+                          }]
+                        }}}]
+    """
+
+
+
     user_agent = headers.get('HTTP_USER_AGENT', None)
     if user_agent:
         extra_headers['user-agent'] = user_agent
     _report(client_id, pv, extra_info=extra_info, extra_headers=extra_headers)
 
+    """
+    if '/cart/add/' in path:
+
+        extra_info = [{'ecommerce': {
+                        'currencyCode': 'EUR',
+                        'add': {
+                          'products': [{
+                            'name': 'Triblend Android T-Shirt',
+                            'id': '12345',
+                            'price': '15.25',
+                            'brand': 'Google',
+                            'category': 'Apparel',
+                            'variant': 'Gray',
+                            'quantity': 1
+                           }]
+                        }
+                      }}]
+
+        event = ga.Event('ecommerce', 'addToCart')
+        _report(client_id, event, extra_info=extra_info, extra_headers=extra_headers)
+    elif '/checkout/shipping-address/' in path:
+
+        extra_info = [
+                          {'step': 1,
+                          'option': 'Visa',
+                          'products': {
+                            'name': 'Triblend Android T-Shirt',
+                            'id': '12345',
+                            'price': '15.25',
+                            'brand': 'Google',
+                            'category': 'Apparel',
+                            'variant': 'Gray',
+                            'quantity': 1
+                         }
+                       }]
+
+        event = ga.Event('ecommerce', 'checkout')
+        _report(client_id, event, extra_info=extra_info, extra_headers=extra_headers)
+    """
+
+
 
 def report_order(client_id, order):
     for group in order:
+
         items = [ga.Item(oi.product.name,
                          oi.get_price_per_item(),
                          quantity=oi.quantity,
                          item_id=oi.product_sku)
                  for oi in group]
+        """
+        items = [ga.EnhancedItem(oi.product.name,
+                                 oi.get_price_per_item(),
+                                 quantity=oi.quantity,
+                                 item_id=oi.product_sku,
+                                 category=oi.product.categories.first().name,
+                                 brand='Luana Vizzon Acessórios',
+                                 variant=oi.product_name)
+                 for oi in group]
+        """
         trans = ga.Transaction('%s-%s' % (order.id, group.id), items,
                                revenue=group.get_total(),
                                shipping=group.shipping_price)
+        """
+        trans = ga.EnhancedPurchase('%s-%s' % (order.id, group.id),
+                                    items,
+                                    url_page = '/checkout/payment/',
+                                    revenue=group.get_total(),
+                                    shipping=group.shipping_price)
+        """
         _report(client_id, trans, {})
