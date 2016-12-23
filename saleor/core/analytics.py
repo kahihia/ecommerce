@@ -108,13 +108,15 @@ def report_order(client_id, order):
                  for oi in group]
         """
         items = [ga.EnhancedItem(oi.product.name,
-                                 oi.get_price_per_item(),
+                                 oi.get_price_per_item().gross,
                                  quantity=oi.quantity,
                                  item_id=oi.product_sku,
                                  category=oi.product.categories.first().name,
                                  brand='Luana Vizzon Acessórios',
                                  variant=oi.product_name)
                  for oi in group]
+        #for oi in group:
+        #    print(oi.get_price_per_item().gross)
         """
         trans = ga.Transaction('%s-%s' % (order.id, group.id), items,
                                revenue=group.get_total(),
