@@ -126,6 +126,7 @@ def report_order(client_id, order):
                                     items,
                                     url_page = '/checkout/payment/',
                                     revenue=group.get_total(),
-                                    shipping=group.shipping_price)
+                                    shipping=group.shipping_price,
+                                    coupon=order.voucher)
 
         _report(client_id, trans, {})
