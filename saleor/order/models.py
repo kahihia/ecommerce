@@ -180,11 +180,12 @@ class Order(models.Model, ItemSet):
                 'nome': self.shipping_address.full_name,
                 'order_token': token}
         r = requests.post("https://www.rdstation.com.br/api/1.3/conversions", data=data)
-
+        """
         data = {"status": "won",
                 "value":  self.total.gross,
                 "email": email}
         r = requests.post("https://www.rdstation.com.br/api/1.2/services/4ed59eaacea9ca340b924f0e760592bd/generic", data=data)
+        """
         """
         try:
             analytics.report_order(self.tracking_client_id, self)

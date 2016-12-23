@@ -26,6 +26,8 @@ from ...core import analytics
 import logging
 logger = logging.getLogger(__name__)
 
+import requests
+
 class OrderNoteForm(forms.ModelForm):
     class Meta:
         model = OrderNote
@@ -131,6 +133,10 @@ class ConfirmPaymentForm(forms.Form):
             payment.save()
             if self.order.status != 'fully-paid':
                 payment.send_confirmation_email()
+                data = {"status": "won",
+                        "value":  self.order.get_total().gross,
+                        "email": self.order.get_user_current_email()}
+                r = requests.post("https://www.rdstation.com.br/api/1.2/services/4ed59eaacea9ca340b924f0e760592bd/generic", data=data)
             self.order.change_status('fully-paid')
 
 
