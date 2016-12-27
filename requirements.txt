@@ -66,6 +66,7 @@ unidecode==0.4.19
 uwsgi==2.0.14
 xmltodict==0.10.2         # via django-payments
 django-pagseguro2==1.1.1
+newrelic
 
 # The following packages are commented out because they are
 # considered to be unsafe in a requirements file:
