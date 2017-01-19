@@ -284,7 +284,7 @@ class Checkout(object):
                               "diametro": "0"
                              }
 
-                if order_data['total'].gross > 250:
+                if order_data['total'].gross > 99999:
                     shipping_price = 0
                 else:
                     shipping_simulation = Correios().frete(**fields)
