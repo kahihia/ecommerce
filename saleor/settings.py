@@ -308,8 +308,10 @@ WEBPACK_LOADER = {
             r'.+\.hot-update\.js',
             r'.+\.map']}}
 
-PAGSEGURO_EMAIL = os.environ.get('PAGSEGURO_EMAIL')
-PAGSEGURO_TOKEN = os.environ.get('PAGSEGURO_TOKEN')
+PAGSEGURO_EMAIL = os.environ.get('PAGSEGURO_EMAIL','luanavizzonacessorios@gmail.com')
+PAGSEGURO_TOKEN = os.environ.get('PAGSEGURO_TOKEN','6A6F6800A8384CCEABD8674E17921D65')
 PAGSEGURO_SANDBOX = ast.literal_eval(os.environ.get('PAGSEGURO_SANDBOX', 'True')) # se o valor for True, as requisicoes a api serao feitas usando o PagSeguro Sandbox.
 PAGSEGURO_LOG_IN_MODEL = True # se o valor for True, os checkouts e transacoes vao ser logadas no database.
 SECURE_REDIRECT_EXEMPT = 'retorno/pagseguro/'
+
+DISCOUNT_THRESHOLD = os.environ.get('DISCOUNT_THRESHOLD',50)

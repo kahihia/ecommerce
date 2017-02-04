@@ -75,14 +75,28 @@
                             {% net checkout.get_subtotal %}
                         </td>
                     </tr>
+                    {% if checkout.get_subtotal != checkout.get_subtotal_with_discount %}
+                    <tr>
+                        <td>
+                            {% trans "Subtotal após desconto" %}
+                        </td>
+                        <td class="text-right">
+                            {% net checkout.get_subtotal_with_discount %}
+                        </td>
+                    </tr>
+                    {% else %}
+                        {% include 'checkout/snippets/voucher-form.html' with discount=checkout.discount form=voucher_form %}
+                    {% endif %}
 
-                    {% include 'checkout/snippets/voucher-form.html' with discount=checkout.discount form=voucher_form %}
+
 
                     <tr>
                         <td class="noborder">
+                            <br>
                             {% trans "Entrega" %}
                         </td>
                         <td class="noborder text-right">
+                            <br>
                             {% if checkout.shipping_method %}
                                 {% net checkout.get_total_shipping %}
                             {% else %}
@@ -94,14 +108,16 @@
                         <tr>
                         </tr>
                     {% endif %}
+
                     <tr>
                         <th>
                             {% trans "Total" %}
                         </th>
                         <td class="text-right">
-                            <strong>{% gross total %}</strong>
+                            <strong>{% net checkout.get_subtotal_with_discount %}</strong>
                         </td>
                     </tr>
+
                 </tbody>
             </table>
         {% endwith %}
