@@ -314,4 +314,4 @@ PAGSEGURO_SANDBOX = ast.literal_eval(os.environ.get('PAGSEGURO_SANDBOX', 'True')
 PAGSEGURO_LOG_IN_MODEL = True # se o valor for True, os checkouts e transacoes vao ser logadas no database.
 SECURE_REDIRECT_EXEMPT = 'retorno/pagseguro/'
 
-DISCOUNT_THRESHOLD = os.environ.get('DISCOUNT_THRESHOLD',50)
+DISCOUNT_THRESHOLD = os.environ.get('DISCOUNT_THRESHOLD',500)
