@@ -115,10 +115,10 @@ def start_payment(request, order, variant):
     total = 0
     for item in items:
         total += item.quantity*item.unit_price_net
-    if order.total_net.net >= int(settings.DISCOUNT_THRESHOLD):
+    if total >= int(settings.DISCOUNT_THRESHOLD):
         pagseguro_api = PagSeguroApi(reference='luanavizzon',
                                      sender_email = order.user_email,
-                                     extraAmount = "%0.2f" % (float(total)*(0.4)))
+                                     extraAmount = "%0.2f" % (-float(total)*(0.4)))
     elif order.discount_amount is not None:
         pagseguro_api = PagSeguroApi(reference='luanavizzon',
                                      sender_email = order.user_email,
