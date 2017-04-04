@@ -102,9 +102,33 @@
     </table>
     <div class="form-group">
         <div>
-            <a href="{% url "checkout:index" %}" class="btn btn-primary btn-lg pull-right">{% trans "Finalizar compra" %}</a>
+          {% if cart_total.gross < 300 %}
+            <a data-toggle="modal" data-target="#myModal"  class="btn btn-primary btn-lg pull-right">{% trans "Finalizar compra" %}</a>
+          {% else %}
+            <a href="{% url "checkout:index" %}" class="btn btn-primary btn-lg pull-right" >{% trans "Finalizar compra" %}</a>
+          {% endif %}
         </div>
     </div>
+</div>
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Aviso: </h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
 </div>
 {% else %}
 <p>
