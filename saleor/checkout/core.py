@@ -344,7 +344,7 @@ class Checkout(object):
             for shipment, shipping_cost, total in self.deliveries)
         total = sum(cost_iterator, zero)
         if float(total.gross) > settings.DISCOUNT_THRESHOLD:
-            total = Price(float(total.gross)*(1-0.4), currency=settings.DEFAULT_CURRENCY)
+            total = Price(float(total.gross)*(1), currency=settings.DEFAULT_CURRENCY)
 
         return total
 
