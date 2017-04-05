@@ -53,7 +53,18 @@
 
                         <ul class="nav navbar-nav pull-right">
                             <li>
-                                <a href="{% url "cart:index" %}"><i class="glyphicon glyphicon-shopping-cart"></i> {% trans "Carrinho" %} {% if cart_counter %}<span class="badge">{{ cart_counter }}</span>{% endif %}</a>
+                                <a href="{% url "cart:index" %}">
+                                  <i class="glyphicon glyphicon-shopping-cart"></i>
+                                  {% trans "Carrinho" %}
+                                  {% if cart_counter and request.get_full_path != "/cart/" %}
+                                  <span class="badge">
+                                    {{ cart_counter }}
+                                  </span>
+                                  <span class="badge">
+                                    R$ {{ cart_total }}
+                                  </span>
+                                  {% endif %}
+                                </a>
                             </li>
                         </ul>
                     </div>
