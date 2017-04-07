@@ -302,8 +302,8 @@ class Checkout(object):
         if voucher is not None:
             Voucher.objects.increase_usage(voucher)
 
-        if order_data['total'].gross >= 500:
-            order_data['discount_amount'] = Decimal((1- 0.4)*float(order_data['total'].gross))
+        #if order_data['total'].gross >= 500:
+        #    order_data['discount_amount'] = Decimal((1- 0.4)*float(order_data['total'].gross))
 
         return order
 
@@ -343,8 +343,8 @@ class Checkout(object):
             total - shipping_cost
             for shipment, shipping_cost, total in self.deliveries)
         total = sum(cost_iterator, zero)
-        if float(total.gross) > settings.DISCOUNT_THRESHOLD:
-            total = Price(float(total.gross)*(1-0.4), currency=settings.DEFAULT_CURRENCY)
+        # if float(total.gross) > settings.DISCOUNT_THRESHOLD:
+        #     total = Price(float(total.gross)*(1-0.4), currency=settings.DEFAULT_CURRENCY)
 
         return total
 
