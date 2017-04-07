@@ -302,8 +302,8 @@ class Checkout(object):
         if voucher is not None:
             Voucher.objects.increase_usage(voucher)
 
-        #if order_data['total'].gross >= 500:
-        #    order_data['discount_amount'] = Decimal((1- 0.4)*float(order_data['total'].gross))
+        if order_data['total'].gross >= 500:
+            order_data['discount_amount'] = Decimal((1- 0.4)*float(order_data['total'].gross))
 
         return order
 
