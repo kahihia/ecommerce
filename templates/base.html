@@ -4,440 +4,532 @@
 {% load render_bundle from webpack_loader %}
 
 <html lang="en" class="no-js">
-    <head>
-        <title>{% block title %}Luana Vizzon Acessórios{% endblock %}</title>
-        <link rel="icon" type="image/jpg" href="{% static 'images/mini_logo.jpg' %}">
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        {% block meta %}
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="{% block meta_description %}{% endblock %}">
-        {% endblock meta %}
+<head>
+  <title>{% block title %}Luana Vizzon Acessórios{% endblock %}</title>
+  <link rel="icon" type="image/jpg" href="{% static 'images/mini_logo.jpg' %}">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  {% block meta %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{% block meta_description %}{% endblock %}">
+  {% endblock meta %}
 
-        {% render_bundle 'vendor' 'css' %}
-        {% render_bundle 'storefront' 'css' %}
+  {% render_bundle 'vendor' 'css' %}
+  {% render_bundle 'storefront' 'css' %}
 
-        {% block stylesheet %}{% endblock stylesheet %}
+  {% block stylesheet %}{% endblock stylesheet %}
 
-        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-        <!--[if lt IE 9]>
-        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-    </head>
+  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+  <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
 
-    <body itemscope itemtype="http://schema.org/WebPage">
-        {% block header %}
+<body itemscope itemtype="http://schema.org/WebPage">
+  {% block header %}
 
-            <header class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  <header class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
 
-                <nav class="container">
-                    <div class="" >
-                        <ul class="nav navbar-nav navbar-left" id='price'>
-                          <li>
-                              <a href="#"><img src="{% static 'img/whatsapp-logo.png' %}" alt="Contate-nos pelo Whatsapp" height="24" width="24"></img>  (48) 99615-9131</a>
-                          </li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-left" id='price'>
-                            <li>
-                                <a href="#">Parcele em até 5x sem juros</a>
-                            </li>
-                        </ul>
-                        <a href="#" class="page-scroll btn-default"><button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+    <nav class="container">
+      <div class="" >
+        <ul class="nav navbar-nav navbar-left" id='price'>
+          <li>
+            <a href="#"><img src="{% static 'img/whatsapp-logo.png' %}" alt="Contate-nos pelo Whatsapp" height="24" width="24"></img>  (48) 99615-9131</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-left" id='price'>
+          <li>
+            <a href="#">Parcele em até 5x sem juros</a>
+          </li>
+        </ul>
+        <a href="#" class="page-scroll btn-default"><button type="button" class="navbar-toggle collapsed pull-left" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 
-                          <span class="icon-bar"></span>
-                          <span class="icon-bar"></span>
-                          <span class="icon-bar"></span>
-                        </button></a>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button></a>
 
-                        <ul class="nav navbar-nav pull-right">
-                            <li>
-                                <a href="{% url "cart:index" %}">
-                                  <i class="glyphicon glyphicon-shopping-cart"></i>
-                                  {% trans "Carrinho" %}
-                                  {% if cart_counter and request.get_full_path != "/cart/" %}
-                                  <span class="badge">
-                                    {{ cart_counter }}
-                                  </span>
-                                  <span class="badge">
-                                    R$ {{ cart_total }}
-                                  </span>
-                                  {% endif %}
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </header>
-        {% endblock %}
-
-
-
-        <!--start-logo-->
-        <div class="logo">
-          <a href="/"><img src="{% static 'images/logo.jpg' %}" alt="Luana Vizzon" class="img-responsive"></a>
-          <div class="input pull-right" id='search'>
-            <form method="get" action="/products/search/">
-              <button type="submit" style="background-color:transparent; border-color:transparent; padding-left:0px; border-left:0px;"><span class="icon" id="search-icon"><i class="fa fa-search"></i></span></button>
-
-              <input type="text" name="q" id="id_q" value="Procurar" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Procurar';}"/>
-              <!--<input type="image" class='search-btn' src="{% static 'images/search.png' %}" alt="Submit Form" />-->
-
-
-            </form>
-          </div>
-
-        </div>
-
-
-
-        <!--end-logo-->
-        <!--bottom-header-->
-        {% if "checkout" not in request.path %}
-
-      	<div class="header-bottom collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      		<div class="container">
-
-      			<div class="header">
-      				<div class="">
-      				<div class="top-nav">
-
-      					<ul class="memenu skyblue">
-                  <li {% if request.path == "/" %} class="active" {% endif %}><a href="/">Novidades</a></li>
-                  {% for category in categories %}
-                      {% if category.slug != 'default' %}
-                        <li {% if category.slug in request.path %} class="active" {% endif %}>
-                            <a href="{{ category.get_absolute_url }}">
-                                {{ category }}
-                            </a>
-                        </li>
-                      {% endif %}
-                  {% endfor %}
-                  </li>
-                  <li {% if request.path == "/contact/" %} class="active" {% endif %}><a href="/contact/">Entre em contato</a>
-                  </li>
-                  </li>
-      						<li id="resale" class="grid"><a href="http://mais.luanavizzon.com.br/quero-revender-lv-acessorios" target="_blank">Torne-se revendedora</a>
-      						</li>
-      					</ul>
-      				</div>
-      				<div class="clearfix"> </div>
-      			</div>
-      			<div class="clearfix"> </div>
-      			</div>
-      		</div>
-      	</div>
-
-
-        {% endif %}
-      	<!--bottom-header-->
-
-            <!--about-starts-->
-            {% if request.path == "/" %}
-          	<div class="about">
-          		<div class="container">
-          			<div class="about-top grid-1">
-              				<div class="col-md-4 about-left">
-                        <a href="/products/category/colares-3/">
-                					<figure class="effect-bubba">
-                						<img src="{% static 'images/necklace.jpg' %}" alt="Colares Luana Vizzon" class="img-responsive Image-Border">
-                						<figcaption>
-                							<h2>Colares</h2>
-                							<p>Transforme o seu look casual <br>em único</p>
-                						</figcaption>
-                					</figure>
-                        </a>
-              				</div>
-              				<div class="col-md-4 about-left">
-                        <a href="/products/category/aneis-2/">
-                          <figure class="effect-bubba">
-                						<img src="{% static 'images/ring.jpg' %}" alt="Anéis Luana Vizzon" class="img-responsive Image-Border">
-                						<figcaption>
-                							<h4>Anéis</h4>
-                							<p>Crie looks contemporâneos que combinam com o seu estilo</p>
-                						</figcaption>
-                					</figure>
-                        </a>
-              				</div>
-              				<div class="col-md-4 about-left">
-                        <a href="/products/category/brincos-5/">
-                          <figure class="effect-bubba">
-                						<img src="{% static 'images/earring.jpg' %}" alt="Brincos Luana Vizzon" class="img-responsive Image-Border">
-                						<figcaption>
-                							<h4>Brincos</h4>
-                							<p>Valorize o seu look com <br>pequenos detalhes</p>
-                						</figcaption>
-                					</figure>
-                        </a>
-              				</div>
-          				<div class="clearfix"></div>
-          			</div>
-          		</div>
-          	</div>
-            {% endif %}
-          	<!--about-end-->
-
-
-            <!--product-starts-->
-          	<div class="product">
-          		<div class="container">
-          			<div class="product-top">
-          				<div class="product-one">
-                    {% block outercontent %}
-                    <div class="row">
-                        <div class="col-sm-12">
-                            {% block content %}
-                                <div class="row">
-                                    {% include "category/_items.html" %}
-                                </div>
-                            {% endblock content %}
-                        </div>
-                    </div>
-                    {% endblock outercontent %}
-          				</div>
-          			</div>
-          		</div>
-          	</div>
-
-          	<!--product-end-->
-            {% if "cart" not in request.path and "checkout" not in request.path %}
-            <!--information-starts-->
-          	<div class="information">
-          		<div class="container">
-          			<div class="infor-top">
-          				<div class="col-md-3 infor-left">
-          					<h3>Siga LV Acessórios</h3>
-          					<ul>
-          						<li><a href="https://pt-br.facebook.com/luanavizzonacessorios/" target='_blank'><span class="fb"><img src="{% static 'images/facebook.jpg' %}" alt="Siga Luana Vizzon no Facebook" class="img-responsive"></span><h6>Facebook</h6></a></li>
-          						<li><a href="https://www.instagram.com/luanavizzon_acessorios/?hl=pt-br" target='_blank'><span class="twit"><img src="{% static 'images/instagram.jpg' %}" alt="Siga Luana Vizzon no Instagram" class="img-responsive"></span><h6>Instragram</h6></a></li>
-          					</ul>
-          				</div>
-          				<div class="col-md-3 infor-left">
-          					<h3>Mais informações</h3>
-          					<ul>
-          						<!--<li><a href="#"><p>Quem somos</p></a></li>-->
-          						<li><a href="/contact/"><p>Entre em contato</p></a></li>
-                      <li><a href="http://mais.luanavizzon.com.br/quero-revender-lv-acessorios" target="_blank"><p>Torne-se revendedora</p></a></li>
-                      <li><a href="http://mais.luanavizzon.com.br/politica-de-troca-e-devolucao" target="_blank"><p>Política de troca e devolução</p></a></li>
-                    </ul>
-          				</div>
-                  <div class="col-md-3 infor-left">
-          					<h3>Visite nossa loja</h3>
-          					<h4>Luana Vizzon Acessórios
-                      <span>Servidão Laje de Pedra, 151</span>
-                      <span>Sala 07</span>
-                      Florianópolis, SC</h4>
-          					<h5>55 (48) 3037-9718</h5>
-          					<p><a href="mailto:contato@luanavizzon.com.br">contato@luanavizzon.com.br</a></p>
-          				</div>
-          				<div class="col-md-3 infor-left">
-          					<h3>Formas de Pagamento</h3>
-                    <h4></h4>
-                    <img src="{% static 'images/payment.png' %}" alt="Formas de Pagamento" class="img-responsive">
-          				</div>
-          				<div class="clearfix"></div>
-          			</div>
-          		</div>
-          	</div>
-          	<!--information-end-->
-            {% endif %}
-        {% if messages %}
-        <div class="container">
-            {% for message in messages %}
-            <div class="alert{% if message.tags %} alert-{{ message.tags }}{% endif %}">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                {{ message }}
-            </div>
-            {% endfor %}
-        </div>
-        {% endif %}
-        {% block footer %}
-        <!--footer-starts-->
-        <div class="footer">
-          <div class="container">
-            <div class="footer-top">
-
-              {% if "cart" not in request.path and "checkout" not in request.path %}
-              <div class="col-md-6 footer-left">
-
-                <p>Receba ofertas por email</p>
-                <form action="https://www.rdstation.com.br/api/1.2/conversions" method="POST">{% csrf_token %}
-                  <input type="text" id="email" name="email" value="Escreva seu email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your Email';}">
-                  <input type="submit" value="Enviar">
-                  <input type="hidden" id="identificador" name="identificador" value="footer" >
-                  <input type="hidden" id="token_rdstation" name="token_rdstation" value="e62acd99b0fced7294d66725f9eac312" >
-                  <input type="hidden" name="c_utmz" id="c_utmz" value="" />
-                  <input type="hidden" name="traffic_source" id="traffic_source" value="" />
-                  <script type="text/javascript">
-                  function read_cookie(a){var b=a+"=";var c=document.cookie.split(";");for(var d=0;d<c.length;d++){var e=c[d];while(e.charAt(0)==" ")e=e.substring(1,e.length);if(e.indexOf(b)==0){return e.substring(b.length,e.length)}}return null}try{document.getElementById("c_utmz").value=read_cookie("__utmz"); document.getElementById("traffic_source").value=read_cookie("__trf.src");}catch(err){}
-                  </script>
-                  <!--<input type="hidden" name="redirect_to" value="http://luanavizzon.com.br/" />-->
-                </form>
-
-              </div>
-
-              <div class="col-md-6 footer-right">
-                <p>© 2016 LV Acessórios. Todos os direitos reservados.</p>
-              </div>
+        <ul class="nav navbar-nav pull-right">
+          <li>
+            <a href="{% url "cart:index" %}">
+              <i class="glyphicon glyphicon-shopping-cart"></i>
+              {% trans "Carrinho" %}
+              {% if cart_counter and request.get_full_path != "/cart/" %}
+              <span class="badge">
+                {{ cart_counter }}
+              </span>
+              <span class="badge">
+                R$ {{ cart_total }}
+              </span>
               {% endif %}
-              <div class="clearfix"></div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  {% endblock %}
+
+
+
+  <!--start-logo-->
+  <div class="logo">
+    <a href="/"><img src="{% static 'images/logo.jpg' %}" alt="Luana Vizzon" class="img-responsive"></a>
+    <div class="input pull-right" id='search'>
+      <form method="get" action="/products/search/">
+        <button type="submit" style="background-color:transparent; border-color:transparent; padding-left:0px; border-left:0px;"><span class="icon" id="search-icon"><i class="fa fa-search"></i></span></button>
+
+        <input type="text" name="q" id="id_q" value="Procurar" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Procurar';}"/>
+        <!--<input type="image" class='search-btn' src="{% static 'images/search.png' %}" alt="Submit Form" />-->
+
+
+      </form>
+    </div>
+
+  </div>
+
+
+
+  <!--end-logo-->
+  <!--bottom-header-->
+  {% if "checkout" not in request.path %}
+
+  <div class="header-bottom collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="container">
+
+      <div class="header">
+        <div class="">
+          <div class="top-nav">
+
+            <ul class="memenu skyblue">
+              <li {% if request.path == "/" %} class="active" {% endif %}><a href="/">Novidades</a></li>
+              {% for category in categories %}
+              {% if category.slug != 'default' %}
+              <li {% if category.slug in request.path %} class="active" {% endif %}>
+                <a href="{{ category.get_absolute_url }}">
+                  {{ category }}
+                </a>
+              </li>
+              {% endif %}
+              {% endfor %}
+            </li>
+            <li {% if request.path == "/contact/" %} class="active" {% endif %}><a href="/contact/">Entre em contato</a>
+            </li>
+          </li>
+          <li id="resale" class="grid"><a href="http://mais.luanavizzon.com.br/quero-revender-lv-acessorios" target="_blank">Torne-se revendedora</a>
+          </li>
+        </ul>
+      </div>
+      <div class="clearfix"> </div>
+    </div>
+    <div class="clearfix"> </div>
+  </div>
+</div>
+</div>
+
+
+{% endif %}
+<!--bottom-header-->
+
+<!--about-starts-->
+{% if request.path == "/" %}
+<div class="about">
+  <div class="container">
+    <div class="about-top grid-1">
+      <div class="col-md-4 about-left">
+        <a href="/products/category/colares-3/">
+          <figure class="effect-bubba">
+            <img src="{% static 'images/necklace.jpg' %}" alt="Colares Luana Vizzon" class="img-responsive Image-Border">
+            <figcaption>
+              <h2>Colares</h2>
+              <p>Transforme o seu look casual <br>em único</p>
+            </figcaption>
+          </figure>
+        </a>
+      </div>
+      <div class="col-md-4 about-left">
+        <a href="/products/category/aneis-2/">
+          <figure class="effect-bubba">
+            <img src="{% static 'images/ring.jpg' %}" alt="Anéis Luana Vizzon" class="img-responsive Image-Border">
+            <figcaption>
+              <h4>Anéis</h4>
+              <p>Crie looks contemporâneos que combinam com o seu estilo</p>
+            </figcaption>
+          </figure>
+        </a>
+      </div>
+      <div class="col-md-4 about-left">
+        <a href="/products/category/brincos-5/">
+          <figure class="effect-bubba">
+            <img src="{% static 'images/earring.jpg' %}" alt="Brincos Luana Vizzon" class="img-responsive Image-Border">
+            <figcaption>
+              <h4>Brincos</h4>
+              <p>Valorize o seu look com <br>pequenos detalhes</p>
+            </figcaption>
+          </figure>
+        </a>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+{% endif %}
+<!--about-end-->
+
+
+<!--product-starts-->
+<div class="product">
+  <div class="container">
+    <div class="product-top">
+      <div class="product-one">
+        {% block outercontent %}
+        <div class="row">
+          <div class="col-sm-12">
+            {% block content %}
+            <div class="row">
+              {% include "category/_items.html" %}
             </div>
+            {% endblock content %}
           </div>
         </div>
-        <!--footer-end-->
-        {% endblock %}
-        {% block footer_scripts %}
-          {% render_bundle 'vendor' 'js' %}
-          {% render_bundle 'storefront' 'js' %}
-        {% endblock footer_scripts %}
+        {% endblock outercontent %}
+      </div>
+    </div>
+  </div>
+</div>
 
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+<!--product-end-->
+{% if "cart" not in request.path and "checkout" not in request.path %}
+<!--information-starts-->
+<div class="information">
+  <div class="container">
+    <div class="infor-top">
+      <div class="col-md-3 infor-left">
+        <h3>Siga LV Acessórios</h3>
+        <ul>
+          <li><a href="https://pt-br.facebook.com/luanavizzonacessorios/" target='_blank'><span class="fb"><img src="{% static 'images/facebook.jpg' %}" alt="Siga Luana Vizzon no Facebook" class="img-responsive"></span><h6>Facebook</h6></a></li>
+          <li><a href="https://www.instagram.com/luanavizzon_acessorios/?hl=pt-br" target='_blank'><span class="twit"><img src="{% static 'images/instagram.jpg' %}" alt="Siga Luana Vizzon no Instagram" class="img-responsive"></span><h6>Instragram</h6></a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 infor-left">
+        <h3>Mais informações</h3>
+        <ul>
+          <!--<li><a href="#"><p>Quem somos</p></a></li>-->
+          <li><a href="/contact/"><p>Entre em contato</p></a></li>
+          <li><a href="http://mais.luanavizzon.com.br/quero-revender-lv-acessorios" target="_blank"><p>Torne-se revendedora</p></a></li>
+          <li><a href="http://mais.luanavizzon.com.br/politica-de-troca-e-devolucao" target="_blank"><p>Política de troca e devolução</p></a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 infor-left">
+        <h3>Visite nossa loja</h3>
+        <h4>Luana Vizzon Acessórios
+          <span>Servidão Laje de Pedra, 151</span>
+          <span>Sala 07</span>
+          Florianópolis, SC</h4>
+          <h5>55 (48) 3037-9718</h5>
+          <p><a href="mailto:contato@luanavizzon.com.br">contato@luanavizzon.com.br</a></p>
+        </div>
+        <div class="col-md-3 infor-left">
+          <h3>Formas de Pagamento</h3>
+          <h4></h4>
+          <img src="{% static 'images/payment.png' %}" alt="Formas de Pagamento" class="img-responsive">
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+  <!--information-end-->
+  {% endif %}
+  {% if messages %}
+  <div class="container">
+    {% for message in messages %}
+    <div class="alert{% if message.tags %} alert-{{ message.tags }}{% endif %}">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      {{ message }}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% block footer %}
+  <!--footer-starts-->
+  <div class="footer">
+    <div class="container">
+      <div class="footer-top">
 
-          ga('create', 'UA-70453262-1', 'auto');
-          ga('require', 'ec');
+        {% if "cart" not in request.path and "checkout" not in request.path %}
+        <div class="col-md-6 footer-left">
 
-          {% if "/products/" in request.path and "/category/" not in request.path %}
+          <p>Receba ofertas por email</p>
+          <form action="https://www.rdstation.com.br/api/1.2/conversions" method="POST">{% csrf_token %}
+            <input type="text" id="email" name="email" value="Escreva seu email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your Email';}">
+            <input type="submit" value="Enviar">
+            <input type="hidden" id="identificador" name="identificador" value="footer" >
+            <input type="hidden" id="token_rdstation" name="token_rdstation" value="e62acd99b0fced7294d66725f9eac312" >
+            <input type="hidden" name="c_utmz" id="c_utmz" value="" />
+            <input type="hidden" name="traffic_source" id="traffic_source" value="" />
+            <script type="text/javascript">
+            function read_cookie(a){var b=a+"=";var c=document.cookie.split(";");for(var d=0;d<c.length;d++){var e=c[d];while(e.charAt(0)==" ")e=e.substring(1,e.length);if(e.indexOf(b)==0){return e.substring(b.length,e.length)}}return null}try{document.getElementById("c_utmz").value=read_cookie("__utmz"); document.getElementById("traffic_source").value=read_cookie("__trf.src");}catch(err){}
+            </script>
+            <!--<input type="hidden" name="redirect_to" value="http://luanavizzon.com.br/" />-->
+          </form>
 
-            ga('ec:addProduct', {               // Provide product details in an productFieldObject.
-            'id': '{{ product.id }}',                     // Product ID (string).
-            'name': '{{ product.name }}',  // Product name (string).
-            'category': '{{ product.get_first_category }}',     // Product category (string).
-            'brand': 'Luana Vizzon Acessórios',                 // Product brand (string).
-            'price': '{{ product.price.gross }}'
-            });
+        </div>
 
-            ga('ec:setAction', 'detail');       // Detail action.
-
-          {% endif %}
-
-          ga('send', 'pageview');
-
-          {% if "/checkout/shipping-address/" in request.path %}
-              {% for delivery, delivery_cost, total_with_delivery in checkout.deliveries %}
-                  {% for item, item_price_per_item, item_price_total in delivery %}
-
-                    ga('ec:addProduct', {               // Provide product details in an productFieldObject.
-                    'id': '{{ item.variant.product.id }}',                     // Product ID (string).
-                    'name': '{{ item.variant.product.name }}',  // Product name (string).
-                    'category': '{{ item.variant.product.get_first_category }}',     // Product category (string).
-                    'brand': 'Luana Vizzon Acessórios',                 // Product brand (string).
-                    'price': '{{ item.variant.product.price.gross }}',
-                    'variant': '{{ item.variant.name }}',
-                    'quantity': '{{ item.quantity }}'
-                    });
-
-                  {% endfor %}
-              {% endfor %}
-
-            ga('ec:setAction','checkout', {'step': 1});       // Detail action.
-            ga('send', 'event', 'Ecommerce', 'view', 'Checkout');
-
-          {% endif %}
-
-          {% if "/checkout/shipping-method/" in request.path %}
-              {% for delivery, delivery_cost, total_with_delivery in checkout.deliveries %}
-                  {% for item, item_price_per_item, item_price_total in delivery %}
-
-                    ga('ec:addProduct', {               // Provide product details in an productFieldObject.
-                    'id': '{{ item.variant.product.id }}',                     // Product ID (string).
-                    'name': '{{ item.variant.product.name }}',  // Product name (string).
-                    'category': '{{ item.variant.product.get_first_category }}',     // Product category (string).
-                    'brand': 'Luana Vizzon Acessórios',                 // Product brand (string).
-                    'price': '{{ item.variant.product.price.gross }}',
-                    'variant': '{{ item.variant.name }}',
-                    'quantity': '{{ item.quantity }}'
-                    });
-
-                  {% endfor %}
-              {% endfor %}
-
-            ga('ec:setAction','checkout', {'step': 2});       // Detail action.
-            ga('send', 'event', 'Ecommerce', 'view', 'Checkout');
-
-          {% endif %}
-
-          {% if "/products/" in request.path %}
-          function addToCart(){
-              //Some code
-              ga('ec:addProduct', {               // Provide product details in an productFieldObject.
-              'id': '{{ product.id }}',                     // Product ID (string).
-              'name': '{{ product.name }}',  // Product name (string).
-              'category': '{{ product.get_first_category }}',     // Product category (string).
-              'brand': 'Luana Vizzon Acessórios',                 // Product brand (string).
-              'price': '{{ product.price.gross }}'
-              });
-
-              //ga('ec:setAction', 'add');
-              ga('ec:setAction', 'add');
-              ga('send', 'event', 'Ecommerce', 'click', 'Add to Cart');
-          }
-          {% endif %}
-
-          {% if "/checkout/" in request.path %}
-          function goToPayment(){
-              {% for delivery, delivery_cost, total_with_delivery in checkout.deliveries %}
-                  {% for item, item_price_per_item, item_price_total in delivery %}
-
-                    ga('ec:addProduct', {               // Provide product details in an productFieldObject.
-                    'id': '{{ item.variant.product.id }}',                     // Product ID (string).
-                    'name': '{{ item.variant.product.name }}',  // Product name (string).
-                    'category': '{{ item.variant.product.get_first_category }}',     // Product category (string).
-                    'brand': 'Luana Vizzon Acessórios',                 // Product brand (string).
-                    'price': '{{ item.variant.product.price.gross }}',
-                    'variant': '{{ item.variant.name }}',
-                    'quantity': '{{ item.quantity }}'
-                    });
-
-                  {% endfor %}
-              {% endfor %}
-
-              //ga('ec:setAction', 'add');
-              {% if checkout.discount %}
-              ga('ec:setAction', 'purchase',{
-                                       'id': '1', // Transaction id - Type: string
-                                       'affiliation': 'Luana Vizzon Acessórios', // Store name - Type: string
-                                       'revenue': '{{ checkout.get_total.gross }}', // Total Revenue - Type: numeric
-                                       'coupon': '{{ checkout.discount.name }}' // Order/Transaction coupon - Type: string
-                                      });
-              {% else %}
-              ga('ec:setAction', 'purchase',{
-                                       'id': '1', // Transaction id - Type: string
-                                       'affiliation': 'Luana Vizzon Acessórios', // Store name - Type: string
-                                       'revenue': '{{ checkout.get_total.gross }}'
-                                      });
-              {% endif %}
-
-              ga('send', 'event', 'Ecommerce', 'click', 'Go to Payment');
-
-              {% for delivery, delivery_cost, total_with_delivery in checkout.deliveries %}
-                  {% for item, item_price_per_item, item_price_total in delivery %}
-
-                    ga('ec:addProduct', {               // Provide product details in an productFieldObject.
-                    'id': '{{ item.variant.product.id }}',                     // Product ID (string).
-                    'name': '{{ item.variant.product.name }}',  // Product name (string).
-                    'category': '{{ item.variant.product.get_first_category }}',     // Product category (string).
-                    'brand': 'Luana Vizzon Acessórios',                 // Product brand (string).
-                    'price': '{{ item.variant.product.price.gross }}',
-                    'variant': '{{ item.variant.name }}',
-                    'quantity': '{{ item.quantity }}'
-                    });
-
-                  {% endfor %}
-              {% endfor %}
-
-            ga('ec:setAction','checkout', {'step': 3});       // Detail action.
-            ga('send', 'event', 'Ecommerce', 'view', 'Checkout');
-
-          }
+        <div class="col-md-6 footer-right">
+          <p>© 2016 LV Acessórios. Todos os direitos reservados.</p>
+        </div>
         {% endif %}
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+  <!--footer-end-->
+  <!--popup-starts-->
+  <!-- Modal -->
+  <div class="modal fade" id="popup-notice" role="dialog">
+    <div class="modal-dialog">
 
-        </script>
-        <script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/39bc6d30-964a-43a4-a2f6-d925a36ae392-loader.js" ></script>
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4>Seja bem-vindo(a)</h4>
+          <h5>**Os preços exibidos no site são de varejo. O pedido mínimo é de R$ 300,00 e o desconto de 40% é gerado automaticamente na conclusão da compra.**</h5>
+        </div>
+      </div>
 
-    </body>
+    </div>
+  </div>
+  <script>
+  function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+  function incrementCookie(){
+    currentTime = parseInt(getCookie('time_passed'));
+    if (currentTime > 45) {
+      showPopup();
+    }else{
+      setCookie('time_passed', currentTime+1,1);
+      setTimeout(incrementCookie,1000);
+    }
+
+  }
+  function showPopup(){
+    $("#popup-notice").modal();
+    setCookie('seen_popup', 'true', 1);
+  }
+  $(document).ready(function(){
+    if(getCookie('seen_popup')===""){
+      timePassed = getCookie('time_passed');
+      if (timePassed ==="46" || timePassed ==="" ) {
+        setCookie('time_passed',0,1);
+      }
+      setTimeout(incrementCookie,1000);
+    }
+  });
+  </script>
+  <style>
+  #popup-notice > div > div > div > h4 {
+    color: #6f5e5e !important;
+    text-align: center !important;
+    font-weight: bold !important;
+    font-size: 25px !important;
+    font-family: Helvetica, Arial, sans-serif !important;
+    line-height: 1.2 !important;
+  }
+  #popup-notice > div > div > div > h5 {
+    color: #d52b78 !important;
+    text-align: center !important;
+    font-weight: bold !important;
+    font-size: 24px !important;
+    font-family: Helvetica, Arial, sans-serif !important;
+    line-height: 1.6 !important;
+  }
+  #popup-notice > div > div > div {
+    display: block !important;
+    border-width: 0px !important;
+    border-color: transparent !important;
+    border-radius: 0px !important;
+    border-style: solid !important;
+    background-color: #fadae2 !important;
+    box-shadow: 0px 0px 8px #333 !important;
+    z-index: 999999 !important;
+    padding: 25px !important;
+  }
+  </style>
+  <!--popup-ends-->
+  {% endblock %}
+  {% block footer_scripts %}
+  {% render_bundle 'vendor' 'js' %}
+  {% render_bundle 'storefront' 'js' %}
+  {% endblock footer_scripts %}
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-70453262-1', 'auto');
+  ga('require', 'ec');
+
+  {% if "/products/" in request.path and "/category/" not in request.path %}
+
+  ga('ec:addProduct', {               // Provide product details in an productFieldObject.
+    'id': '{{ product.id }}',                     // Product ID (string).
+    'name': '{{ product.name }}',  // Product name (string).
+    'category': '{{ product.get_first_category }}',     // Product category (string).
+    'brand': 'Luana Vizzon Acessórios',                 // Product brand (string).
+    'price': '{{ product.price.gross }}'
+  });
+
+  ga('ec:setAction', 'detail');       // Detail action.
+
+  {% endif %}
+
+  ga('send', 'pageview');
+
+  {% if "/checkout/shipping-address/" in request.path %}
+  {% for delivery, delivery_cost, total_with_delivery in checkout.deliveries %}
+  {% for item, item_price_per_item, item_price_total in delivery %}
+
+  ga('ec:addProduct', {               // Provide product details in an productFieldObject.
+    'id': '{{ item.variant.product.id }}',                     // Product ID (string).
+    'name': '{{ item.variant.product.name }}',  // Product name (string).
+    'category': '{{ item.variant.product.get_first_category }}',     // Product category (string).
+    'brand': 'Luana Vizzon Acessórios',                 // Product brand (string).
+    'price': '{{ item.variant.product.price.gross }}',
+    'variant': '{{ item.variant.name }}',
+    'quantity': '{{ item.quantity }}'
+  });
+
+  {% endfor %}
+  {% endfor %}
+
+  ga('ec:setAction','checkout', {'step': 1});       // Detail action.
+  ga('send', 'event', 'Ecommerce', 'view', 'Checkout');
+
+  {% endif %}
+
+  {% if "/checkout/shipping-method/" in request.path %}
+  {% for delivery, delivery_cost, total_with_delivery in checkout.deliveries %}
+  {% for item, item_price_per_item, item_price_total in delivery %}
+
+  ga('ec:addProduct', {               // Provide product details in an productFieldObject.
+    'id': '{{ item.variant.product.id }}',                     // Product ID (string).
+    'name': '{{ item.variant.product.name }}',  // Product name (string).
+    'category': '{{ item.variant.product.get_first_category }}',     // Product category (string).
+    'brand': 'Luana Vizzon Acessórios',                 // Product brand (string).
+    'price': '{{ item.variant.product.price.gross }}',
+    'variant': '{{ item.variant.name }}',
+    'quantity': '{{ item.quantity }}'
+  });
+
+  {% endfor %}
+  {% endfor %}
+
+  ga('ec:setAction','checkout', {'step': 2});       // Detail action.
+  ga('send', 'event', 'Ecommerce', 'view', 'Checkout');
+
+  {% endif %}
+
+  {% if "/products/" in request.path %}
+  function addToCart(){
+    //Some code
+    ga('ec:addProduct', {               // Provide product details in an productFieldObject.
+      'id': '{{ product.id }}',                     // Product ID (string).
+      'name': '{{ product.name }}',  // Product name (string).
+      'category': '{{ product.get_first_category }}',     // Product category (string).
+      'brand': 'Luana Vizzon Acessórios',                 // Product brand (string).
+      'price': '{{ product.price.gross }}'
+    });
+
+    //ga('ec:setAction', 'add');
+    ga('ec:setAction', 'add');
+    ga('send', 'event', 'Ecommerce', 'click', 'Add to Cart');
+  }
+  {% endif %}
+
+  {% if "/checkout/" in request.path %}
+  function goToPayment(){
+    {% for delivery, delivery_cost, total_with_delivery in checkout.deliveries %}
+    {% for item, item_price_per_item, item_price_total in delivery %}
+
+    ga('ec:addProduct', {               // Provide product details in an productFieldObject.
+      'id': '{{ item.variant.product.id }}',                     // Product ID (string).
+      'name': '{{ item.variant.product.name }}',  // Product name (string).
+      'category': '{{ item.variant.product.get_first_category }}',     // Product category (string).
+      'brand': 'Luana Vizzon Acessórios',                 // Product brand (string).
+      'price': '{{ item.variant.product.price.gross }}',
+      'variant': '{{ item.variant.name }}',
+      'quantity': '{{ item.quantity }}'
+    });
+
+    {% endfor %}
+    {% endfor %}
+
+    //ga('ec:setAction', 'add');
+    {% if checkout.discount %}
+    ga('ec:setAction', 'purchase',{
+      'id': '1', // Transaction id - Type: string
+      'affiliation': 'Luana Vizzon Acessórios', // Store name - Type: string
+      'revenue': '{{ checkout.get_total.gross }}', // Total Revenue - Type: numeric
+      'coupon': '{{ checkout.discount.name }}' // Order/Transaction coupon - Type: string
+    });
+    {% else %}
+    ga('ec:setAction', 'purchase',{
+      'id': '1', // Transaction id - Type: string
+      'affiliation': 'Luana Vizzon Acessórios', // Store name - Type: string
+      'revenue': '{{ checkout.get_total.gross }}'
+    });
+    {% endif %}
+
+    ga('send', 'event', 'Ecommerce', 'click', 'Go to Payment');
+
+    {% for delivery, delivery_cost, total_with_delivery in checkout.deliveries %}
+    {% for item, item_price_per_item, item_price_total in delivery %}
+
+    ga('ec:addProduct', {               // Provide product details in an productFieldObject.
+      'id': '{{ item.variant.product.id }}',                     // Product ID (string).
+      'name': '{{ item.variant.product.name }}',  // Product name (string).
+      'category': '{{ item.variant.product.get_first_category }}',     // Product category (string).
+      'brand': 'Luana Vizzon Acessórios',                 // Product brand (string).
+      'price': '{{ item.variant.product.price.gross }}',
+      'variant': '{{ item.variant.name }}',
+      'quantity': '{{ item.quantity }}'
+    });
+
+    {% endfor %}
+    {% endfor %}
+
+    ga('ec:setAction','checkout', {'step': 3});       // Detail action.
+    ga('send', 'event', 'Ecommerce', 'view', 'Checkout');
+
+  }
+  {% endif %}
+
+  </script>
+  <script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/39bc6d30-964a-43a4-a2f6-d925a36ae392-loader.js" ></script>
+
+</body>
 </html>
