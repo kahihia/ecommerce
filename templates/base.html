@@ -341,7 +341,7 @@
   $(document).ready(function(){
     if(getCookie('seen_popup')===""){
       timePassed = getCookie('time_passed');
-      if ( parseInt(imePassed) > 30 || timePassed === "" ) {
+      if ( parseInt(timePassed) > 30 || timePassed === "" ) {
         setCookie('time_passed',0,1);
       }
       setTimeout(incrementCookie,1000);
