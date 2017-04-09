@@ -340,7 +340,8 @@
   }
   $(document).ready(function(){
     if(getCookie('seen_popup')===""){
-      if (getCookie('time_passed')==="46") {
+      timePassed = getCookie('time_passed');
+      if (timePassed ==="46" || timePassed ==="" ) {
         setCookie('time_passed',0,1);
       }
       setTimeout(incrementCookie,1000);
