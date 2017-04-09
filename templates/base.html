@@ -326,7 +326,7 @@
   }
   function incrementCookie(){
     currentTime = parseInt(getCookie('time_passed'));
-    if (currentTime > 45) {
+    if (currentTime > 30) {
       showPopup();
     }else{
       setCookie('time_passed', currentTime+1,1);
@@ -341,7 +341,7 @@
   $(document).ready(function(){
     if(getCookie('seen_popup')===""){
       timePassed = getCookie('time_passed');
-      if (timePassed ==="46" || timePassed ==="" ) {
+      if ( parseInt(imePassed) > 30 || timePassed === "" ) {
         setCookie('time_passed',0,1);
       }
       setTimeout(incrementCookie,1000);
